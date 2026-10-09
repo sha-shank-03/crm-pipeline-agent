@@ -1,0 +1,229 @@
+import time
+import uuid
+from pathlib import Path
+
+from .java_client import DomainError, OutcomeUnknown
+from .protocol import ProtocolError, encode
+from .provider import Terminal
+from .run_state import save
+from .tools import Dispatcher, tool_schemas, validate_call
+
+DEFAULT_LIMITS = {"max_turns": 16, "max_tools": 20, "max_note_reads": 8, "max_stage_attempts": 2,
+                  "max_errors": 2, "deadline_seconds": 60, "max_reconcile_calls": 12}
+
+
+def budget(run):
+    if not isinstance(run, dict) or type(run.get("schema_version")) is not int or run["schema_version"] != 1 or not isinstance(run.get("messages"), list) or not isinstance(run.get("state"), str):
+        raise ProtocolError("Invalid run checkpoint")
+    if "limits" not in run:  # M1 persisted records migrate conservatively; consumed turns/tools remain.
+        run["limits"] = dict(DEFAULT_LIMITS)
+        run["counters"] = {"note_reads": sum(m.get("tool") == "read_note" and m.get("role") == "assistant" for m in run["messages"]),
+                           "stage_attempts": sum(m.get("tool") == "stage_proposal" and m.get("role") == "assistant" for m in run["messages"]),
+                           "errors": 0, "reconcile_calls": 0}
+        run["active_milliseconds"] = int(run.get("elapsed_seconds", 0) * 1000)
+    if not isinstance(run.get("limits"), dict) or not isinstance(run.get("counters"), dict) or run["counters"].keys() != {"note_reads", "stage_attempts", "errors", "reconcile_calls"}:
+        raise ProtocolError("Missing/invalid persisted counters")
+    for key, value in run["limits"].items():
+        ceiling = 180 if key == "deadline_seconds" and run.get("provider_mode") == "ollama-http" else DEFAULT_LIMITS.get(key, 0)
+        if type(value) is not int or value < 1 or value > ceiling:
+            raise ProtocolError("Invalid persisted limits")
+    if run["limits"].keys() != DEFAULT_LIMITS.keys():
+        raise ProtocolError("Missing persisted limits")
+    for value in [run.get("tool_calls"), run.get("provider_turns"), run.get("active_milliseconds"), *run["counters"].values()]:
+        if type(value) is not int or value < 0:
+            raise ProtocolError("Invalid persisted counters")
+    return run["limits"]
+
+
+def cancelled(record_path, run):
+    return run.get("cancel_requested", False) or (Path(record_path).parent / "cancel.requested").exists()
+
+
+def request_cancel(record_path):
+    from .run_state import load
+    path = Path(record_path)
+    run = load(path)
+    # A marker avoids overwriting an in-flight controller's checkpoint with an older record.
+    (path.parent / "cancel.requested").write_text("cancel\n", encoding="utf-8")
+    if run["state"] in {"APPLIED", "REJECTED", "NO_CHANGE", "HANDOFF", "STALE", "EXPIRED", "FAILED", "CANCELLED"}:
+        return run
+    run["cancel_requested"] = True
+    run["state"] = "OUTCOME_UNKNOWN" if run.get("pending_apply") or run.get("pending_stage") else "CANCELLED"
+    run["reason"] = "Cancellation requested; pending writes require reconciliation" if run["state"] == "OUTCOME_UNKNOWN" else "Cancelled before dispatch"
+    # Only idle review is written immediately; an active controller sees the marker.
+    if run.get("state") == "CANCELLED" and run.get("proposal_id"):
+        save(path, run)
+    return run
+
+
+def run_agent(client, provider, output: Path, task: str = "Review the fictional North pipeline", *, limits=None) -> dict:
+    output = Path(output)
+    record_path = output / "run.json"
+    if record_path.exists():
+        raise ValueError("Run already exists; choose a new output directory or resume it")
+    configured = dict(DEFAULT_LIMITS)
+    if provider.mode == "ollama-http":
+        configured["deadline_seconds"] = 180
+    if limits:
+        if set(limits) - configured.keys():
+            raise ValueError("Unknown limits")
+        configured.update(limits)
+    run = {"schema_version": 1, "run_id": str(uuid.uuid4()), "provider_mode": provider.mode,
+           "model_id": provider.model_id, "model_quality_evaluated": False, "store": str(client.store),
+           "as_of": client.as_of, "state": "CREATED", "messages": [{"role": "user", "content": task}],
+           "tool_calls": 0, "provider_turns": 0, "proposal_id": None, "pending_stage": None,
+           "pending_apply": None, "receipt": None, "limits": configured, "active_milliseconds": 0,
+           "counters": {"errors": 0, "note_reads": 0, "stage_attempts": 0, "reconcile_calls": 0},
+           "provider_usage": None, "cancel_requested": False}
+    limits = budget(run)
+    dispatcher = Dispatcher(client, run["run_id"])
+    start = time.monotonic()
+    save(record_path, run)
+    while run["provider_turns"] < limits["max_turns"] and run["tool_calls"] < limits["max_tools"]:
+        if cancelled(record_path, run):
+            run.update(state="CANCELLED", reason="Cancelled before dispatch")
+            break
+        remaining = limits["deadline_seconds"] - (time.monotonic() - start)
+        if remaining <= 0 or len(encode(run["messages"])) > 262144:
+            run.update(state="HANDOFF", reason="Active time or transcript budget exhausted")
+            break
+        decision = None
+        run["provider_turns"] += 1
+        save(record_path, run)
+        try:
+            decision = provider.next(run["messages"], tool_schemas(), dict(limits, remaining_seconds=remaining))
+            run["provider_usage"] = getattr(provider, "usage", None)
+            if cancelled(record_path, run):
+                run.update(state="CANCELLED", reason="Cancelled before tool dispatch")
+                break
+            if time.monotonic() - start >= limits["deadline_seconds"]:
+                run.update(state="HANDOFF", reason="Active time exhausted before tool dispatch")
+                break
+            if isinstance(decision, Terminal):
+                if decision.disposition not in {"NO_CHANGE", "HANDOFF"} or not isinstance(decision.reason, str) or len(decision.reason) > 1024 or len(decision.citations) > 8:
+                    raise ProtocolError("Invalid terminal disposition")
+                run.update(state=decision.disposition, reason=decision.reason, terminal_citations=list(decision.citations))
+                break
+            validate_call(decision)
+            for tool, counter, limit in [("read_note", "note_reads", "max_note_reads"), ("stage_proposal", "stage_attempts", "max_stage_attempts")]:
+                if decision.name == tool:
+                    run["counters"][counter] += 1
+                    if run["counters"][counter] > limits[limit]:
+                        raise DomainError("BUDGET_EXHAUSTED", "Read/proposal attempt budget exhausted")
+            request_id = str(uuid.uuid4())
+            run["state"] = "STAGING" if decision.name == "stage_proposal" else "INVESTIGATING"
+            run["messages"].append({"role": "assistant", "tool": decision.name, "arguments": decision.arguments})
+            if decision.name == "stage_proposal":
+                run["pending_stage"] = {"request_id": request_id, "arguments": dispatcher.arguments(decision)}
+            run["tool_calls"] += 1
+            run["active_milliseconds"] = int((time.monotonic() - start) * 1000)
+            save(record_path, run)
+            result = dispatcher.execute(decision, request_id)
+            run["messages"].append({"role": "tool", "tool": decision.name, "result": result})
+            if decision.name == "stage_proposal":
+                run.update(state="WAITING_APPROVAL", proposal_id=result["proposal"]["id"],
+                           proposal_digest=result["proposal"]["digest"], pending_stage=None)
+                break
+        except OutcomeUnknown as error:
+            run.update(state="OUTCOME_UNKNOWN", reason=str(error))
+            break
+        except (DomainError, ProtocolError, KeyError, TypeError, ValueError, OSError) as error:
+            run["counters"]["errors"] += 1
+            code = error.code if isinstance(error, DomainError) else "PROVIDER_PROTOCOL"
+            run["messages"].append({"role": "tool", "tool": getattr(decision, "name", "invalid"), "error": {"code": code}})
+            # Malformed/lost post-write responses cannot prove a mutation failed.
+            uncertain = run["pending_stage"] and (not isinstance(error, DomainError) or code in {"JAVA_FAILURE", "IO_FAILURE", "BUILD_REQUIRED"})
+            if uncertain:
+                run.update(state="OUTCOME_UNKNOWN", reason=code)
+                break
+            run["pending_stage"] = None
+            if code == "CANCELLED":
+                run.update(state="CANCELLED", reason=code)
+                break
+            if run["counters"]["errors"] >= limits["max_errors"] or code in {"PERMISSION_DENIED", "VERSION_CONFLICT", "EVIDENCE_CHANGED", "JAVA_FAILURE", "IO_FAILURE", "BUILD_REQUIRED", "BUDGET_EXHAUSTED"}:
+                run.update(state="HANDOFF", reason=code)
+                break
+        run["active_milliseconds"] = int((time.monotonic() - start) * 1000)
+        save(record_path, run)
+    else:
+        run.update(state="HANDOFF", reason="Turn or tool budget exhausted")
+    run["elapsed_seconds"] = round(time.monotonic() - start, 6)
+    run["active_milliseconds"] = int(run["elapsed_seconds"] * 1000)
+    save(record_path, run)
+    return run
+
+
+def resume(run: dict, record_path: Path, proposer, executor) -> dict:
+    limits = budget(run)
+    start = time.monotonic()
+    previous_active = run["active_milliseconds"]
+
+    def control(client, operation, arguments, request_id=None):
+        if run["counters"]["reconcile_calls"] >= limits["max_reconcile_calls"]:
+            raise DomainError("BUDGET_EXHAUSTED", "Reconciliation call budget exhausted; operator review required")
+        run["counters"]["reconcile_calls"] += 1
+        save(record_path, run)
+        return client.call(operation, arguments, request_id)
+
+    def reconcile(client, operation, pending):
+        if pending.keys() != {"request_id", "arguments"} or not isinstance(pending["request_id"], str) or not pending["request_id"] or not isinstance(pending["arguments"], dict):
+            raise ProtocolError("Corrupt pending checkpoint; do not invent a replacement key")
+        packet = control(client, "operation_result", {"operation": operation, "request_id": pending["request_id"], "args": pending["arguments"]})
+        if packet["found"]:
+            return packet["result"]
+        if cancelled(record_path, run):
+            raise DomainError("CANCELLED", "Cancelled; original write was not committed")
+        if previous_active / 1000 + time.monotonic() - start >= limits["deadline_seconds"]:
+            raise DomainError("BUDGET_EXHAUSTED", "Active budget exhausted; original write was not committed")
+        return control(client, operation, pending["arguments"], pending["request_id"])
+
+    try:
+        if run["state"] in {"APPLYING", "OUTCOME_UNKNOWN", "APPLIED"} and not run.get("pending_stage") and not run.get("pending_apply"):
+            raise ProtocolError("Missing pending mutation checkpoint; operator reconciliation required")
+        if run.get("pending_stage"):
+            result = reconcile(proposer, "stage_proposal", run["pending_stage"])
+            run.update(state="WAITING_APPROVAL", proposal_id=result["proposal"]["id"],
+                       proposal_digest=result["proposal"]["digest"], pending_stage=None)
+            save(record_path, run)
+        if run.get("pending_apply"):
+            result = reconcile(executor, "apply", run["pending_apply"])
+            run.update(state="APPLIED", receipt=result["receipt"], reason=None)
+            return run
+        if run["state"] in {"STALE", "EXPIRED", "REJECTED", "HANDOFF", "NO_CHANGE", "CANCELLED", "FAILED"}:
+            return run
+        if cancelled(record_path, run):
+            run.update(state="CANCELLED", reason="Cancelled before apply")
+            return run
+        if not run.get("proposal_id"):
+            raise ProtocolError("Run has no intact proposal checkpoint")
+        packet = control(executor, "review", {"proposal_id": run["proposal_id"]})
+        if packet["proposal"]["status"] == "REJECTED":
+            run.update(state="REJECTED")
+            return run
+        if packet["approval"] is None:
+            run["state"] = "WAITING_APPROVAL"
+            return run
+        if previous_active / 1000 + time.monotonic() - start >= limits["deadline_seconds"]:
+            run.update(state="HANDOFF", reason="Active budget exhausted before apply")
+            return run
+        if cancelled(record_path, run):
+            run.update(state="CANCELLED", reason="Cancelled before apply")
+            return run
+        run["pending_apply"] = {"request_id": str(uuid.uuid4()), "arguments": {
+            "proposal_id": run["proposal_id"], "approval_id": packet["approval"]["id"], "digest": run["proposal_digest"]}}
+        run["state"] = "APPLYING"
+        save(record_path, run)
+        pending = run["pending_apply"]
+        result = control(executor, "apply", pending["arguments"], pending["request_id"])
+        run.update(state="APPLIED", receipt=result["receipt"], reason=None)
+    except OutcomeUnknown as error:
+        run.update(state="OUTCOME_UNKNOWN", reason=str(error))
+    except DomainError as error:
+        state = "STALE" if error.code in {"VERSION_CONFLICT", "EVIDENCE_CHANGED", "POLICY_VERSION"} else "EXPIRED" if error.code == "APPROVAL_EXPIRED" else "OUTCOME_UNKNOWN" if error.code in {"IO_FAILURE", "JAVA_FAILURE", "BUDGET_EXHAUSTED"} and (run.get("pending_stage") or run.get("pending_apply")) else "CANCELLED" if error.code == "CANCELLED" else "FAILED"
+        run.update(state=state, reason=error.code)
+    except (ProtocolError, KeyError, TypeError, ValueError, OSError) as error:
+        run.update(state="OUTCOME_UNKNOWN", reason="Checkpoint/protocol requires operator reconciliation: " + str(error))
+    finally:
+        run["active_milliseconds"] = previous_active + int((time.monotonic() - start) * 1000)
+        save(record_path, run)
+    return run

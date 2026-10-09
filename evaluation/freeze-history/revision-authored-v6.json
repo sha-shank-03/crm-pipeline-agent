@@ -1,0 +1,28 @@
+{
+  "from": "authored-v5",
+  "to": "authored-v6",
+  "recorded_at": "2026-10-08T14:57:55.026155+00:00",
+  "failure_id": "CRM-M3-01",
+  "reason": "Bind bounded Windows atomic checkpoint replacement and deterministic/owned persistence recovery tests; proposals, labels and domain scoring unchanged",
+  "disposition": "source_correction_pending_main_review_and_new_lease",
+  "heldout_scored_before_revision": true,
+  "prior_worker_passing_runs": 192,
+  "prior_main_planned_runs": 192,
+  "prior_main_completed_runs": 191,
+  "prior_main_error_runs": 1,
+  "prior_evidence_preserved": true,
+  "input_label_hashes_unchanged": true,
+  "proposal_rules_baseline_java_domain_oracle_thresholds_unchanged": true,
+  "changed_existing_frozen_paths": [
+    "evaluation/freeze.py",
+    "tools/check.py"
+  ],
+  "added_frozen_paths": [
+    "crm_agent/run_state.py",
+    "tests/test_run_state.py",
+    "tools/windows_checkpoint.py"
+  ],
+  "previous_manifest_sha256": "abedca111451d129fdd743445d1d3368c4c11fabac1b42257d958941421dc4a7",
+  "new_scoring_executed": false,
+  "required_authorization": "Main reviews persistence/test-only revision and grants NEW crm-pipeline-agent-m3-crm01-recovery lease before explicit resume"
+}

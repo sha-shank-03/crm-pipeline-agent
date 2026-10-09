@@ -1,0 +1,14 @@
+AGENTS.md
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.env
+.env.*
+!.env.example
+target/
+build/
+node_modules/
+.DS_Store
+.deps/
+work/

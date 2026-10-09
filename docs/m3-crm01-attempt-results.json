@@ -1,0 +1,556 @@
+{
+  "schema_version": 1,
+  "milestone": "M3",
+  "state": "worker_execution_stopped_resource_failure_awaiting_main_review",
+  "recorded_at": "2026-10-08T15:34:40.771194+00:00",
+  "source_version": "authored-v6",
+  "frozen_manifest_sha256": "66263a4f795b72687bd27d703ec8b45fa6203e439a5742f074ad0ba6d0ad3024",
+  "source_acceptance": "passed_main_before_execution",
+  "accepted181source_files_unchanged_through_stop": true,
+  "failure": {
+    "command_index": 8,
+    "command": "py -3.11 -m evaluation.run --split heldout --provider offline-rules --baseline latest-note --repeat 3 --allow-heldout --out work/m3-crm01-heldout",
+    "native_command_exit_code": 125,
+    "observer_shell_cell_exit_code": 1,
+    "native_exit_reason": "Observer terminated launched tree at reported aggregate RAM cap breach",
+    "unexpected_failure": true,
+    "rerun": false,
+    "measurement_limitation": "Monitor stored sampled aggregate peak but no per-process breakdown/PID creation-time attribution. The 2268766208-byte peak is reported evidence, not independently verified application RSS. Cause/attribution remains unproven.",
+    "partial_report_path": "work/m3-crm01-heldout/report.json",
+    "partial_report_sha256": "9c80896abd75cb78f719616b54fe569e0c1fbc502f88d20f5efac7a5d5969d36"
+  },
+  "commands": [
+    {
+      "index": 1,
+      "command": "py -3.11 tools/build.py",
+      "started_at": "2026-10-08T15:22:28.839923+00:00",
+      "ended_at": "2026-10-08T15:22:30.989304+00:00",
+      "exit_code": 0,
+      "seconds": 1.703,
+      "cumulative_active_seconds": 1.703,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m3-crm01-command-01.stdout.log",
+      "stderr": "work/m3-crm01-command-01.stderr.log",
+      "resources": {
+        "samples": 11,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 243785728,
+        "sampled_max_concurrent_java": 1,
+        "generated_before_bytes": 20323894,
+        "sampled_peak_generated_bytes": 20340770,
+        "generated_after_bytes": 20340770,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "100-ms process / approximately 500-ms disk samples are not continuous peaks."
+      }
+    },
+    {
+      "index": 2,
+      "command": "py -3.11 crm.py doctor",
+      "started_at": "2026-10-08T15:22:42.714438+00:00",
+      "ended_at": "2026-10-08T15:22:43.608848+00:00",
+      "exit_code": 0,
+      "seconds": 0.453,
+      "cumulative_active_seconds": 2.156,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m3-crm01-command-02.stdout.log",
+      "stderr": "work/m3-crm01-command-02.stderr.log",
+      "resources": {
+        "samples": 4,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 111177728,
+        "sampled_max_concurrent_java": 1,
+        "generated_before_bytes": 20345680,
+        "sampled_peak_generated_bytes": 20351610,
+        "generated_after_bytes": 20351610,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "100-ms process / approximately 500-ms disk samples are not continuous peaks."
+      }
+    },
+    {
+      "index": 3,
+      "command": "py -3.11 tools/check.py --suite all",
+      "started_at": "2026-10-08T15:22:48.469457+00:00",
+      "ended_at": "2026-10-08T15:24:45.600360+00:00",
+      "exit_code": 0,
+      "seconds": 116.687,
+      "cumulative_active_seconds": 118.843,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m3-crm01-command-03.stdout.log",
+      "stderr": "work/m3-crm01-command-03.stderr.log",
+      "resources": {
+        "samples": 749,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 186560512,
+        "sampled_max_concurrent_java": 2,
+        "generated_before_bytes": 20356520,
+        "sampled_peak_generated_bytes": 22016943,
+        "generated_after_bytes": 22016943,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "100-ms process / approximately 500-ms disk samples are not continuous peaks."
+      }
+    },
+    {
+      "index": 4,
+      "command": "py -3.11 tools/windows_checkpoint.py --out work/m3-crm01-windows",
+      "started_at": "2026-10-08T15:24:56.601496+00:00",
+      "ended_at": "2026-10-08T15:25:00.599160+00:00",
+      "exit_code": 0,
+      "seconds": 3.547,
+      "cumulative_active_seconds": 122.39,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m3-crm01-command-04.stdout.log",
+      "stderr": "work/m3-crm01-command-04.stderr.log",
+      "resources": {
+        "samples": 23,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 130195456,
+        "sampled_max_concurrent_java": 1,
+        "generated_before_bytes": 22021888,
+        "sampled_peak_generated_bytes": 22104500,
+        "generated_after_bytes": 22104500,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "100-ms process / approximately 500-ms disk samples are not continuous peaks."
+      }
+    },
+    {
+      "index": 5,
+      "command": "py -3.11 -m evaluation.freeze --check",
+      "started_at": "2026-10-08T15:25:15.189115+00:00",
+      "ended_at": "2026-10-08T15:25:15.887905+00:00",
+      "exit_code": 0,
+      "seconds": 0.234,
+      "cumulative_active_seconds": 122.624,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m3-crm01-command-05.stdout.log",
+      "stderr": "work/m3-crm01-command-05.stderr.log",
+      "resources": {
+        "samples": 2,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 60768256,
+        "sampled_max_concurrent_java": 0,
+        "generated_before_bytes": 22109499,
+        "sampled_peak_generated_bytes": 22114238,
+        "generated_after_bytes": 22114238,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "100-ms process / approximately 500-ms disk samples are not continuous peaks."
+      }
+    },
+    {
+      "index": 6,
+      "command": "py -3.11 -m evaluation.run --split dev --provider offline-rules --baseline latest-note --repeat 1 --out work/m3-crm01-development",
+      "started_at": "2026-10-08T15:25:35.009886+00:00",
+      "ended_at": "2026-10-08T15:25:59.073022+00:00",
+      "exit_code": 0,
+      "seconds": 23.594,
+      "cumulative_active_seconds": 146.218,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m3-crm01-command-06.stdout.log",
+      "stderr": "work/m3-crm01-command-06.stderr.log",
+      "resources": {
+        "samples": 146,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 124116992,
+        "sampled_max_concurrent_java": 1,
+        "generated_before_bytes": 22119182,
+        "sampled_peak_generated_bytes": 22752507,
+        "generated_after_bytes": 22752507,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "100-ms process / approximately 500-ms disk samples are not continuous peaks."
+      }
+    },
+    {
+      "index": 7,
+      "command": "py -3.11 -m evaluation.verify --report work/m3-crm01-development/report.json",
+      "started_at": "2026-10-08T15:26:08.889036+00:00",
+      "ended_at": "2026-10-08T15:26:09.703683+00:00",
+      "exit_code": 0,
+      "seconds": 0.359,
+      "cumulative_active_seconds": 146.577,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m3-crm01-command-07.stdout.log",
+      "stderr": "work/m3-crm01-command-07.stderr.log",
+      "resources": {
+        "samples": 3,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 64167936,
+        "sampled_max_concurrent_java": 0,
+        "generated_before_bytes": 22757666,
+        "sampled_peak_generated_bytes": 22762671,
+        "generated_after_bytes": 22762671,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "100-ms process / approximately 500-ms disk samples are not continuous peaks."
+      }
+    },
+    {
+      "index": 8,
+      "command": "py -3.11 -m evaluation.run --split heldout --provider offline-rules --baseline latest-note --repeat 3 --allow-heldout --out work/m3-crm01-heldout",
+      "started_at": "2026-10-08T15:26:14.933980+00:00",
+      "ended_at": "2026-10-08T15:28:47.478069+00:00",
+      "exit_code": 125,
+      "seconds": 151.969,
+      "cumulative_active_seconds": 298.546,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m3-crm01-command-08.stdout.log",
+      "stderr": "work/m3-crm01-command-08.stderr.log",
+      "resources": {
+        "samples": 915,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 2268766208,
+        "sampled_max_concurrent_java": 1,
+        "generated_before_bytes": 22767696,
+        "sampled_peak_generated_bytes": 27051901,
+        "generated_after_bytes": 27051901,
+        "new_download_bytes": 0,
+        "violation": "Owned tree resource cap exceeded",
+        "sampling_limit": "100-ms process / approximately 500-ms disk samples are not continuous peaks."
+      }
+    }
+  ],
+  "preceding_passed_commands": 7,
+  "regression": {
+    "distinct_methods": 133,
+    "failures": 0,
+    "errors": 0,
+    "unittest_seconds": 109.948,
+    "java_assertions": 8,
+    "demo_journeys": 2,
+    "http_diagnostic": "Passing deadline-double test emitted WinError 10053 connection-aborted server traceback; retained raw stderr"
+  },
+  "windows_conditions": {
+    "planned": 3,
+    "passed": 3,
+    "path": "work/m3-crm01-windows/report.json",
+    "native_winerror": 5,
+    "native_denials_per_condition": [
+      1,
+      4,
+      4
+    ],
+    "original_key": "8cace71e-be9a-48b6-a06f-feefc7327f40",
+    "effect_count": 1,
+    "receipt_count": 1,
+    "version": 8,
+    "operations": [
+      "review",
+      "apply",
+      "operation_result",
+      "operation_result"
+    ],
+    "new_approval": false,
+    "duplicate_apply": false,
+    "crm_unchanged_after_recovery_queries": true,
+    "original_independent_denial_cause": "unproven"
+  },
+  "development": {
+    "planned": 16,
+    "completed": 16,
+    "independent_verification": "passed_command7",
+    "methods": {
+      "offline-rules": {
+        "attempted": 8,
+        "completed": 8,
+        "errors": 0,
+        "pre_review_exact": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "proposal_precision": {
+          "numerator": 2,
+          "denominator": 2,
+          "rate": 1.0
+        },
+        "proposal_recall": {
+          "numerator": 2,
+          "denominator": 2,
+          "rate": 1.0
+        },
+        "semantic_evidence": {
+          "numerator": 3,
+          "denominator": 3,
+          "rate": 1.0
+        },
+        "provenance_evidence": {
+          "numerator": 3,
+          "denominator": 3,
+          "rate": 1.0
+        },
+        "no_change": {
+          "numerator": 2,
+          "denominator": 2,
+          "rate": 1.0
+        },
+        "handoff": {
+          "numerator": 4,
+          "denominator": 4,
+          "rate": 1.0
+        },
+        "domain_correct": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "unauthorized_mutations": 0,
+        "tool_calls": 31,
+        "model_usage": null
+      },
+      "latest-note": {
+        "attempted": 8,
+        "completed": 8,
+        "errors": 0,
+        "pre_review_exact": {
+          "numerator": 7,
+          "denominator": 8,
+          "rate": 0.875
+        },
+        "proposal_precision": {
+          "numerator": 2,
+          "denominator": 3,
+          "rate": 0.6666666666666666
+        },
+        "proposal_recall": {
+          "numerator": 2,
+          "denominator": 2,
+          "rate": 1.0
+        },
+        "semantic_evidence": {
+          "numerator": 3,
+          "denominator": 4,
+          "rate": 0.75
+        },
+        "provenance_evidence": {
+          "numerator": 4,
+          "denominator": 4,
+          "rate": 1.0
+        },
+        "no_change": {
+          "numerator": 2,
+          "denominator": 2,
+          "rate": 1.0
+        },
+        "handoff": {
+          "numerator": 3,
+          "denominator": 4,
+          "rate": 0.75
+        },
+        "domain_correct": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "unauthorized_mutations": 0,
+        "tool_calls": 31,
+        "model_usage": null
+      }
+    },
+    "gate": {
+      "passed": true,
+      "rules_strict_pre_review_and_domain": true,
+      "both_methods_complete_and_authorized": true,
+      "repeats_reproducible": true,
+      "planned_case_runs": 16,
+      "required_rules_outcomes": 8,
+      "baseline_advantage_required": false
+    }
+  },
+  "heldout": {
+    "planned": 192,
+    "report_completed": 98,
+    "unfinished": 94,
+    "report_complete": false,
+    "method_counts": {
+      "offline-rules": {
+        "planned": 96,
+        "completed": 96,
+        "pending": 0,
+        "case_errors_recorded": 0
+      },
+      "latest-note": {
+        "planned": 96,
+        "completed": 2,
+        "pending": 94,
+        "case_errors_recorded": 0
+      }
+    },
+    "started_but_pending_slots": [
+      {
+        "method": "latest-note",
+        "case_id": "close-03",
+        "repeat": 1,
+        "status": "pending",
+        "has_error": false,
+        "artifact_directory_exists": true,
+        "artifact_files_present": [
+          "crm/generation-000000.json",
+          "crm/store.lock",
+          "run/run.json"
+        ]
+      }
+    ],
+    "all_planned_identities_preserved": "work/m3-crm01-runtime-failure.json",
+    "no_case_error_fields_recorded_does_not_mean_success": true,
+    "independent_verification": "unexecuted_after_stop",
+    "final_gate": "not_evaluated_in_partial_report"
+  },
+  "dependent_unexecuted_commands": [
+    {
+      "index": 9,
+      "command": "py -3.11 -m evaluation.verify --report work/m3-crm01-heldout/report.json"
+    },
+    {
+      "index": 10,
+      "command": "py -3.11 -m evaluation.corruptions --report work/m3-crm01-heldout/report.json --out work/m3-crm01-corruptions"
+    },
+    {
+      "index": 11,
+      "command": "py -3.11 tools/clean_copy.py --out work/m3-crm01-clean-copy --cached-deps --verify"
+    },
+    {
+      "index": 12,
+      "command": "py -3.11 tools/check.py --suite release"
+    }
+  ],
+  "resources": {
+    "lease": "crm-pipeline-agent-m3-crm01-recovery",
+    "command_seconds": 298.546,
+    "active_cap_seconds": 900,
+    "reported_sampled_peak_tree_rss_bytes": 2268766208,
+    "ram_cap_bytes": 536870912,
+    "sampled_max_java": 2,
+    "sampled_peak_generated_bytes": 27051901,
+    "generated_cap_bytes": 134217728,
+    "ram_cap_event": true,
+    "attribution_independently_verified": false,
+    "peak_process_breakdown_saved": false,
+    "sampling_interval_seconds": 0.1,
+    "disk_sampling_interval_approx_seconds": 0.5,
+    "temporary_capacity_extent_bytes": 104857600,
+    "sampling_limit": "Not continuous peaks; disk sampling missed the 100-MiB extent. RAM outlier attribution unproven.",
+    "new_download_bytes": 0,
+    "model_calls": 0,
+    "currently_consuming": false,
+    "no_owned_processes": true
+  },
+  "prior_main_failure": {
+    "planned": 192,
+    "completed": 191,
+    "errors": 1,
+    "report_sha256": "41c111350a44bf8c6eafa77e7bc4ed40a1c87c12c005fe607df11c85d8eeb763",
+    "all_six_original_artifacts_unchanged": true,
+    "reclassified_as_success": false
+  },
+  "no_outcome_informed_source_or_label_edit": true,
+  "raw_evidence": {
+    "receipts": "work/m3-crm01-integration-command-receipts.jsonl",
+    "trace": "work/m3-crm01-runtime-trace/events.jsonl",
+    "failure": "work/m3-crm01-runtime-failure.json",
+    "process_handoff": "work/m3-crm01-owned-process-handoff.json",
+    "java_capture_summary": "work/m3-crm01-trace-at-stop.json",
+    "captured_java_events": 1134,
+    "capture_errors": 0
+  },
+  "unexecuted": [
+    "Remaining 94 held-out slots",
+    "Heldout independent verify",
+    "18 real-report corruption controls",
+    "Fresh cached standalone quickstart/copied-JAR bootstrap guard",
+    "Final static release command 12",
+    "Independent main corrected-source final acceptance",
+    "Hosted CI/live models/real CRM/publishing"
+  ]
+}

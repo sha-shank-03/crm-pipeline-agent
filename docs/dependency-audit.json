@@ -1,0 +1,217 @@
+{
+  "schema_version": 1,
+  "transfer_scope": "m1-closure-recovery",
+  "prior_failed_transfer_bytes": null,
+  "artifacts": [
+    {
+      "poms": [
+        {
+          "url": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.14.0/gson-2.14.0.pom",
+          "bytes": 22768,
+          "sha256": "1fa0122c0e3733192642861c36be4c6f799a795327a23bdd2922691b6e9ba480"
+        },
+        {
+          "url": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson-parent/2.14.0/gson-parent-2.14.0.pom",
+          "bytes": 27361,
+          "sha256": "82b0f6694c5758ab8bb07e05630208d50f589d4b5e04fd0a046d59cdf7ba3d1d"
+        }
+      ],
+      "declared_dependencies": [
+        {
+          "group": "com.google.errorprone",
+          "artifact": "error_prone_annotations",
+          "version": "2.48.0",
+          "scope": "compile",
+          "optional": "false",
+          "type": "jar",
+          "declared_in": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.14.0/gson-2.14.0.pom"
+        },
+        {
+          "group": "junit",
+          "artifact": "junit",
+          "version": "",
+          "scope": "test",
+          "optional": "false",
+          "type": "jar",
+          "declared_in": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.14.0/gson-2.14.0.pom"
+        },
+        {
+          "group": "com.google.truth",
+          "artifact": "truth",
+          "version": "",
+          "scope": "test",
+          "optional": "false",
+          "type": "jar",
+          "declared_in": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.14.0/gson-2.14.0.pom"
+        },
+        {
+          "group": "com.google.guava",
+          "artifact": "guava-testlib",
+          "version": "33.5.0-jre",
+          "scope": "test",
+          "optional": "false",
+          "type": "jar",
+          "declared_in": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.14.0/gson-2.14.0.pom"
+        },
+        {
+          "group": "com.google.guava",
+          "artifact": "guava",
+          "version": "33.5.0-jre",
+          "scope": "test",
+          "optional": "false",
+          "type": "jar",
+          "declared_in": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.14.0/gson-2.14.0.pom"
+        }
+      ],
+      "required_non_test_dependencies": [
+        {
+          "group": "com.google.errorprone",
+          "artifact": "error_prone_annotations",
+          "version": "2.48.0",
+          "scope": "compile",
+          "optional": "false",
+          "type": "jar",
+          "declared_in": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.14.0/gson-2.14.0.pom"
+        }
+      ],
+      "unexpected_dependencies": [],
+      "published_licenses": [
+        {
+          "name": "Apache-2.0",
+          "url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+          "declared_in": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson-parent/2.14.0/gson-parent-2.14.0.pom"
+        },
+        {
+          "name": "Apache-2.0",
+          "url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+          "declared_in": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.14.0/gson-2.14.0.pom"
+        }
+      ],
+      "coordinate": "com.google.code.gson:gson:2.14.0",
+      "artifact_bytes": 313604,
+      "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f",
+      "packaged_notices": [],
+      "notice_finding": "No embedded license/notice files",
+      "upstream_license": {
+        "url": "https://raw.githubusercontent.com/google/gson/gson-parent-2.14.0/LICENSE",
+        "bytes": 11358,
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      }
+    },
+    {
+      "poms": [
+        {
+          "url": "https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_annotations/2.48.0/error_prone_annotations-2.48.0.pom",
+          "bytes": 4252,
+          "sha256": "189e09ad0489c325e90daaa9d5c8f406330602fa366609bca07cbcdad03ab9da"
+        },
+        {
+          "url": "https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_parent/2.48.0/error_prone_parent-2.48.0.pom",
+          "bytes": 15882,
+          "sha256": "b33fa8a45c9f1794a5008c0b2d83a84eb28b5d0117a6d156f003f9f09be7410f"
+        }
+      ],
+      "declared_dependencies": [
+        {
+          "group": "junit",
+          "artifact": "junit",
+          "version": "4.13.2",
+          "scope": "test",
+          "optional": "false",
+          "type": "jar",
+          "declared_in": "https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_annotations/2.48.0/error_prone_annotations-2.48.0.pom"
+        }
+      ],
+      "required_non_test_dependencies": [],
+      "unexpected_dependencies": [],
+      "published_licenses": [
+        {
+          "name": "Apache 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.txt",
+          "declared_in": "https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_parent/2.48.0/error_prone_parent-2.48.0.pom"
+        },
+        {
+          "name": "Apache 2.0",
+          "url": "http://www.apache.org/licenses/LICENSE-2.0.txt",
+          "declared_in": "https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_annotations/2.48.0/error_prone_annotations-2.48.0.pom"
+        }
+      ],
+      "coordinate": "com.google.errorprone:error_prone_annotations:2.48.0",
+      "artifact_bytes": 20255,
+      "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855",
+      "packaged_notices": [],
+      "notice_finding": "No embedded license/notice files",
+      "upstream_license": {
+        "url": "https://raw.githubusercontent.com/google/error-prone/v2.48.0/COPYING",
+        "bytes": 11358,
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+      }
+    }
+  ],
+  "status": "verified",
+  "this_command_transfer_bytes": 426966,
+  "cumulative_new_transfer_bytes": 842574,
+  "transfer_cap_bytes": 2097152,
+  "downloads": [
+    {
+      "request_id": "193eaa34-c484-4c37-9d04-dd2a79cc5427",
+      "url": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.14.0/gson-2.14.0.pom",
+      "bytes": 22768,
+      "sha256": "1fa0122c0e3733192642861c36be4c6f799a795327a23bdd2922691b6e9ba480"
+    },
+    {
+      "request_id": "5751132a-eacd-4090-90bd-a283cc1f3fb8",
+      "url": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson-parent/2.14.0/gson-parent-2.14.0.pom",
+      "bytes": 27361,
+      "sha256": "82b0f6694c5758ab8bb07e05630208d50f589d4b5e04fd0a046d59cdf7ba3d1d"
+    },
+    {
+      "request_id": "c278cb54-2a72-4bff-bbb4-6e79d1eccc13",
+      "url": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.14.0/gson-2.14.0.jar.sha256",
+      "bytes": 64,
+      "sha256": "7b1be62ec0bf395854f82f5c356edb7a123a25e6f391f9b3b7e7c37333bdf1c7"
+    },
+    {
+      "request_id": "b3315ce8-6c50-4d00-aedb-51cf4fa3d011",
+      "url": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.14.0/gson-2.14.0.jar",
+      "bytes": 313604,
+      "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+    },
+    {
+      "request_id": "3799d749-3e9c-4c5a-a8f5-a4f19d277820",
+      "url": "https://raw.githubusercontent.com/google/gson/gson-parent-2.14.0/LICENSE",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    {
+      "request_id": "80496d42-a061-4841-940a-4b3035adf352",
+      "url": "https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_annotations/2.48.0/error_prone_annotations-2.48.0.pom",
+      "bytes": 4252,
+      "sha256": "189e09ad0489c325e90daaa9d5c8f406330602fa366609bca07cbcdad03ab9da"
+    },
+    {
+      "request_id": "366788fc-a647-4f19-84db-e44cb4abf53c",
+      "url": "https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_parent/2.48.0/error_prone_parent-2.48.0.pom",
+      "bytes": 15882,
+      "sha256": "b33fa8a45c9f1794a5008c0b2d83a84eb28b5d0117a6d156f003f9f09be7410f"
+    },
+    {
+      "request_id": "ad7a540f-4493-4c27-b1a7-36c2a5790ed4",
+      "url": "https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_annotations/2.48.0/error_prone_annotations-2.48.0.jar.sha256",
+      "bytes": 64,
+      "sha256": "1d6f4ffbdba3d6d613a27a836fb8bdb84ebf9a2e108f667f157883027c362697"
+    },
+    {
+      "request_id": "54350417-fe21-4be1-b31e-01b5ff843da3",
+      "url": "https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_annotations/2.48.0/error_prone_annotations-2.48.0.jar",
+      "bytes": 20255,
+      "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+    },
+    {
+      "request_id": "6192d922-181d-4886-8a50-3a88fdbd12bf",
+      "url": "https://raw.githubusercontent.com/google/error-prone/v2.48.0/COPYING",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    }
+  ]
+}

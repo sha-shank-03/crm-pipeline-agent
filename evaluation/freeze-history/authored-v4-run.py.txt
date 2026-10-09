@@ -1,0 +1,108 @@
+"""M2 development-only scored execution; requires the assigned local integration lease."""
+import argparse
+import json
+from pathlib import Path
+import time
+
+from crm_agent.java_client import JavaClient
+from crm_agent.loop import run_agent, resume
+from crm_agent.providers.offline_rules import OfflineRuleProvider, LatestNoteProvider
+from crm_agent.run_state import save
+from .freeze import ROOT, MANIFEST, check, digest
+from .oracle import proposal_score, final_score, fingerprint
+
+def state(store):
+    return json.loads(sorted(store.glob("generation-*.json"))[-1].read_text(encoding="utf-8"))
+
+def metrics(records):
+    def ratio(numerator, denominator):
+        return {"numerator": numerator, "denominator": denominator, "rate": numerator / denominator if denominator else None}
+    valid = [item for item in records if "pre_review" in item and "final" in item]
+    proposals = [item for item in valid if item["pre_review"]["disposition"] == "PROPOSE"]
+    return {"attempted": len(records), "completed": len(valid), "errors": len(records) - len(valid),
+            "pre_review_exact": ratio(sum(item["pre_review"]["correct"] for item in valid), len(records)),
+            "proposal_precision": ratio(sum(item["pre_review"]["correct"] for item in proposals), len(proposals)),
+            "proposal_recall": ratio(sum(item["pre_review"]["correct"] for item in proposals), sum(item["expected_disposition"] == "PROPOSE" for item in records)),
+            "semantic_evidence": ratio(sum(item["pre_review"]["semantic_supported_fields"] for item in valid), sum(item["pre_review"]["proposed_fields"] for item in valid)),
+            "provenance_evidence": ratio(sum(item["pre_review"]["provenance_valid_fields"] for item in valid), sum(item["pre_review"]["proposed_fields"] for item in valid)),
+            "no_change": ratio(sum(item["pre_review"]["correct"] and item["expected_disposition"] == "NO_CHANGE" for item in valid), sum(item["expected_disposition"] == "NO_CHANGE" for item in records)),
+            "handoff": ratio(sum(item["pre_review"]["correct"] and item["expected_disposition"] == "HANDOFF" for item in valid), sum(item["expected_disposition"] == "HANDOFF" for item in records)),
+            "domain_correct": ratio(sum(item["final"]["domain_correct"] for item in valid), len(records)),
+            "unauthorized_mutations": sum(not item["final"]["authorized"] for item in valid),
+            "tool_calls": sum(item.get("tool_calls", 0) for item in records), "model_usage": None}
+
+def execute(output):
+    frozen = check()
+    output = Path(output).resolve()
+    if output.exists():
+        raise ValueError("Preserve existing evaluation outputs; choose a fresh directory")
+    output.mkdir(parents=True)
+    report = {"schema_version": 1, "split": "dev", "repeat": 1, "model_quality_evaluated": False,
+              "same_author_synthetic": True, "review_mode": "label_aware_scripted_after_pre_review_scoring",
+              "frozen_manifest_sha256": digest(MANIFEST), "expected_cases_per_method": 8,
+              "methods": {}, "complete": False}
+    start = time.monotonic()
+    save(output / "report.json", report)
+    for name, cls in [("offline-rules", OfflineRuleProvider), ("latest-note", LatestNoteProvider)]:
+        records = []
+        report["methods"][name] = {"provider_mode": cls.mode, "model_id": None, "cases": records}
+        for item in frozen["splits"]["dev"]["cases"]:
+            if time.monotonic() - start > 240:
+                raise TimeoutError("Bounded development evaluation exceeded four minutes; partial report preserved")
+            case = json.loads((ROOT / item["input"]).read_text())
+            label = json.loads((ROOT / item["label"]).read_text())
+            case_output = output / name / item["case_id"]
+            case_output.mkdir(parents=True)
+            store = case_output / "crm"
+            record = {"case_id": item["case_id"], "expected_disposition": label["expected_disposition"],
+                      "input_sha256": item["input_sha256"], "label_sha256": item["label_sha256"]}
+            records.append(record)
+            try:
+                operator = JavaClient(store, "fixture-operator", case["as_of"])
+                proposer = JavaClient(store, "proposer-north", case["as_of"])
+                manager = JavaClient(store, "manager-north", case["as_of"])
+                executor = JavaClient(store, "executor-north", case["as_of"])
+                operator.call("init", {"fixture": case["fixture"]})
+                before = state(store)
+                run = run_agent(proposer, cls(), case_output / "run", case["task"])
+                staged = state(store)
+                score = proposal_score(run, staged, label)
+                record["pre_review"] = score
+                # Score and save before the benchmark reviewer sees or acts on its label.
+                save(case_output / "before.json", before)
+                save(case_output / "pre-review-state.json", staged)
+                save(case_output / "pre-review-run.json", run)
+                save(output / "report.json", report)
+                if run.get("proposal_id"):
+                    manager.call("approve" if score["correct"] else "reject", {"proposal_id": run["proposal_id"], "digest": run["proposal_digest"]})
+                    run = resume(run, case_output / "run/run.json", proposer, executor)
+                after = state(store)
+                save(case_output / "after.json", after)
+                record.update(final=final_score(before, after, label, score), fingerprint=fingerprint(after),
+                              tool_calls=run["tool_calls"], provider_turns=run["provider_turns"],
+                              repair_attempts=run["counters"]["errors"], active_milliseconds=run["active_milliseconds"])
+                record["artifacts"] = {key: {"path": path.relative_to(output).as_posix(), "sha256": digest(path)} for key, path in {
+                    "before": case_output / "before.json", "pre_review_state": case_output / "pre-review-state.json",
+                    "pre_review_run": case_output / "pre-review-run.json", "after": case_output / "after.json"}.items()}
+            except Exception as error:
+                record["error"] = {"type": type(error).__name__, "message": str(error)}
+            report["methods"][name]["metrics"] = metrics(records)
+            save(output / "report.json", report)
+    report.update(complete=True, elapsed_seconds=round(time.monotonic() - start, 6))
+    save(output / "report.json", report)
+    return report
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--split", choices=["dev"], required=True)
+    parser.add_argument("--provider", choices=["offline-rules"], required=True)
+    parser.add_argument("--baseline", choices=["latest-note"], required=True)
+    parser.add_argument("--repeat", type=int, choices=[1], required=True)
+    parser.add_argument("--out", type=Path, required=True)
+    args = parser.parse_args()
+    report = execute(args.out)
+    print(json.dumps({name: item["metrics"] for name, item in report["methods"].items()}, indent=2))
+    return 0 if all(item["metrics"]["completed"] == 8 and item["metrics"]["unauthorized_mutations"] == 0 for item in report["methods"].values()) else 1
+
+if __name__ == "__main__":
+    raise SystemExit(main())

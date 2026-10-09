@@ -1,0 +1,12 @@
+The fictional records and notes in fixtures/, and the inputs and oracle labels
+under evaluation/dev/ and evaluation/heldout/, are newly authored synthetic data.
+They contain no real customer, account, meeting transcript or employer dataset.
+
+To the extent possible under law, the authors dedicate these data and label files to
+the public domain under CC0 1.0 Universal (SPDX: CC0-1.0).
+
+Full legal code: https://creativecommons.org/publicdomain/zero/1.0/legalcode
+Deed: https://creativecommons.org/publicdomain/zero/1.0/
+
+Code, documentation, evaluation programs and hash/version manifests use the
+separate Apache-2.0 license in LICENSE.

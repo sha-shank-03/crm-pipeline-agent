@@ -1,0 +1,66 @@
+"""Hash cases/labels/rules before scoring; this command never invokes Java or a provider."""
+import argparse
+from collections import Counter
+import hashlib
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+MANIFEST = ROOT / "evaluation/frozen-manifest.json"
+RULE_FILES = ["crm_agent/providers/offline_rules.py", "crm_agent/providers/ollama_http.py", "crm_agent/tools.py",
+              "crm_agent/loop.py", "crm_agent/provider.py", "crm_agent/protocol.py", "crm_agent/java_client.py",
+              "crm_agent/operator_action.py", "evaluation/oracle.py", "evaluation/run.py", "evaluation/verify.py", "docs/evaluation.md",
+              "java/src/crm/Main.java", "evaluation/metrics.py", "evaluation/corruptions.py", "evaluation/freeze.py",
+              "java/src/crm/Policy.java", "java/src/crm/Store.java", "java/src/crm/Json.java", "java/src/crm/Failure.java",
+              "tools/build.py", "tools/check.py", "tools/release.py", "tools/clean_copy.py",
+              ".github/workflows/ci.yml", "docs/ci-actions.lock.json",
+              "crm_agent/run_state.py", "tests/test_run_state.py", "tools/windows_checkpoint.py"]
+
+def digest(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+def manifest(version="authored-v1"):
+    result = {"schema_version": 1, "version": version, "heldout_rubric_review": "pending_main",
+              "same_author_synthetic": True, "scored": False, "splits": {}, "rules": []}
+    for split, count in [("dev", 8), ("heldout", 32)]:
+        inputs = sorted((ROOT / "evaluation" / split / "inputs").glob("*.json"))
+        labels = sorted((ROOT / "evaluation" / split / "labels").glob("*.json"))
+        if len(inputs) != count or [p.name for p in inputs] != [p.name for p in labels]:
+            raise ValueError("Case/label count or identity mismatch")
+        records, outcomes = [], Counter()
+        for inp, lab in zip(inputs, labels):
+            case, label = json.loads(inp.read_text()), json.loads(lab.read_text())
+            if case["case_id"] != label["case_id"] or inp.stem != case["case_id"]:
+                raise ValueError("Identity mismatch")
+            outcomes[label["expected_disposition"]] += 1
+            records.append({"case_id": case["case_id"], "input": inp.relative_to(ROOT).as_posix(), "input_sha256": digest(inp),
+                            "label": lab.relative_to(ROOT).as_posix(), "label_sha256": digest(lab)})
+        if split == "heldout" and outcomes != {"PROPOSE": 12, "NO_CHANGE": 6, "HANDOFF": 14}:
+            raise ValueError("Held-out composition does not match accepted rubric")
+        result["splits"][split] = {"case_count": count, "expected_outcomes": dict(outcomes), "cases": records}
+    result["rules"] = [{"path": path, "sha256": digest(ROOT / path)} for path in RULE_FILES]
+    return result
+
+def check():
+    expected = json.loads(MANIFEST.read_text())
+    if expected != manifest(expected["version"]):
+        raise ValueError("Frozen inputs/labels/rules changed; preserve version history and obtain rubric review")
+    return expected
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--create", action="store_true")
+    parser.add_argument("--check", action="store_true")
+    args = parser.parse_args()
+    if args.create == args.check:
+        parser.error("Choose exactly --create or --check")
+    if args.create:
+        if MANIFEST.exists():
+            raise ValueError("Existing freeze must not be overwritten")
+        MANIFEST.write_text(json.dumps(manifest(), indent=2) + "\n")
+    else:
+        check()
+    print(json.dumps({"frozen_dev": 8, "frozen_heldout": 32, "scored": False, "heldout_rubric_review": "pending_main"}))
+
+if __name__ == "__main__":
+    main()

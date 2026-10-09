@@ -1,0 +1,12 @@
+{
+  "from": "authored-v1",
+  "to": "authored-v2",
+  "reason": "Strict persisted budget/counter validation before main rubric review",
+  "scored_before_revision": false,
+  "input_label_hashes_unchanged": true,
+  "changed_rule_paths": [
+    "crm_agent/loop.py"
+  ],
+  "previous_manifest_sha256": "f1a3b5760904f29bc39760dc54191fb21f14423a5b1ee738e1dfd100df91fcef",
+  "previous_loop_sha256": "4dc5a268c0ba8b1130f7106111ebbb050fb70cf7f2ef4bcde3fcebdd4827fa70"
+}

@@ -1,0 +1,14 @@
+{
+  "from": "authored-v2",
+  "to": "authored-v3",
+  "disposition": "candidate_pending_main_review",
+  "reason": "Reject unrelated opportunity loss/addition/change and immutable account/evidence changes in independent final-state verification",
+  "scored_before_revision": false,
+  "input_label_hashes_unchanged": true,
+  "acting_rule_hashes_unchanged": true,
+  "changed_frozen_paths": [
+    "evaluation/oracle.py",
+    "docs/evaluation.md"
+  ],
+  "previous_manifest_sha256": "c5d62d464d420b69b8c592dd7f11e2b7953a249ff87bc7e022937d1dc5a7ee86"
+}

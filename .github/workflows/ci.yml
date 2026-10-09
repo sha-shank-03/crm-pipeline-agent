@@ -1,0 +1,47 @@
+name: Offline CRM verification
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  offline:
+    strategy:
+      fail-fast: false
+      max-parallel: 1
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.11'
+      - name: Provision pinned libraries and compile
+        run: |
+          python tools/bootstrap.py --fetch-deps
+          python tools/build.py
+          python crm.py doctor
+      - name: Complete offline regression and final source audit
+        run: |
+          python tools/check.py --suite all
+          python tools/check.py --suite release
+      - name: Fresh documented demonstrations
+        run: |
+          python crm.py demo --scenario approved-update --provider scripted --scripted-review --out work/ci-approved
+          python crm.py demo --scenario stale-approval --provider scripted --scripted-review --out work/ci-stale
+      - name: Frozen development and held-out comparison
+        run: |
+          python -m evaluation.freeze --check
+          python -m evaluation.run --split dev --provider offline-rules --baseline latest-note --repeat 1 --out work/ci-dev
+          python -m evaluation.verify --report work/ci-dev/report.json
+          python -m evaluation.run --split heldout --provider offline-rules --baseline latest-note --repeat 3 --allow-heldout --out work/ci-heldout
+          python -m evaluation.verify --report work/ci-heldout/report.json

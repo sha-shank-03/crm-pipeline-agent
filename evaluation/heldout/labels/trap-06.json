@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "case_id": "trap-06",
+  "family": "identity_access_evidence",
+  "expected_disposition": "HANDOFF",
+  "opportunity_id": "opp-101",
+  "expected_changes": {},
+  "semantic_evidence": {},
+  "protected_fields": [
+    "id",
+    "account_id",
+    "owner_id",
+    "stage",
+    "amount_minor",
+    "currency",
+    "evidence_revision"
+  ],
+  "expected_final_version": 7,
+  "rationale": "Negated text is not a commitment."
+}

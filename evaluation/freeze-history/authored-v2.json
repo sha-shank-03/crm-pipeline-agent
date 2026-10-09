@@ -1,0 +1,359 @@
+{
+  "schema_version": 1,
+  "version": "authored-v2",
+  "heldout_rubric_review": "pending_main",
+  "same_author_synthetic": true,
+  "scored": false,
+  "splits": {
+    "dev": {
+      "case_count": 8,
+      "expected_outcomes": {
+        "PROPOSE": 2,
+        "NO_CHANGE": 2,
+        "HANDOFF": 4
+      },
+      "cases": [
+        {
+          "case_id": "dev-01",
+          "input": "evaluation/dev/inputs/dev-01.json",
+          "input_sha256": "93a7057da0ef4ab8e596988548c0932e6fc7a39f6469046968ebe57943355405",
+          "label": "evaluation/dev/labels/dev-01.json",
+          "label_sha256": "873a136a0df5bc0b8801302791e30bd968684f76f3cd050d60e83a3fc6bc07af"
+        },
+        {
+          "case_id": "dev-02",
+          "input": "evaluation/dev/inputs/dev-02.json",
+          "input_sha256": "1fe97dd60675324d37ac050f31a4eb0b38a042d84ac269f039718d00ae01f995",
+          "label": "evaluation/dev/labels/dev-02.json",
+          "label_sha256": "f6e968436688bbff19ffd082a4c116671f3a8753576d6a74dbc2a5be269b2c3c"
+        },
+        {
+          "case_id": "dev-03",
+          "input": "evaluation/dev/inputs/dev-03.json",
+          "input_sha256": "92424d965c228388e4bd23d0626b511db86d5bcccb9e4d281df8d3d30a5e83ac",
+          "label": "evaluation/dev/labels/dev-03.json",
+          "label_sha256": "c019b0752c720a2f1e8cc9bb64bb9850d17336f7bf89fb115a7f233abfd1a2f5"
+        },
+        {
+          "case_id": "dev-04",
+          "input": "evaluation/dev/inputs/dev-04.json",
+          "input_sha256": "e41f5a78547741aa9d51688a32465e4cafa0b5f06f21c2d2927f378fa4bf125a",
+          "label": "evaluation/dev/labels/dev-04.json",
+          "label_sha256": "ad7961dc07c8c9a001aefbc39d5772486d6ff3b4b51b29d635cc612902150ba5"
+        },
+        {
+          "case_id": "dev-05",
+          "input": "evaluation/dev/inputs/dev-05.json",
+          "input_sha256": "903b851ac96d4620d886c3385d6d945a9bef707f1d6ec7d269dc03a873184375",
+          "label": "evaluation/dev/labels/dev-05.json",
+          "label_sha256": "0e89d650b657e50c45dbb20e033637783abbb225deeead1dc3edfd05be928951"
+        },
+        {
+          "case_id": "dev-06",
+          "input": "evaluation/dev/inputs/dev-06.json",
+          "input_sha256": "458c6b837acf6c2e7901493ae8f4607a8ca7c462593262d08f0bf66c49b768db",
+          "label": "evaluation/dev/labels/dev-06.json",
+          "label_sha256": "dc167b16a8414e86473bd7a3b4e99c75934b0bb0bafd6f7203d3f8ece4973d81"
+        },
+        {
+          "case_id": "dev-07",
+          "input": "evaluation/dev/inputs/dev-07.json",
+          "input_sha256": "bdc63ca1f4edccee00a72bec697a5a6273070a9118acff15090aae8729eb5394",
+          "label": "evaluation/dev/labels/dev-07.json",
+          "label_sha256": "9118bf85b2f99414548095759edfb78d5e12fc01b752e9ded8c269d22df414d2"
+        },
+        {
+          "case_id": "dev-08",
+          "input": "evaluation/dev/inputs/dev-08.json",
+          "input_sha256": "00bf2abb60d20b3c77f8cf5a46b56e9a7a8e6e6a0411e00e494b96874ff077d7",
+          "label": "evaluation/dev/labels/dev-08.json",
+          "label_sha256": "58be94f0c837bbe460e782d1193c6bc36874d3ebca7c5168deb02327944a7608"
+        }
+      ]
+    },
+    "heldout": {
+      "case_count": 32,
+      "expected_outcomes": {
+        "PROPOSE": 12,
+        "HANDOFF": 14,
+        "NO_CHANGE": 6
+      },
+      "cases": [
+        {
+          "case_id": "close-01",
+          "input": "evaluation/heldout/inputs/close-01.json",
+          "input_sha256": "5f64ec041eba62fa43075ac269b1c39d9260716ad6a345ee9ee6b1e0d2b34293",
+          "label": "evaluation/heldout/labels/close-01.json",
+          "label_sha256": "d0e8c9c54908d7d04f0406d34dedf819e7fa54b76d9b33580f8697764be2bb57"
+        },
+        {
+          "case_id": "close-02",
+          "input": "evaluation/heldout/inputs/close-02.json",
+          "input_sha256": "8de95f36737e668821d99a1d86badb1d35d75b0f94aa7189062d5f097f51b692",
+          "label": "evaluation/heldout/labels/close-02.json",
+          "label_sha256": "dd2f49fafd6e186838605a34e1702780ae91af4ce450efe8062c86eb9c0beb64"
+        },
+        {
+          "case_id": "close-03",
+          "input": "evaluation/heldout/inputs/close-03.json",
+          "input_sha256": "29d3c11d65be52823376a1606c42e01913b8b64e7bddf599bed96a5713193d2e",
+          "label": "evaluation/heldout/labels/close-03.json",
+          "label_sha256": "e8d81b6495867765eaae5fbef5dec81a5f5b03d1fa368db517b4490d341a520d"
+        },
+        {
+          "case_id": "close-04",
+          "input": "evaluation/heldout/inputs/close-04.json",
+          "input_sha256": "bf9b584ca4677f3c9ef28af66bc7a1b4259e4007cf1101719c5712e77ad275d4",
+          "label": "evaluation/heldout/labels/close-04.json",
+          "label_sha256": "d0ade5aa9f1ce11c6313fb1626c1b25c642d9fa7ac6ae8c933e70afb5302defe"
+        },
+        {
+          "case_id": "close-05",
+          "input": "evaluation/heldout/inputs/close-05.json",
+          "input_sha256": "1a74e93f59ff4976d845a73d64216c49e6f5ab71d037759dddd8d29f0604db19",
+          "label": "evaluation/heldout/labels/close-05.json",
+          "label_sha256": "aec6606129a64d4c7c4941f3bec81fde968a5c16eab4f6f7bb1ffdf55885efff"
+        },
+        {
+          "case_id": "close-06",
+          "input": "evaluation/heldout/inputs/close-06.json",
+          "input_sha256": "570fa125f086198a06984e24554a60a6bccdeaced14db396bd2dbba861afc19e",
+          "label": "evaluation/heldout/labels/close-06.json",
+          "label_sha256": "49c08c4b289087e78e14c23aef76847edf3fb6bd9ace6ca83fa2f7c6cfa2f486"
+        },
+        {
+          "case_id": "close-07",
+          "input": "evaluation/heldout/inputs/close-07.json",
+          "input_sha256": "f873bff8f16f546ece7b5ae7d413cffeb95c66126d5adf5e60d09c2b125dc026",
+          "label": "evaluation/heldout/labels/close-07.json",
+          "label_sha256": "29ec051066b9a919080d3a35842d216c8683da21d65a22673a913c8c55bb0e15"
+        },
+        {
+          "case_id": "close-08",
+          "input": "evaluation/heldout/inputs/close-08.json",
+          "input_sha256": "268a9f8bb8ebea4ac468621cde2fe8bf34ff3eeda10f626ef511357c75cc7a72",
+          "label": "evaluation/heldout/labels/close-08.json",
+          "label_sha256": "19e15efe9e1fa9d81a6f005769cb6a619506be8355ae118ba9b163baad49c692"
+        },
+        {
+          "case_id": "close-09",
+          "input": "evaluation/heldout/inputs/close-09.json",
+          "input_sha256": "89e76c170290e46cd9ca8bc1da56cb9c1c7a9018efcd3be92246ad5cfe2df605",
+          "label": "evaluation/heldout/labels/close-09.json",
+          "label_sha256": "eab3724b3bcb93d46b305c5c56e140bdad5b7c98e3c9a1ed05b0228320a56108"
+        },
+        {
+          "case_id": "close-10",
+          "input": "evaluation/heldout/inputs/close-10.json",
+          "input_sha256": "73be30633a30a464290b02ebbab1a06bd317b202c5a7a7e6dfe2552f9d61e762",
+          "label": "evaluation/heldout/labels/close-10.json",
+          "label_sha256": "b6c26f6af07a222b4bc3a0e4c74f7888eedd9c17102a71d52b73586a51e5419a"
+        },
+        {
+          "case_id": "consistent-01",
+          "input": "evaluation/heldout/inputs/consistent-01.json",
+          "input_sha256": "f0a00a44c1ea7e25eda11d2a17769974752f14a983a56f972d86357073162d63",
+          "label": "evaluation/heldout/labels/consistent-01.json",
+          "label_sha256": "05415810b01184bce1c1154e2c91d95e400197602a36ef034c4acbed87be97ba"
+        },
+        {
+          "case_id": "consistent-02",
+          "input": "evaluation/heldout/inputs/consistent-02.json",
+          "input_sha256": "e8a9e7d212b6b2ddc2105df87e7315f4ed756faaf71bd8f81b1d764eb8c120e2",
+          "label": "evaluation/heldout/labels/consistent-02.json",
+          "label_sha256": "63593cb6a36e232b4e02cc6798dcca1209087883ebb6635d50009302ef92b7ea"
+        },
+        {
+          "case_id": "consistent-03",
+          "input": "evaluation/heldout/inputs/consistent-03.json",
+          "input_sha256": "387eabf68b3d2b32c8783077d58a57ec1a88587a3dbc5bbe4ebeda91ee84d6a7",
+          "label": "evaluation/heldout/labels/consistent-03.json",
+          "label_sha256": "5a6909b7e3b3032ce8b51b79e82119df604630c2d8bf6c7ab4040dffe4a48ff0"
+        },
+        {
+          "case_id": "consistent-04",
+          "input": "evaluation/heldout/inputs/consistent-04.json",
+          "input_sha256": "d1ca2f8456567f031eb2c00c9553c23479e1c800c448b26445b9ee78241b65b1",
+          "label": "evaluation/heldout/labels/consistent-04.json",
+          "label_sha256": "422931e9778e0ca57930cd15dd48baf2f000120707f9fa103059b51c275c86d7"
+        },
+        {
+          "case_id": "consistent-05",
+          "input": "evaluation/heldout/inputs/consistent-05.json",
+          "input_sha256": "a8274c8ef595a1fa80dde2dab397efc96b610fc49ffade8bb8c659781f476eef",
+          "label": "evaluation/heldout/labels/consistent-05.json",
+          "label_sha256": "7f6f4d5062bdc6766399a2ec8c8277ed0a9e0a7f2874c7bc6e93e24d66716a9a"
+        },
+        {
+          "case_id": "consistent-06",
+          "input": "evaluation/heldout/inputs/consistent-06.json",
+          "input_sha256": "7cda027026fd84d08f921317414bddf845704db0498b449216e99bb789af1677",
+          "label": "evaluation/heldout/labels/consistent-06.json",
+          "label_sha256": "a7b671c552ea38ac9816d683be07e584afdf125429c68be60b2b9d87e57f68c5"
+        },
+        {
+          "case_id": "next-01",
+          "input": "evaluation/heldout/inputs/next-01.json",
+          "input_sha256": "8ef681d4a38b785d8c70a21f06ce1dfe37284481a42ca3440f44861602169bd8",
+          "label": "evaluation/heldout/labels/next-01.json",
+          "label_sha256": "bfcc130b9e1035ddaec06e7bb7902270f6414d5d9bd27813e207c2fd08d6d3d0"
+        },
+        {
+          "case_id": "next-02",
+          "input": "evaluation/heldout/inputs/next-02.json",
+          "input_sha256": "23d0ef89c5fa552774cbc773be5c142bbaa6eef81b20d19bb29452100c510f38",
+          "label": "evaluation/heldout/labels/next-02.json",
+          "label_sha256": "dd1dc48735707cb3d336c06b0e7502c73db5e3c2ebcd78da72965860693c371a"
+        },
+        {
+          "case_id": "next-03",
+          "input": "evaluation/heldout/inputs/next-03.json",
+          "input_sha256": "6bb04bbb4c788e47b1ae2c531a68d74751a113dd3f6e22368b3c5b36f1d1c911",
+          "label": "evaluation/heldout/labels/next-03.json",
+          "label_sha256": "7f51706a62316029a37311075fdc24aa27dae42f2e6bfb6d90c91972439da4fe"
+        },
+        {
+          "case_id": "next-04",
+          "input": "evaluation/heldout/inputs/next-04.json",
+          "input_sha256": "d89e250cb39bc0d92cc54ee351e0cf9e1036e2f080d0d64a87d0f82aae8b7467",
+          "label": "evaluation/heldout/labels/next-04.json",
+          "label_sha256": "43322931ae039d5c4e136b66f991f02496184dfe8266fa88922b0c8851589d8a"
+        },
+        {
+          "case_id": "next-05",
+          "input": "evaluation/heldout/inputs/next-05.json",
+          "input_sha256": "18fdc8c19b5d0829155d1c364935059442c2de841bfc6a39503786123de90807",
+          "label": "evaluation/heldout/labels/next-05.json",
+          "label_sha256": "6242bfc8d25f4a85b4ed26c217180ddb0af8bf3ec714d6519fd5d2cc3f74a28c"
+        },
+        {
+          "case_id": "next-06",
+          "input": "evaluation/heldout/inputs/next-06.json",
+          "input_sha256": "f91a5aba48018899dccd91e0f760d582ae4976b4a4e58b129709a142e203886b",
+          "label": "evaluation/heldout/labels/next-06.json",
+          "label_sha256": "42b2c7aeff205c2cd569ecc1fb96e79c6725142dc440365b5ebae4494844dfcc"
+        },
+        {
+          "case_id": "next-07",
+          "input": "evaluation/heldout/inputs/next-07.json",
+          "input_sha256": "3817fe941fd0a65b18c01cfce4e989d311efbd217e1d51d3f2e7149b738eaf24",
+          "label": "evaluation/heldout/labels/next-07.json",
+          "label_sha256": "edddc7e5efe891dcb1484de024afd9fe2df17c2e4f194f5802cffd4c3f2d6b9a"
+        },
+        {
+          "case_id": "next-08",
+          "input": "evaluation/heldout/inputs/next-08.json",
+          "input_sha256": "de82e8aec25cfd613586a086f5ba941d3198fa94d12ba859c2806f3228ae0c29",
+          "label": "evaluation/heldout/labels/next-08.json",
+          "label_sha256": "9557d1726cb93389d8b02c11aecdb5c5d7b070682c8faa9e5feea0096445a120"
+        },
+        {
+          "case_id": "next-09",
+          "input": "evaluation/heldout/inputs/next-09.json",
+          "input_sha256": "f62099edaac380b28129fd3fd01609a327e9827b226f0c0fdb0d74f914cc1216",
+          "label": "evaluation/heldout/labels/next-09.json",
+          "label_sha256": "2275e71190a092dba184180c53c45543afa434c7bc5ef8c6fbd696c60aa7d563"
+        },
+        {
+          "case_id": "next-10",
+          "input": "evaluation/heldout/inputs/next-10.json",
+          "input_sha256": "c02450d4cb9355e3c758d59cb7483505aa7b299feb23c0dc8f8f6330ed16ef1b",
+          "label": "evaluation/heldout/labels/next-10.json",
+          "label_sha256": "231b5f9456c8b314acfa8ce087c04cbbe3f73dd76ab9bd452cf574b8750e07dd"
+        },
+        {
+          "case_id": "trap-01",
+          "input": "evaluation/heldout/inputs/trap-01.json",
+          "input_sha256": "545e1a5c55d192911c6a39737b92aa6ab47bbadcc92b8250fcb0fe98737536a7",
+          "label": "evaluation/heldout/labels/trap-01.json",
+          "label_sha256": "a30898691adf75ae577c7f4f93859365faa543f88e13026af6ee7ef1e0149525"
+        },
+        {
+          "case_id": "trap-02",
+          "input": "evaluation/heldout/inputs/trap-02.json",
+          "input_sha256": "e86a520771c07a6109c96007b914e7028adce78c0002c36b5ae263ca2f74d64f",
+          "label": "evaluation/heldout/labels/trap-02.json",
+          "label_sha256": "f28a50ece16bcf23f7a1dfa10c341a5fc3ab380d7bdfb69eb3e059be27215618"
+        },
+        {
+          "case_id": "trap-03",
+          "input": "evaluation/heldout/inputs/trap-03.json",
+          "input_sha256": "afb612beaa2fafb632ae0708bcaf0ac57f97676c14216ed97e153bf597302b01",
+          "label": "evaluation/heldout/labels/trap-03.json",
+          "label_sha256": "9ba37fbca07421b363ea108a7740a7a61fdf5985cceedf3abdb9e3becdd18ba9"
+        },
+        {
+          "case_id": "trap-04",
+          "input": "evaluation/heldout/inputs/trap-04.json",
+          "input_sha256": "a1652defa4a064da3cc04a4f72d9f3aa129069fb5ffe7720be09c1afa97fb2f3",
+          "label": "evaluation/heldout/labels/trap-04.json",
+          "label_sha256": "7025f37575341cb1eef0d05625e3904de39bb5c393126e1548a0a3ff7fc244ce"
+        },
+        {
+          "case_id": "trap-05",
+          "input": "evaluation/heldout/inputs/trap-05.json",
+          "input_sha256": "55bdf882a683d368a00c7cffdbf36dcf11b3de19d21190c61022926ce0c24ddd",
+          "label": "evaluation/heldout/labels/trap-05.json",
+          "label_sha256": "44d2c77dc864b4996fb86ed7e0d421c46c0dc1049d1570ce173c74f19c58c506"
+        },
+        {
+          "case_id": "trap-06",
+          "input": "evaluation/heldout/inputs/trap-06.json",
+          "input_sha256": "0fb1154b7969b207a84643d139b28ee1ff5da79f4e227d9a0287d5358712f0fb",
+          "label": "evaluation/heldout/labels/trap-06.json",
+          "label_sha256": "176aa86faee2b37655dea9ae41dfe59e7a0c19e2771e82115421f3b9a623f50e"
+        }
+      ]
+    }
+  },
+  "rules": [
+    {
+      "path": "crm_agent/providers/offline_rules.py",
+      "sha256": "860be28c3b4f0c5cbbcb10f57a724e981da48a920e3bd30ec40e028fd202bb82"
+    },
+    {
+      "path": "crm_agent/providers/ollama_http.py",
+      "sha256": "057a9770e4bd19bd408f325d1d4455cbb121e4fa22c79b9c655bc368b737e347"
+    },
+    {
+      "path": "crm_agent/tools.py",
+      "sha256": "fcf33e4fe7509ce4c385cc3d1130895ed09c5656da54f20ed9a33a413fdc1d53"
+    },
+    {
+      "path": "crm_agent/loop.py",
+      "sha256": "b11f401cd6f4817f80f29a8e11d2c64faf75723399dc5949992e1e2248144dc4"
+    },
+    {
+      "path": "crm_agent/provider.py",
+      "sha256": "d49834df68915c10b54605c41745364609cc70581f1be1f13d5e52f15ce1ab14"
+    },
+    {
+      "path": "crm_agent/protocol.py",
+      "sha256": "d2a7e598df50064eea79235ccd9569d8282e76cb6a93ab4b11928903a2330269"
+    },
+    {
+      "path": "crm_agent/java_client.py",
+      "sha256": "4260b5750643a73e46cf0457f75c5b61ead6f08a6e60fdf8f4553e55cd51a7de"
+    },
+    {
+      "path": "crm_agent/operator_action.py",
+      "sha256": "5716a78c1a8a566208040d5ab98255d74bf8fb2c8f4510f1c9280553a0f71186"
+    },
+    {
+      "path": "evaluation/oracle.py",
+      "sha256": "7b84eacee12d95e2a00259d1019a525456a18d2b72b36db321b32487be0dff9b"
+    },
+    {
+      "path": "evaluation/run.py",
+      "sha256": "936e7e3ce34edb75b7b1371ac5af5ef78df312334a8e6863f1f737933e6f009e"
+    },
+    {
+      "path": "evaluation/verify.py",
+      "sha256": "da15b319bf5a7dfd19db117d3fae2cf6235ffe7b4e591ce536464690698a4794"
+    },
+    {
+      "path": "docs/evaluation.md",
+      "sha256": "e847f6a45a88c5a3aeedf27cb98043d760f03c652307713a6413db5f58b3db1f"
+    }
+  ]
+}

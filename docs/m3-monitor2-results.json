@@ -1,0 +1,371 @@
+{
+  "created_at": "2026-10-08T18:11:44.252829+00:00",
+  "milestone": "M3",
+  "worker_execution": "five_commands_passed",
+  "independent_main_final_acceptance": "application_and_evaluation_passed_documentation_review_pending",
+  "source_version": "authored-v6",
+  "frozen_manifest_sha256": "66263a4f795b72687bd27d703ec8b45fa6203e439a5742f074ad0ba6d0ad3024",
+  "cohort": "Fresh validation-informed192, after exposure to previous failures; same-author synthetic; not blind heldout evidence",
+  "commands": [
+    {
+      "index": 1,
+      "command": "py -3.11 -m evaluation.run --split heldout --provider offline-rules --baseline latest-note --repeat 3 --allow-heldout --out work/m3-monitor2-heldout",
+      "started_at": "2026-10-08T17:54:44.254480+00:00",
+      "ended_at": "2026-10-08T17:59:44.979072+00:00",
+      "native_exit_code": 0,
+      "exit_code": 0,
+      "seconds": 300.3130000000019,
+      "samples": 765,
+      "sampled_peak_bytes": 66732032,
+      "max_sampled_python": 2,
+      "max_sampled_java": 0,
+      "sampled_names": [
+        "python3.11.exe"
+      ],
+      "sampled_peak_generated_bytes": 47272306,
+      "owned_job_empty_after_cleanup": true,
+      "root_signal_and_identity_confirmed": true,
+      "retired_workload_handles": 0,
+      "lifecycle_transition_events": 0
+    },
+    {
+      "index": 2,
+      "command": "py -3.11 -m evaluation.verify --report work/m3-monitor2-heldout/report.json",
+      "started_at": "2026-10-08T18:00:33.214458+00:00",
+      "ended_at": "2026-10-08T18:00:34.742411+00:00",
+      "native_exit_code": 0,
+      "exit_code": 0,
+      "seconds": 1.0940000000045984,
+      "samples": 2,
+      "sampled_peak_bytes": 60575744,
+      "max_sampled_python": 2,
+      "max_sampled_java": 0,
+      "sampled_names": [
+        "python3.11.exe"
+      ],
+      "sampled_peak_generated_bytes": 47308448,
+      "owned_job_empty_after_cleanup": true,
+      "root_signal_and_identity_confirmed": true,
+      "retired_workload_handles": 0,
+      "lifecycle_transition_events": 0
+    },
+    {
+      "index": 3,
+      "command": "py -3.11 -m evaluation.corruptions --report work/m3-monitor2-heldout/report.json --out work/m3-monitor2-corruptions",
+      "started_at": "2026-10-08T18:00:47.445479+00:00",
+      "ended_at": "2026-10-08T18:01:28.868115+00:00",
+      "native_exit_code": 0,
+      "exit_code": 0,
+      "seconds": 40.96899999999732,
+      "samples": 64,
+      "sampled_peak_bytes": 65503232,
+      "max_sampled_python": 2,
+      "max_sampled_java": 0,
+      "sampled_names": [
+        "python3.11.exe"
+      ],
+      "sampled_peak_generated_bytes": 52061120,
+      "owned_job_empty_after_cleanup": true,
+      "root_signal_and_identity_confirmed": true,
+      "retired_workload_handles": 0,
+      "lifecycle_transition_events": 0
+    },
+    {
+      "index": 4,
+      "command": "py -3.11 tools/clean_copy.py --out work/m3-monitor2-clean-copy --cached-deps --verify",
+      "started_at": "2026-10-08T18:02:00.333906+00:00",
+      "ended_at": "2026-10-08T18:02:37.841624+00:00",
+      "native_exit_code": 0,
+      "exit_code": 0,
+      "seconds": 37.06300000000192,
+      "samples": 67,
+      "sampled_peak_bytes": 125263872,
+      "max_sampled_python": 4,
+      "max_sampled_java": 0,
+      "sampled_names": [
+        "python3.11.exe"
+      ],
+      "sampled_peak_generated_bytes": 49968149,
+      "owned_job_empty_after_cleanup": true,
+      "root_signal_and_identity_confirmed": true,
+      "retired_workload_handles": 9,
+      "lifecycle_transition_events": 0
+    },
+    {
+      "index": 5,
+      "command": "py -3.11 tools/check.py --suite release",
+      "started_at": "2026-10-08T18:04:13.387361+00:00",
+      "ended_at": "2026-10-08T18:04:14.372933+00:00",
+      "native_exit_code": 0,
+      "exit_code": 0,
+      "seconds": 0.5469999999986612,
+      "samples": 1,
+      "sampled_peak_bytes": 38182912,
+      "max_sampled_python": 2,
+      "max_sampled_java": 0,
+      "sampled_names": [
+        "python3.11.exe"
+      ],
+      "sampled_peak_generated_bytes": 50020051,
+      "owned_job_empty_after_cleanup": true,
+      "root_signal_and_identity_confirmed": true,
+      "retired_workload_handles": 0,
+      "lifecycle_transition_events": 0
+    }
+  ],
+  "application_or_monitor_source_edits": 0,
+  "heldout": {
+    "planned": 192,
+    "completed": 192,
+    "errors": 0,
+    "unique_cases": 32,
+    "methods": 2,
+    "repetitions": 3,
+    "metrics": {
+      "offline-rules": {
+        "attempted": 96,
+        "completed": 96,
+        "errors": 0,
+        "pre_review_exact": {
+          "numerator": 96,
+          "denominator": 96,
+          "rate": 1.0
+        },
+        "proposal_precision": {
+          "numerator": 36,
+          "denominator": 36,
+          "rate": 1.0
+        },
+        "proposal_recall": {
+          "numerator": 36,
+          "denominator": 36,
+          "rate": 1.0
+        },
+        "semantic_evidence": {
+          "numerator": 36,
+          "denominator": 36,
+          "rate": 1.0
+        },
+        "provenance_evidence": {
+          "numerator": 36,
+          "denominator": 36,
+          "rate": 1.0
+        },
+        "no_change": {
+          "numerator": 18,
+          "denominator": 18,
+          "rate": 1.0
+        },
+        "handoff": {
+          "numerator": 42,
+          "denominator": 42,
+          "rate": 1.0
+        },
+        "domain_correct": {
+          "numerator": 96,
+          "denominator": 96,
+          "rate": 1.0
+        },
+        "unauthorized_mutations": 0,
+        "tool_calls": 393,
+        "model_usage": null
+      },
+      "latest-note": {
+        "attempted": 96,
+        "completed": 96,
+        "errors": 0,
+        "pre_review_exact": {
+          "numerator": 84,
+          "denominator": 96,
+          "rate": 0.875
+        },
+        "proposal_precision": {
+          "numerator": 36,
+          "denominator": 48,
+          "rate": 0.75
+        },
+        "proposal_recall": {
+          "numerator": 36,
+          "denominator": 36,
+          "rate": 1.0
+        },
+        "semantic_evidence": {
+          "numerator": 36,
+          "denominator": 48,
+          "rate": 0.75
+        },
+        "provenance_evidence": {
+          "numerator": 48,
+          "denominator": 48,
+          "rate": 1.0
+        },
+        "no_change": {
+          "numerator": 18,
+          "denominator": 18,
+          "rate": 1.0
+        },
+        "handoff": {
+          "numerator": 30,
+          "denominator": 42,
+          "rate": 0.7142857142857143
+        },
+        "domain_correct": {
+          "numerator": 96,
+          "denominator": 96,
+          "rate": 1.0
+        },
+        "unauthorized_mutations": 0,
+        "tool_calls": 393,
+        "model_usage": null
+      }
+    },
+    "reproducibility": {
+      "offline-rules": {
+        "case_count": 32,
+        "repeat": 3,
+        "stable_cases": 32,
+        "unstable_case_ids": []
+      },
+      "latest-note": {
+        "case_count": 32,
+        "repeat": 3,
+        "stable_cases": 32,
+        "unstable_case_ids": []
+      }
+    },
+    "gate": {
+      "passed": true,
+      "rules_strict_pre_review_and_domain": true,
+      "both_methods_complete_and_authorized": true,
+      "repeats_reproducible": true,
+      "planned_case_runs": 192,
+      "required_rules_outcomes": 96,
+      "baseline_advantage_required": false
+    },
+    "independent_verifier_exit": 0,
+    "report_sha256": "e0bb0e698717107a954717892d0390a420a9a01268228d363bcdde9d4c858043",
+    "artifact_references_rehashed": 1152
+  },
+  "corruptions": {
+    "rejected": 18,
+    "total": 18,
+    "original_report_unchanged": true
+  },
+  "clean_copy": {
+    "copied_source_files": 182,
+    "nested_commands": 7,
+    "command_exits": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "M1_methods": 19,
+    "Java_assertions": 8,
+    "separate_demos": 2,
+    "suite_demos": 2,
+    "copied_JAR_hash_checks_before_bootstrap": 2,
+    "network_fallback_blocked": true,
+    "new_transfer_bytes": 0,
+    "source_snapshot": "Before final result-documentation edits"
+  },
+  "resources": {
+    "lease": "crm-pipeline-agent-m3-monitor02-recovery",
+    "wrapper_command_seconds": 379.9860000000044,
+    "initial_archive_preflight_tool_seconds": 4.7522421,
+    "conservative_preflight_to_final_exit_seconds": 580.490181,
+    "active_cap_seconds": 900,
+    "point_sampled_peak_bytes": 125263872,
+    "RAM_cap_bytes": 536870912,
+    "max_sampled_python": 4,
+    "max_sampled_java": 0,
+    "actual_completed_Java_operations": 1349,
+    "JVM_working_set_sampled": false,
+    "full_application_RSS_and_RAM_cap_compliance": "unverified",
+    "sampled_peak_generated_bytes": 52061120,
+    "generated_bytes_before_final_docs": 50089956,
+    "generated_cap_bytes": 134217728,
+    "all_recorded_sample_sums_exact": true,
+    "all_monitored_jobs_empty_after_cleanup": true,
+    "lifecycle_transitions_observed": 0,
+    "native_image_query_branch": "unexercised",
+    "sampling_limit": "100-ms intended working-set points include fsync/query overhead; actual gaps vary. No JVM appeared in these samples despite completed Java calls. Sampled aggregate is not full application RSS or continuous peak.",
+    "downloads": 0,
+    "model_calls": 0,
+    "recorded_current_sample_count": 899,
+    "combined_JVM_Python_concurrency_coverage": "unknown",
+    "Java_completions_by_command_and_exit": [
+      {
+        "command": "1",
+        "exit_code": 0,
+        "count": 1218
+      },
+      {
+        "command": "4",
+        "exit_code": 0,
+        "count": 131
+      }
+    ],
+    "Java_capture_errors": 0,
+    "cause_of_missing_JVM_samples": "unknown"
+  },
+  "prior_failures": {
+    "original_main": {
+      "planned": 192,
+      "completed": 191,
+      "errors": 1,
+      "unchanged": true,
+      "report_sha256": "41c111350a44bf8c6eafa77e7bc4ed40a1c87c12c005fe607df11c85d8eeb763"
+    },
+    "original_monitor_stop": {
+      "planned": 192,
+      "completed": 98,
+      "pending": 94,
+      "unchanged": true,
+      "report_sha256": "9c80896abd75cb78f719616b54fe569e0c1fbc502f88d20f5efac7a5d5969d36",
+      "application_memory_cause": "unverified"
+    },
+    "filled_from_other_cohorts": 0,
+    "reclassified_as_success": false
+  },
+  "raw_evidence": {
+    "report": "work/m3-monitor2-heldout/report.json",
+    "corruptions": "work/m3-monitor2-corruptions/summary.json",
+    "quickstart": "work/m3-monitor2-clean-copy/work/clean-copy-check.json",
+    "receipts": "work/m3-monitor2-integration-command-receipts.jsonl",
+    "trace": "work/m3-monitor2-runtime-trace/events.jsonl",
+    "native": "work/m3-monitor3-addendum-native01-results.json"
+  },
+  "limitations": [
+    "Main independently passed application/evaluation review; final documentation review pending.",
+    "JVM working-set coverage missing; full application memory-cap compliance unverified.",
+    "Same-author authored, validation-informed deterministic cases and label-aware synthetic review; no live model-quality result.",
+    "Repeated cases measure reproducibility, not independent observations.",
+    "Prior failed and partial cohorts remain separate; no missing slots filled from this cohort.",
+    "Hosted CI, real CRM/accounts, production impact, portable power-loss/network-filesystem durability and publishing unexecuted."
+  ],
+  "independent_main_review": {
+    "application_passed": true,
+    "fresh_public_source_files": 182,
+    "commands": 10,
+    "tests": 133,
+    "Windows_checkpoint_conditions": 3,
+    "development_runs": 16,
+    "README_demos": 2,
+    "raw_state_assertions": 88,
+    "application_command_seconds": 153.51600000000326,
+    "main_lifetime_RSS": "unmeasured",
+    "raw_domain_passed": true,
+    "raw_domain_conditions": 4505,
+    "raw_artifact_hashes": 1152,
+    "raw_case_runs": 192,
+    "stable_case_method_groups": 64,
+    "repository_oracle_imported_by_main_audit": false,
+    "corruptions_rejected": 18,
+    "integration_lease_released": true,
+    "remaining_acceptance": "documentation only"
+  }
+}

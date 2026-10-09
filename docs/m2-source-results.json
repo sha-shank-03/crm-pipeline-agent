@@ -1,0 +1,288 @@
+{
+  "schema_version": 1,
+  "milestone": "M2",
+  "state": "candidate_authored_v3_awaiting_main_verifier_review",
+  "recorded_at": "2026-10-08T11:29:00.278803+00:00",
+  "m1_independent_acceptance": {
+    "status": "passed",
+    "at": "2026-10-08T10:19:24.116026+00:00",
+    "commands": 6,
+    "python_tests": 19,
+    "java_assertions": 8,
+    "main_artifact_assertions": 29
+  },
+  "executed": {
+    "pure_python_tests": 50,
+    "failures": 0,
+    "errors": 0,
+    "unittest_seconds": 1.755,
+    "python_syntax_compiled": true,
+    "frozen_hashes_checked": true
+  },
+  "prepared_test_methods": {
+    "python": 11,
+    "m2_components": 28,
+    "m2_oracle": 11,
+    "m1_integration": 8,
+    "m2_policy": 20,
+    "m2_recovery": 13,
+    "m2_http": 8
+  },
+  "frozen_cases": {
+    "version": "authored-v3",
+    "manifest_sha256": "e647bdb1433ebdaf0e94b6d43791e9eca8f7ecd047cfb938b98a6c320ff9626c",
+    "dev": 8,
+    "heldout": 32,
+    "heldout_expected_labels": {
+      "PROPOSE": 12,
+      "HANDOFF": 14,
+      "NO_CHANGE": 6
+    },
+    "business_cases_scored": 0,
+    "observed_outcomes": null,
+    "rubric_review": "candidate_v3_verifier_review_pending",
+    "inputs_labels_unchanged_across_v1_v2": true,
+    "inputs_labels_unchanged_across_v2_v3": true
+  },
+  "java_source_compiled": false,
+  "http_server_tests_executed": false,
+  "actual_m2_domain_acceptance_executed": false,
+  "model_calls": 0,
+  "dependency_downloads": 0,
+  "model_quality_evaluated": false,
+  "offline_provider_modes": [
+    "offline-rules",
+    "latest-note-baseline"
+  ],
+  "observed_model_usage": null,
+  "commands": [
+    {
+      "seconds": 1.6062499,
+      "started_utc": "2026-10-08T10:40:17.5590490+00:00",
+      "exit_code": 0,
+      "command": "py -3.11 tools/check.py --suite m2-unit"
+    },
+    {
+      "scope": "Expanded Unicode/checkpoint/oracle component checks; no subprocess or network",
+      "started_utc": "2026-10-08T10:44:31.1457796+00:00",
+      "command": "py -3.11 tools/check.py --suite m2-unit",
+      "seconds": 1.6112205,
+      "exit_code": 0
+    },
+    {
+      "started_utc": "2026-10-08T10:51:48.3653380+00:00",
+      "seconds": 2.0559008,
+      "exit_code": 0,
+      "scope": "Final pure-Python checkpoint including durable operator intent",
+      "command": "py -3.11 tools/check.py --suite m2-unit"
+    },
+    {
+      "scope": "Source/syntax/hash-only; no scoring, subprocess or network tests",
+      "seconds": 0.406148,
+      "command": "py -3.11 -m compileall -q crm.py crm_agent tools tests evaluation",
+      "started_utc": "2026-10-08T10:52:56.1737443+00:00",
+      "exit_code": 0
+    },
+    {
+      "scope": "Source/syntax/hash-only; no scoring, subprocess or network tests",
+      "seconds": 1.3613112,
+      "command": "py -3.11 -m evaluation.freeze --create",
+      "started_utc": "2026-10-08T10:52:56.6325721+00:00",
+      "exit_code": 0
+    },
+    {
+      "scope": "Source/syntax/hash-only; no scoring, subprocess or network tests",
+      "seconds": 0.2698552,
+      "command": "py -3.11 -m evaluation.freeze --check",
+      "started_utc": "2026-10-08T10:52:57.9959823+00:00",
+      "exit_code": 0
+    },
+    {
+      "command": "py -3.11 tools/check.py --suite m2-unit",
+      "scope": "43 pure-Python checks including corrupt persisted budgets",
+      "seconds": 2.3134265,
+      "started_utc": "2026-10-08T10:55:12.6567504+00:00",
+      "exit_code": 0
+    },
+    {
+      "seconds": 0.2843248,
+      "started_utc": "2026-10-08T10:56:19.9743055+00:00",
+      "command": "py -3.11 work/revise_freeze.py",
+      "scope": "Source/version/syntax/hash-only; no scoring or Java/network tests",
+      "exit_code": 0
+    },
+    {
+      "seconds": 0.3869742,
+      "started_utc": "2026-10-08T10:56:20.2860425+00:00",
+      "command": "py -3.11 -m compileall -q crm.py crm_agent tools tests evaluation",
+      "scope": "Source/version/syntax/hash-only; no scoring or Java/network tests",
+      "exit_code": 0
+    },
+    {
+      "seconds": 0.2663869,
+      "started_utc": "2026-10-08T10:56:20.6761613+00:00",
+      "command": "py -3.11 -m evaluation.freeze --check",
+      "scope": "Source/version/syntax/hash-only; no scoring or Java/network tests",
+      "exit_code": 0
+    },
+    {
+      "seconds": 0.2486821,
+      "exit_code": 1,
+      "started_utc": "2026-10-08T11:19:40.1260914+00:00",
+      "phase": "Before correction; reproduce main destructive-loss diagnostic",
+      "command": "py -3.11 work/m2_verifier_main_control.py"
+    },
+    {
+      "started_utc": "2026-10-08T11:21:55.9764451+00:00",
+      "command": "py -3.11 -m unittest tests.test_m2_oracle -v",
+      "seconds": 0.6509187,
+      "exit_code": 1,
+      "phase": "New controls before fix; all failures preserved"
+    },
+    {
+      "seconds": 0.2057698,
+      "started_utc": "2026-10-08T11:23:30.7763424+00:00",
+      "command": "py -3.11 work/m2_verifier_main_control.py",
+      "phase": "Bounded verifier correction; pure Python only",
+      "exit_code": 0
+    },
+    {
+      "seconds": 0.2745757,
+      "started_utc": "2026-10-08T11:23:31.0147686+00:00",
+      "command": "py -3.11 -m unittest tests.test_m2_oracle -v",
+      "phase": "Bounded verifier correction; pure Python only",
+      "exit_code": 0
+    },
+    {
+      "seconds": 2.0214299,
+      "started_utc": "2026-10-08T11:23:31.2906896+00:00",
+      "command": "py -3.11 tools/check.py --suite m2-unit",
+      "phase": "Bounded verifier correction; pure Python only",
+      "exit_code": 0
+    },
+    {
+      "exit_code": 0,
+      "seconds": 0.2427794,
+      "started_utc": "2026-10-08T11:25:28.7380962+00:00",
+      "phase": "Candidate v3 source/hash/syntax only; no scoring",
+      "command": "py -3.11 work/reseal_m2_v3.py"
+    },
+    {
+      "exit_code": 0,
+      "seconds": 0.1943702,
+      "started_utc": "2026-10-08T11:25:29.0137058+00:00",
+      "phase": "Candidate v3 source/hash/syntax only; no scoring",
+      "command": "py -3.11 -m evaluation.freeze --check"
+    },
+    {
+      "exit_code": 0,
+      "seconds": 0.1698513,
+      "started_utc": "2026-10-08T11:25:29.2098198+00:00",
+      "phase": "Candidate v3 source/hash/syntax only; no scoring",
+      "command": "py -3.11 -m compileall -q evaluation tests/test_m2_oracle.py"
+    }
+  ],
+  "ready_commands": [
+    "py -3.11 tools/build.py",
+    "py -3.11 crm.py doctor",
+    "py -3.11 tools/check.py --suite m1",
+    "py -3.11 tools/check.py --suite policy",
+    "py -3.11 tools/check.py --suite recovery",
+    "py -3.11 tools/check.py --suite provider",
+    "py -3.11 -m evaluation.freeze --check",
+    "py -3.11 -m evaluation.run --split dev --provider offline-rules --baseline latest-note --repeat 1 --out work/dev-evaluation",
+    "py -3.11 -m evaluation.verify --report work/dev-evaluation/report.json"
+  ],
+  "generated_bytes_at_source_checkpoint": 803493,
+  "peak_rss_bytes": null,
+  "evidence_hashes": [
+    {
+      "path": "work/m2-unit-checkpoint-validation.log",
+      "sha256": "83ad127d4f958bffd68f2663aa4b63ff73eb48110beb047e0be47fedc0725a4f"
+    },
+    {
+      "path": "work/m2-source-command-receipts.jsonl",
+      "sha256": "cbe8a312c683c9b6e0e3127965e142f73cdd283744c72ce6c420af3b274f8020"
+    },
+    {
+      "path": "evaluation/frozen-manifest.json",
+      "sha256": "c5d62d464d420b69b8c592dd7f11e2b7953a249ff87bc7e022937d1dc5a7ee86"
+    },
+    {
+      "path": "evaluation/freeze-history/authored-v1.json",
+      "sha256": "f1a3b5760904f29bc39760dc54191fb21f14423a5b1ee738e1dfd100df91fcef"
+    },
+    {
+      "path": "dependencies.lock.json",
+      "sha256": "165f0640b9dfd21d52def6ff475283625b9309c0e9908d50cf2a62f75ad61969"
+    },
+    {
+      "path": "work/m2-verifier-correction-receipts.jsonl",
+      "sha256": "bd604d139a4588c1f7bbafc7157a41bb72096e77348bac0a93a3a9ae23afecd8"
+    },
+    {
+      "path": "work/m2-verifier-control-before.log",
+      "sha256": "a90a96bd4cddcbf6e15b180787c812cc426adf33a1e9e9fd48d63947f49d6ea6"
+    },
+    {
+      "path": "work/m2-oracle-negative-controls-before.log",
+      "sha256": "9308a017f848f94af5601cf8bee016336a3e8a19e4ca347622732cbd2a221cd7"
+    },
+    {
+      "path": "work/m2-verifier-main-control-after.log",
+      "sha256": "f1ab5909113a7e95ecc0cc339b3005e33fdacf7a40e4a558eda5d1b63801a3ba"
+    },
+    {
+      "path": "work/m2-verifier-oracle-controls-after.log",
+      "sha256": "8de96a46f442ca7a0292f668178ce97325860dfff6786766e80727f5206b7fc8"
+    },
+    {
+      "path": "work/m2-verifier-pure-suite-after.log",
+      "sha256": "9e006e80c9b3d9b80e7728b479a7774b27c1f617ef25ca41593cc7bd021905cf"
+    },
+    {
+      "path": "evaluation/freeze-history/authored-v2.json",
+      "sha256": "c5d62d464d420b69b8c592dd7f11e2b7953a249ff87bc7e022937d1dc5a7ee86"
+    },
+    {
+      "path": "evaluation/freeze-history/revision-authored-v3.json",
+      "sha256": "78dac7f6faa597baa73bc6ad25b599de960a7be26401bf64be1a891eb3a80bd3"
+    }
+  ],
+  "unexecuted": [
+    "M2 Java build/doctor and M1 regression",
+    "M2 real policy/recovery/concurrency/storage suites",
+    "M2 loopback HTTP server/transport tests",
+    "Development comparison and independent report verification",
+    "Main M2 acceptance and held-out rubric review",
+    "All M3 scoring/repeats/CI",
+    "Live models/production/publication"
+  ],
+  "review_commands": [
+    "py -3.11 -m unittest tests.test_m2_oracle -v",
+    "py -3.11 tools/check.py --suite m2-unit",
+    "py -3.11 -m evaluation.freeze --check"
+  ],
+  "correction": {
+    "previous_version": "authored-v2",
+    "candidate_version": "authored-v3",
+    "main_review": "pending",
+    "main_destructive_loss_control_reproduced_before": true,
+    "main_destructive_loss_control_rejected_after": true,
+    "negative_scenarios": 32,
+    "oracle_test_methods": 11,
+    "positive_domain_controls": 3,
+    "before_failures": 24,
+    "before_errors": 6,
+    "all_input_label_hashes_unchanged": true,
+    "acting_rules_unchanged": true,
+    "changed_prior_source_files": [
+      "EVIDENCE.md",
+      "docs/evaluation.md",
+      "evaluation/frozen-manifest.json",
+      "evaluation/oracle.py",
+      "tests/test_m2_oracle.py"
+    ]
+  },
+  "candidate_manifest_sha256": "e647bdb1433ebdaf0e94b6d43791e9eca8f7ecd047cfb938b98a6c320ff9626c"
+}

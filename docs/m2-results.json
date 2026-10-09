@@ -1,0 +1,1211 @@
+{
+  "schema_version": 1,
+  "milestone": "M2",
+  "state": "worker_verified_awaiting_independent_acceptance",
+  "recorded_at": "2026-10-08T12:07:32.020346+00:00",
+  "source_version": "authored-v4",
+  "frozen_manifest_sha256": "f08e34a8d94179a33038570c01e6164144c81575becfd7e4ceaa622f487de46b",
+  "provider_modes": [
+    "offline-rules",
+    "latest-note",
+    "scripted_m1_demos"
+  ],
+  "model_calls": 0,
+  "model_quality_evaluated": false,
+  "same_author_synthetic": true,
+  "review_mode": "label_aware_scripted_after_pre_review_scoring",
+  "commands": [
+    {
+      "index": 1,
+      "command": "py -3.11 tools/build.py",
+      "argv": [
+        "py",
+        "-3.11",
+        "tools/build.py"
+      ],
+      "started_at": "2026-10-08T11:53:22.206669+00:00",
+      "ended_at": "2026-10-08T11:53:23.942030+00:00",
+      "exit_code": 0,
+      "seconds": 1.656,
+      "cumulative_active_seconds": 1.656,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m2-command-01.stdout.log",
+      "stderr": "work/m2-command-01.stderr.log",
+      "resources": {
+        "samples": 14,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 229691392,
+        "sampled_max_concurrent_java": 1,
+        "generated_before_bytes": 817707,
+        "sampled_peak_generated_bytes": 835562,
+        "generated_after_bytes": 835562,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "Short-lived processes and file extents can occur between samples; totals are sampled, not an exact continuous peak."
+      }
+    },
+    {
+      "index": 2,
+      "command": "py -3.11 crm.py doctor",
+      "argv": [
+        "py",
+        "-3.11",
+        "crm.py",
+        "doctor"
+      ],
+      "started_at": "2026-10-08T11:53:28.936002+00:00",
+      "ended_at": "2026-10-08T11:53:29.430252+00:00",
+      "exit_code": 0,
+      "seconds": 0.469,
+      "cumulative_active_seconds": 2.125,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m2-command-02.stdout.log",
+      "stderr": "work/m2-command-02.stderr.log",
+      "resources": {
+        "samples": 4,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 110948352,
+        "sampled_max_concurrent_java": 1,
+        "generated_before_bytes": 837360,
+        "sampled_peak_generated_bytes": 838665,
+        "generated_after_bytes": 838665,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "Short-lived processes and file extents can occur between samples; totals are sampled, not an exact continuous peak."
+      }
+    },
+    {
+      "index": 3,
+      "command": "py -3.11 tools/check.py --suite m1",
+      "argv": [
+        "py",
+        "-3.11",
+        "tools/check.py",
+        "--suite",
+        "m1"
+      ],
+      "started_at": "2026-10-08T11:54:41.359195+00:00",
+      "ended_at": "2026-10-08T11:55:07.277110+00:00",
+      "exit_code": 0,
+      "seconds": 25.906,
+      "cumulative_active_seconds": 88.031,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m2-command-03.stdout.log",
+      "stderr": "work/m2-command-03.stderr.log",
+      "resources": {
+        "samples": 226,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 149749760,
+        "sampled_max_concurrent_java": 1,
+        "generated_before_bytes": 1301908,
+        "sampled_peak_generated_bytes": 1761827,
+        "generated_after_bytes": 1761827,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "Short-lived processes and file extents can occur between samples; totals are sampled, not an exact continuous peak."
+      }
+    },
+    {
+      "index": 4,
+      "command": "py -3.11 tools/check.py --suite policy",
+      "argv": [
+        "py",
+        "-3.11",
+        "tools/check.py",
+        "--suite",
+        "policy"
+      ],
+      "started_at": "2026-10-08T11:55:22.312470+00:00",
+      "ended_at": "2026-10-08T11:56:10.715624+00:00",
+      "exit_code": 1,
+      "seconds": 48.375,
+      "cumulative_active_seconds": 136.406,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m2-command-04.stdout.log",
+      "stderr": "work/m2-command-04.stderr.log",
+      "resources": {
+        "samples": 416,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 196341760,
+        "sampled_max_concurrent_java": 1,
+        "generated_before_bytes": 1763659,
+        "sampled_peak_generated_bytes": 2563960,
+        "generated_after_bytes": 2557945,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "Short-lived processes and file extents can occur between samples; totals are sampled, not an exact continuous peak."
+      }
+    },
+    {
+      "index": 1,
+      "attempt": 2,
+      "command": "py -3.11 tools/build.py",
+      "argv": [
+        "py",
+        "-3.11",
+        "tools/build.py"
+      ],
+      "started_at": "2026-10-08T11:58:34.742822+00:00",
+      "ended_at": "2026-10-08T11:58:36.353156+00:00",
+      "exit_code": 0,
+      "seconds": 1.546,
+      "cumulative_active_seconds": 137.952,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m2-command-01-attempt-2.stdout.log",
+      "stderr": "work/m2-command-01-attempt-2.stderr.log",
+      "resources": {
+        "samples": 13,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 245596160,
+        "sampled_max_concurrent_java": 1,
+        "generated_before_bytes": 2565729,
+        "sampled_peak_generated_bytes": 2567712,
+        "generated_after_bytes": 2567712,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "Short-lived processes and file extents can occur between samples; totals are sampled, not an exact continuous peak."
+      }
+    },
+    {
+      "index": 3,
+      "attempt": 2,
+      "command": "py -3.11 tools/check.py --suite m1",
+      "argv": [
+        "py",
+        "-3.11",
+        "tools/check.py",
+        "--suite",
+        "m1"
+      ],
+      "started_at": "2026-10-08T11:58:48.647314+00:00",
+      "ended_at": "2026-10-08T11:59:15.395298+00:00",
+      "exit_code": 0,
+      "seconds": 26.703,
+      "cumulative_active_seconds": 164.655,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m2-command-03-attempt-2.stdout.log",
+      "stderr": "work/m2-command-03-attempt-2.stderr.log",
+      "resources": {
+        "samples": 231,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 311832576,
+        "sampled_max_concurrent_java": 1,
+        "generated_before_bytes": 2569549,
+        "sampled_peak_generated_bytes": 3029321,
+        "generated_after_bytes": 3029321,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "Short-lived processes and file extents can occur between samples; totals are sampled, not an exact continuous peak."
+      }
+    },
+    {
+      "index": 4,
+      "attempt": 2,
+      "command": "py -3.11 tools/check.py --suite policy",
+      "argv": [
+        "py",
+        "-3.11",
+        "tools/check.py",
+        "--suite",
+        "policy"
+      ],
+      "started_at": "2026-10-08T11:59:35.762214+00:00",
+      "ended_at": "2026-10-08T12:00:25.339658+00:00",
+      "exit_code": 0,
+      "seconds": 49.531,
+      "cumulative_active_seconds": 214.186,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m2-command-04-attempt-2.stdout.log",
+      "stderr": "work/m2-command-04-attempt-2.stderr.log",
+      "resources": {
+        "samples": 427,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 127250432,
+        "sampled_max_concurrent_java": 1,
+        "generated_before_bytes": 3031188,
+        "sampled_peak_generated_bytes": 3850385,
+        "generated_after_bytes": 3842816,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "Short-lived processes and file extents can occur between samples; totals are sampled, not an exact continuous peak."
+      }
+    },
+    {
+      "index": 5,
+      "attempt": 1,
+      "command": "py -3.11 tools/check.py --suite recovery",
+      "argv": [
+        "py",
+        "-3.11",
+        "tools/check.py",
+        "--suite",
+        "recovery"
+      ],
+      "started_at": "2026-10-08T12:00:40.424040+00:00",
+      "ended_at": "2026-10-08T12:01:12.893857+00:00",
+      "exit_code": 0,
+      "seconds": 32.406,
+      "cumulative_active_seconds": 246.592,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m2-command-05.stdout.log",
+      "stderr": "work/m2-command-05.stderr.log",
+      "resources": {
+        "samples": 274,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 180625408,
+        "sampled_max_concurrent_java": 2,
+        "generated_before_bytes": 3844691,
+        "sampled_peak_generated_bytes": 5643395,
+        "generated_after_bytes": 4214170,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "Short-lived processes and file extents can occur between samples; totals are sampled, not an exact continuous peak."
+      }
+    },
+    {
+      "index": 6,
+      "attempt": 1,
+      "command": "py -3.11 tools/check.py --suite provider",
+      "argv": [
+        "py",
+        "-3.11",
+        "tools/check.py",
+        "--suite",
+        "provider"
+      ],
+      "started_at": "2026-10-08T12:01:54.971024+00:00",
+      "ended_at": "2026-10-08T12:01:56.963076+00:00",
+      "exit_code": 0,
+      "seconds": 1.938,
+      "cumulative_active_seconds": 248.53,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m2-command-06.stdout.log",
+      "stderr": "work/m2-command-06.stderr.log",
+      "resources": {
+        "samples": 16,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 73822208,
+        "sampled_max_concurrent_java": 0,
+        "generated_before_bytes": 4216029,
+        "sampled_peak_generated_bytes": 4227151,
+        "generated_after_bytes": 4226055,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "Short-lived processes and file extents can occur between samples; totals are sampled, not an exact continuous peak."
+      }
+    },
+    {
+      "index": 7,
+      "attempt": 1,
+      "command": "py -3.11 -m evaluation.freeze --check",
+      "argv": [
+        "py",
+        "-3.11",
+        "-m",
+        "evaluation.freeze",
+        "--check"
+      ],
+      "started_at": "2026-10-08T12:01:57.994629+00:00",
+      "ended_at": "2026-10-08T12:01:58.298616+00:00",
+      "exit_code": 0,
+      "seconds": 0.234,
+      "cumulative_active_seconds": 248.764,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m2-command-07.stdout.log",
+      "stderr": "work/m2-command-07.stderr.log",
+      "resources": {
+        "samples": 2,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 63160320,
+        "sampled_max_concurrent_java": 0,
+        "generated_before_bytes": 4227910,
+        "sampled_peak_generated_bytes": 4229028,
+        "generated_after_bytes": 4229028,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "Short-lived processes and file extents can occur between samples; totals are sampled, not an exact continuous peak."
+      }
+    },
+    {
+      "index": 8,
+      "attempt": 1,
+      "command": "py -3.11 -m evaluation.run --split dev --provider offline-rules --baseline latest-note --repeat 1 --out work/dev-evaluation",
+      "argv": [
+        "py",
+        "-3.11",
+        "-m",
+        "evaluation.run",
+        "--split",
+        "dev",
+        "--provider",
+        "offline-rules",
+        "--baseline",
+        "latest-note",
+        "--repeat",
+        "1",
+        "--out",
+        "work/dev-evaluation"
+      ],
+      "started_at": "2026-10-08T12:02:03.277402+00:00",
+      "ended_at": "2026-10-08T12:02:26.294371+00:00",
+      "exit_code": 0,
+      "seconds": 22.953,
+      "cumulative_active_seconds": 271.717,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m2-command-08.stdout.log",
+      "stderr": "work/m2-command-08.stderr.log",
+      "resources": {
+        "samples": 195,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 125943808,
+        "sampled_max_concurrent_java": 1,
+        "generated_before_bytes": 4230877,
+        "sampled_peak_generated_bytes": 4798402,
+        "generated_after_bytes": 4798402,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "Short-lived processes and file extents can occur between samples; totals are sampled, not an exact continuous peak."
+      }
+    },
+    {
+      "index": 9,
+      "attempt": 1,
+      "command": "py -3.11 -m evaluation.verify --report work/dev-evaluation/report.json",
+      "argv": [
+        "py",
+        "-3.11",
+        "-m",
+        "evaluation.verify",
+        "--report",
+        "work/dev-evaluation/report.json"
+      ],
+      "started_at": "2026-10-08T12:02:40.773690+00:00",
+      "ended_at": "2026-10-08T12:02:41.178469+00:00",
+      "exit_code": 0,
+      "seconds": 0.344,
+      "cumulative_active_seconds": 272.061,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m2-command-09.stdout.log",
+      "stderr": "work/m2-command-09.stderr.log",
+      "resources": {
+        "samples": 3,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 63152128,
+        "sampled_max_concurrent_java": 0,
+        "generated_before_bytes": 4800454,
+        "sampled_peak_generated_bytes": 4801593,
+        "generated_after_bytes": 4801593,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "Short-lived processes and file extents can occur between samples; totals are sampled, not an exact continuous peak."
+      }
+    }
+  ],
+  "command_failures_preserved": {
+    "policy_utf8_native_exit": 1,
+    "policy_errors_before_fix": 1,
+    "monitoring": [
+      {
+        "command": "py -3.11 tools/check.py --suite m1",
+        "monitor_command": "py -3.11 work/run_m2_leased.py --index 3",
+        "monitor_exit_code": 1,
+        "native_command_exit_code": null,
+        "native_exit_limitation": "Monitoring helper crashed during concurrent temporary-directory deletion. Native command subsequently printed all 19 tests OK and both demo summaries; its process exit was not captured. No owned process remained at post-failure inspection.",
+        "first_failure": "FileNotFoundError: disk scan traversed work/tmp_v_mt9om after test cleanup removed it",
+        "correction": "Use os.walk, which tolerates disappearing directories; preserve first stdout/stderr and repeat exact M1 command with native exit capture.",
+        "charged_active_seconds": 60,
+        "charge_limitation": "Conservative 60-second charge covers the first complete M1 execution and monitoring failure; exact wall time unavailable.",
+        "recorded_at": "2026-10-08T11:54:41.0714843+00:00"
+      }
+    ],
+    "reseal_helper_initial_exit": 1,
+    "reseal_helper_initial_error": "ModuleNotFoundError: No module named evaluation",
+    "reseal_helper_fix": "Explicitly add repository root to helper sys.path; successful pure reseal followed. No scoring occurred before v4."
+  },
+  "tests": {
+    "suites": {
+      "m1": {
+        "tests": 19,
+        "failures": 0,
+        "errors": 0,
+        "unittest_seconds": 19.928
+      },
+      "policy": {
+        "tests": 20,
+        "failures": 0,
+        "errors": 0,
+        "unittest_seconds": 49.3
+      },
+      "recovery": {
+        "tests": 13,
+        "failures": 0,
+        "errors": 0,
+        "unittest_seconds": 32.122
+      },
+      "provider": {
+        "tests": 58,
+        "failures": 0,
+        "errors": 0,
+        "unittest_seconds": 1.661
+      }
+    },
+    "final_suite_test_invocations": 110,
+    "distinct_test_methods": 99,
+    "java_parser_assertions": 8,
+    "pure_python": 50,
+    "real_java_m1": 8,
+    "real_java_policy": 20,
+    "real_java_recovery": 13,
+    "actual_loopback_http": 8,
+    "final_failures": 0,
+    "final_errors": 0
+  },
+  "m1_regression_demo_journeys": 2,
+  "runtime": {
+    "observed_java_completions": 911,
+    "exit_codes": {
+      "0": 905,
+      "1": 4,
+      "72": 1,
+      "71": 1
+    },
+    "owned_kill_requests": 4,
+    "captured_domain_snapshots": 231,
+    "capture_errors": 0,
+    "commit_interruption_reconstruction": [
+      {
+        "failpoint": "after-rename",
+        "actual_exit_code": 72,
+        "original_action_key": "aae9d186-b28a-44af-98d7-2859f0158413",
+        "before_snapshot_sha256": "577b25fa2f6a06048905e989c168ef2722c1d035415c1a9320f19cbc5d602b57",
+        "after_crash_snapshot_sha256": "fd11c6efef149733f96b2d216e2de9b88f9096ecde0145fd37a686199ae78fc0",
+        "final_snapshot_sha256": "fd11c6efef149733f96b2d216e2de9b88f9096ecde0145fd37a686199ae78fc0",
+        "after_crash_version": 8,
+        "final_version": 8,
+        "final_receipts": 1,
+        "final_apply_events": 1,
+        "retry_apply_calls": 0,
+        "original_key_preserved": true,
+        "no_extra_generation_after_committed_crash": true
+      },
+      {
+        "failpoint": "before-rename",
+        "actual_exit_code": 71,
+        "original_action_key": "ad20452d-8667-47d3-8530-df0b1bcad36a",
+        "before_snapshot_sha256": "fb33319de12ea2b565613a4ee1a5b8f04a6c06b66bdb88a585900ddad7320be1",
+        "after_crash_snapshot_sha256": "fb33319de12ea2b565613a4ee1a5b8f04a6c06b66bdb88a585900ddad7320be1",
+        "final_snapshot_sha256": "f3f167563695a3d72e5ef07cca4c4ff5675269a4ecde48af15682b5e4516ea95",
+        "after_crash_version": 7,
+        "final_version": 8,
+        "final_receipts": 1,
+        "final_apply_events": 1,
+        "retry_apply_calls": 1,
+        "original_key_preserved": true,
+        "no_extra_generation_after_committed_crash": false
+      }
+    ],
+    "largest_recorded_temporary_extent_bytes": 104857600,
+    "raw_events": "work/m2-runtime-trace/events.jsonl",
+    "raw_snapshot_directory": "work/m2-runtime-trace/states"
+  },
+  "transport_correction": {
+    "recorded_at": "2026-10-08T11:57:33.701132+00:00",
+    "from": "authored-v3",
+    "to": "authored-v4",
+    "reason": "Windows Java 17 platform stdout encoding violates the required UTF-8 response protocol",
+    "first_failure_command": "py -3.11 tools/check.py --suite policy",
+    "first_native_exit": 1,
+    "first_policy_tests": 20,
+    "first_policy_errors": 1,
+    "first_failed_test": "test_unicode_exact_evidence_and_canonical_digest",
+    "scored_before_revision": false,
+    "labels_and_tests_will_not_change": true,
+    "previous_manifest_sha256": "e647bdb1433ebdaf0e94b6d43791e9eca8f7ecd047cfb938b98a6c320ff9626c",
+    "disposition": "bounded_m2_correction_under_active_lease",
+    "input_label_hashes_unchanged": true,
+    "previous_rule_hashes_unchanged": true,
+    "unchanged_tests": true,
+    "changed_source_paths": [
+      "java/src/crm/Main.java",
+      "evaluation/freeze.py"
+    ],
+    "freeze_extension": "Bind Java UTF-8 response entrypoint in addition to all unchanged existing rules",
+    "archived_source_hashes": {
+      "authored-v3.json": "e647bdb1433ebdaf0e94b6d43791e9eca8f7ecd047cfb938b98a6c320ff9626c",
+      "authored-v3-Main.java.txt": "6c4308276894245b7c02cc57c875a2934791b807f7de500fd4a9806d5a8f6c2f",
+      "authored-v3-freeze.py.txt": "0be73c71a9a8ea22492c4efb2f3117f5619be95625873bea34c8855b953755f6"
+    },
+    "manifest_sha256": "f08e34a8d94179a33038570c01e6164144c81575becfd7e4ceaa622f487de46b"
+  },
+  "frozen_cases": {
+    "version": "authored-v4",
+    "dev": 8,
+    "heldout": 32,
+    "case_input_label_hashes_unchanged": true,
+    "previous_python_rule_hashes_unchanged": true,
+    "dev_business_cases_scored": 8,
+    "dev_case_runs": 16,
+    "heldout_business_cases_scored": 0,
+    "heldout_rubric": "main_reviewed_reasonable_before_integration",
+    "frozen_scored_field": "Historical pre-execution metadata; actual dev execution is recorded separately in this report."
+  },
+  "development": {
+    "elapsed_seconds": 22.657,
+    "metrics": {
+      "offline-rules": {
+        "attempted": 8,
+        "completed": 8,
+        "errors": 0,
+        "pre_review_exact": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "proposal_precision": {
+          "numerator": 2,
+          "denominator": 2,
+          "rate": 1.0
+        },
+        "proposal_recall": {
+          "numerator": 2,
+          "denominator": 2,
+          "rate": 1.0
+        },
+        "semantic_evidence": {
+          "numerator": 3,
+          "denominator": 3,
+          "rate": 1.0
+        },
+        "provenance_evidence": {
+          "numerator": 3,
+          "denominator": 3,
+          "rate": 1.0
+        },
+        "no_change": {
+          "numerator": 2,
+          "denominator": 2,
+          "rate": 1.0
+        },
+        "handoff": {
+          "numerator": 4,
+          "denominator": 4,
+          "rate": 1.0
+        },
+        "domain_correct": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "unauthorized_mutations": 0,
+        "tool_calls": 31,
+        "model_usage": null
+      },
+      "latest-note": {
+        "attempted": 8,
+        "completed": 8,
+        "errors": 0,
+        "pre_review_exact": {
+          "numerator": 7,
+          "denominator": 8,
+          "rate": 0.875
+        },
+        "proposal_precision": {
+          "numerator": 2,
+          "denominator": 3,
+          "rate": 0.6666666666666666
+        },
+        "proposal_recall": {
+          "numerator": 2,
+          "denominator": 2,
+          "rate": 1.0
+        },
+        "semantic_evidence": {
+          "numerator": 3,
+          "denominator": 4,
+          "rate": 0.75
+        },
+        "provenance_evidence": {
+          "numerator": 4,
+          "denominator": 4,
+          "rate": 1.0
+        },
+        "no_change": {
+          "numerator": 2,
+          "denominator": 2,
+          "rate": 1.0
+        },
+        "handoff": {
+          "numerator": 3,
+          "denominator": 4,
+          "rate": 0.75
+        },
+        "domain_correct": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "unauthorized_mutations": 0,
+        "tool_calls": 31,
+        "model_usage": null
+      }
+    },
+    "cases": [
+      {
+        "method": "offline-rules",
+        "case_id": "dev-01",
+        "expected": "PROPOSE",
+        "observed": "PROPOSE",
+        "pre_review_correct": true,
+        "domain_correct": true,
+        "authorized": true,
+        "tool_calls": 5,
+        "provider_turns": 5,
+        "active_milliseconds": 1672,
+        "fingerprint": "2f7192d48f93540bf749c80026b308fc544d61df5b660a957f274a32b155a5a4"
+      },
+      {
+        "method": "offline-rules",
+        "case_id": "dev-02",
+        "expected": "PROPOSE",
+        "observed": "PROPOSE",
+        "pre_review_correct": true,
+        "domain_correct": true,
+        "authorized": true,
+        "tool_calls": 5,
+        "provider_turns": 5,
+        "active_milliseconds": 1671,
+        "fingerprint": "2491637ac2f9c86c7baa6424312f05b77d50566023f60599d9ddebf7bb2068a5"
+      },
+      {
+        "method": "offline-rules",
+        "case_id": "dev-03",
+        "expected": "NO_CHANGE",
+        "observed": "NO_CHANGE",
+        "pre_review_correct": true,
+        "domain_correct": true,
+        "authorized": true,
+        "tool_calls": 4,
+        "provider_turns": 5,
+        "active_milliseconds": 829,
+        "fingerprint": "ab3e2d8f5544d99b52ad72506107c1eba000a926fef6733a288d61ee0dec5ee7"
+      },
+      {
+        "method": "offline-rules",
+        "case_id": "dev-04",
+        "expected": "NO_CHANGE",
+        "observed": "NO_CHANGE",
+        "pre_review_correct": true,
+        "domain_correct": true,
+        "authorized": true,
+        "tool_calls": 2,
+        "provider_turns": 3,
+        "active_milliseconds": 422,
+        "fingerprint": "fe6a297518ebb4579ad3f1e6d7c064537df5a133c65bed1c31eca0de6823a914"
+      },
+      {
+        "method": "offline-rules",
+        "case_id": "dev-05",
+        "expected": "HANDOFF",
+        "observed": "HANDOFF",
+        "pre_review_correct": true,
+        "domain_correct": true,
+        "authorized": true,
+        "tool_calls": 5,
+        "provider_turns": 6,
+        "active_milliseconds": 1014,
+        "fingerprint": "2b3c6aa14e23f67e0a0c8e54ff9bce6a171dd03bf6d1096f5e812013d94ad423"
+      },
+      {
+        "method": "offline-rules",
+        "case_id": "dev-06",
+        "expected": "HANDOFF",
+        "observed": "HANDOFF",
+        "pre_review_correct": true,
+        "domain_correct": true,
+        "authorized": true,
+        "tool_calls": 3,
+        "provider_turns": 4,
+        "active_milliseconds": 750,
+        "fingerprint": "2b3c6aa14e23f67e0a0c8e54ff9bce6a171dd03bf6d1096f5e812013d94ad423"
+      },
+      {
+        "method": "offline-rules",
+        "case_id": "dev-07",
+        "expected": "HANDOFF",
+        "observed": "HANDOFF",
+        "pre_review_correct": true,
+        "domain_correct": true,
+        "authorized": true,
+        "tool_calls": 4,
+        "provider_turns": 5,
+        "active_milliseconds": 1016,
+        "fingerprint": "2b3c6aa14e23f67e0a0c8e54ff9bce6a171dd03bf6d1096f5e812013d94ad423"
+      },
+      {
+        "method": "offline-rules",
+        "case_id": "dev-08",
+        "expected": "HANDOFF",
+        "observed": "HANDOFF",
+        "pre_review_correct": true,
+        "domain_correct": true,
+        "authorized": true,
+        "tool_calls": 3,
+        "provider_turns": 4,
+        "active_milliseconds": 594,
+        "fingerprint": "2b3c6aa14e23f67e0a0c8e54ff9bce6a171dd03bf6d1096f5e812013d94ad423"
+      },
+      {
+        "method": "latest-note",
+        "case_id": "dev-01",
+        "expected": "PROPOSE",
+        "observed": "PROPOSE",
+        "pre_review_correct": true,
+        "domain_correct": true,
+        "authorized": true,
+        "tool_calls": 5,
+        "provider_turns": 5,
+        "active_milliseconds": 1625,
+        "fingerprint": "2f7192d48f93540bf749c80026b308fc544d61df5b660a957f274a32b155a5a4"
+      },
+      {
+        "method": "latest-note",
+        "case_id": "dev-02",
+        "expected": "PROPOSE",
+        "observed": "PROPOSE",
+        "pre_review_correct": true,
+        "domain_correct": true,
+        "authorized": true,
+        "tool_calls": 5,
+        "provider_turns": 5,
+        "active_milliseconds": 1672,
+        "fingerprint": "2491637ac2f9c86c7baa6424312f05b77d50566023f60599d9ddebf7bb2068a5"
+      },
+      {
+        "method": "latest-note",
+        "case_id": "dev-03",
+        "expected": "NO_CHANGE",
+        "observed": "NO_CHANGE",
+        "pre_review_correct": true,
+        "domain_correct": true,
+        "authorized": true,
+        "tool_calls": 4,
+        "provider_turns": 5,
+        "active_milliseconds": 860,
+        "fingerprint": "ab3e2d8f5544d99b52ad72506107c1eba000a926fef6733a288d61ee0dec5ee7"
+      },
+      {
+        "method": "latest-note",
+        "case_id": "dev-04",
+        "expected": "NO_CHANGE",
+        "observed": "NO_CHANGE",
+        "pre_review_correct": true,
+        "domain_correct": true,
+        "authorized": true,
+        "tool_calls": 2,
+        "provider_turns": 3,
+        "active_milliseconds": 437,
+        "fingerprint": "fe6a297518ebb4579ad3f1e6d7c064537df5a133c65bed1c31eca0de6823a914"
+      },
+      {
+        "method": "latest-note",
+        "case_id": "dev-05",
+        "expected": "HANDOFF",
+        "observed": "PROPOSE",
+        "pre_review_correct": false,
+        "domain_correct": true,
+        "authorized": true,
+        "tool_calls": 5,
+        "provider_turns": 5,
+        "active_milliseconds": 1374,
+        "fingerprint": "2b3c6aa14e23f67e0a0c8e54ff9bce6a171dd03bf6d1096f5e812013d94ad423"
+      },
+      {
+        "method": "latest-note",
+        "case_id": "dev-06",
+        "expected": "HANDOFF",
+        "observed": "HANDOFF",
+        "pre_review_correct": true,
+        "domain_correct": true,
+        "authorized": true,
+        "tool_calls": 3,
+        "provider_turns": 4,
+        "active_milliseconds": 656,
+        "fingerprint": "2b3c6aa14e23f67e0a0c8e54ff9bce6a171dd03bf6d1096f5e812013d94ad423"
+      },
+      {
+        "method": "latest-note",
+        "case_id": "dev-07",
+        "expected": "HANDOFF",
+        "observed": "HANDOFF",
+        "pre_review_correct": true,
+        "domain_correct": true,
+        "authorized": true,
+        "tool_calls": 4,
+        "provider_turns": 5,
+        "active_milliseconds": 844,
+        "fingerprint": "2b3c6aa14e23f67e0a0c8e54ff9bce6a171dd03bf6d1096f5e812013d94ad423"
+      },
+      {
+        "method": "latest-note",
+        "case_id": "dev-08",
+        "expected": "HANDOFF",
+        "observed": "HANDOFF",
+        "pre_review_correct": true,
+        "domain_correct": true,
+        "authorized": true,
+        "tool_calls": 3,
+        "provider_turns": 4,
+        "active_milliseconds": 578,
+        "fingerprint": "2b3c6aa14e23f67e0a0c8e54ff9bce6a171dd03bf6d1096f5e812013d94ad423"
+      }
+    ],
+    "baseline_incorrect_case": {
+      "method": "latest-note",
+      "case_id": "dev-05",
+      "expected": "HANDOFF",
+      "observed": "PROPOSE",
+      "pre_review_correct": false,
+      "domain_correct": true,
+      "authorized": true,
+      "tool_calls": 5,
+      "provider_turns": 5,
+      "active_milliseconds": 1374,
+      "fingerprint": "2b3c6aa14e23f67e0a0c8e54ff9bce6a171dd03bf6d1096f5e812013d94ad423"
+    },
+    "independent_artifact_verifier": {
+      "verified_methods": 2,
+      "verified_case_runs": 16,
+      "model_quality_evaluated": false
+    },
+    "report_path": "work/dev-evaluation/report.json"
+  },
+  "resources": {
+    "lease": "crm-pipeline-agent-m2-integration",
+    "recorded_native_command_seconds": 212.061,
+    "monitor_failure_conservative_charge_seconds": 60,
+    "charged_active_seconds": 272.061,
+    "active_cap_seconds": 900,
+    "new_download_bytes": 0,
+    "sampled_peak_owned_tree_rss_bytes": 311832576,
+    "ram_cap_bytes": 536870912,
+    "sampled_max_concurrent_java": 2,
+    "sampled_peak_generated_bytes": 5643395,
+    "largest_known_temporary_extent_bytes": 104857600,
+    "generated_bytes_at_handoff": 4900333,
+    "generated_cap_bytes": 134217728,
+    "sampling_limit": "100-ms process and approximately 500-ms disk samples are not continuous peak measurements. The short-lived 100-MiB capacity-test extent was independently captured in Java-operation metadata; disk sampling missed it.",
+    "ownership": "Only the helper-launched tree was sampled; test/client termination targeted their own JVMs.",
+    "monitoring_effect": "Local standard-library sitecustomize observes Popen completions and saves content-addressed snapshots; no provider decisions, tests, labels or domain gates changed. Timings include capture overhead."
+  },
+  "evidence_hashes": [
+    {
+      "path": "evaluation/freeze-history/authored-v3-Main.java.txt",
+      "sha256": "6c4308276894245b7c02cc57c875a2934791b807f7de500fd4a9806d5a8f6c2f"
+    },
+    {
+      "path": "evaluation/freeze-history/authored-v3-freeze.py.txt",
+      "sha256": "0be73c71a9a8ea22492c4efb2f3117f5619be95625873bea34c8855b953755f6"
+    },
+    {
+      "path": "evaluation/freeze-history/authored-v3.json",
+      "sha256": "e647bdb1433ebdaf0e94b6d43791e9eca8f7ecd047cfb938b98a6c320ff9626c"
+    },
+    {
+      "path": "evaluation/freeze-history/revision-authored-v4.json",
+      "sha256": "48f87a440a4e8a47000f94dccb7c763823b718d833c3daad0aacb097942abc3e"
+    },
+    {
+      "path": "work/dev-evaluation/report.json",
+      "sha256": "d3acc7027ccbb13a4aa2712c601fc476700e51b9fc1586f5f277e76287deed32"
+    },
+    {
+      "path": "work/m2-command-01-attempt-2.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "work/m2-command-01-attempt-2.stdout.log",
+      "sha256": "7f9623e103b7604138fd9da9b7ffaf51cc1c7538a57d68df6acabae75b0bf2ca"
+    },
+    {
+      "path": "work/m2-command-01.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "work/m2-command-01.stdout.log",
+      "sha256": "7f9623e103b7604138fd9da9b7ffaf51cc1c7538a57d68df6acabae75b0bf2ca"
+    },
+    {
+      "path": "work/m2-command-02.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "work/m2-command-02.stdout.log",
+      "sha256": "2ed86dd320dde20119251cec3e63eb8d606c6419e7a0e2cc2ab4dfdd52e769a4"
+    },
+    {
+      "path": "work/m2-command-03-attempt-2.stderr.log",
+      "sha256": "501d2ed970479381457309ddaef85bbb3016fbfab1715ec93b9672bf49b285ea"
+    },
+    {
+      "path": "work/m2-command-03-attempt-2.stdout.log",
+      "sha256": "61aeb2a01838160a51b4d216dc74a0c24e8b4bcb37bb92ebc1a876ac839fbc75"
+    },
+    {
+      "path": "work/m2-command-03-monitor-failure.stderr.log",
+      "sha256": "7596f3a1fa1fdb2b03c457247752812a6e7493c6ad8a10f9f396d9c1e103f858"
+    },
+    {
+      "path": "work/m2-command-03-monitor-failure.stdout.log",
+      "sha256": "5c26edc672b2d47b73508e546a273b48d92a2991aad07f4e3a9dd57979f57903"
+    },
+    {
+      "path": "work/m2-command-03.stderr.log",
+      "sha256": "36955c121dd4fb8fbda2e60130e530374159b53eca7eae1f090a12f300306d9b"
+    },
+    {
+      "path": "work/m2-command-03.stdout.log",
+      "sha256": "e16176c71f944cceb2d648681c47ac7885eadce0c478e97b60fe78eb0b00959b"
+    },
+    {
+      "path": "work/m2-command-04-attempt-2.stderr.log",
+      "sha256": "5b49797fc0673076d9efb47de19f824a93ef8eb80b9cdd166862f12b5a3245b2"
+    },
+    {
+      "path": "work/m2-command-04-attempt-2.stdout.log",
+      "sha256": "872b89856f83fcbdd09114dc0d5c167b38531dcb420d8829a0517607c4477d39"
+    },
+    {
+      "path": "work/m2-command-04.stderr.log",
+      "sha256": "131ba4a3b938c77a557c35d4242ba7d520fdf602833b98dbb7488be2a4b5cded"
+    },
+    {
+      "path": "work/m2-command-04.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "work/m2-command-05.stderr.log",
+      "sha256": "d326671a019ede1fc4dcccec5a17e1239f728e1e8077aa93e62e73d459470354"
+    },
+    {
+      "path": "work/m2-command-05.stdout.log",
+      "sha256": "e78ad4cbabab42b8187d434535aab4398270500aa4515a578136507103867b05"
+    },
+    {
+      "path": "work/m2-command-06.stderr.log",
+      "sha256": "1337d9316d652aba2c8043bc51929695c90115d5f4883a0eda5eae3cad264c07"
+    },
+    {
+      "path": "work/m2-command-06.stdout.log",
+      "sha256": "d8ecc33899970d894e23b92e8310351eb941a9ff99b2fa895d67fa6c4c971ba0"
+    },
+    {
+      "path": "work/m2-command-07.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "work/m2-command-07.stdout.log",
+      "sha256": "ead388fb3061c41a3ee12d3a531e053e10223a5aaa812a9bd762b08d267c5891"
+    },
+    {
+      "path": "work/m2-command-08.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "work/m2-command-08.stdout.log",
+      "sha256": "36dd22001601f091a3704fc6d9861340f508e5e45cd1b950dd52759c592a22bc"
+    },
+    {
+      "path": "work/m2-command-09.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "work/m2-command-09.stdout.log",
+      "sha256": "d47adafc05f091e36de6bab61101426542ba65608cb83403d7a60303d72bea30"
+    },
+    {
+      "path": "work/m2-integration-command-receipts.jsonl",
+      "sha256": "dd2b3285a9f5d9410e2cda0585f7fce8b40ab81a647dc8cd2345a1e7c8284f4f"
+    },
+    {
+      "path": "work/m2-monitor-failures.jsonl",
+      "sha256": "1468aa3c197ae8d3b168fac3472347d5129bef4ec219ce99ba27198b37c193fa"
+    },
+    {
+      "path": "work/m2-runtime-trace/events.jsonl",
+      "sha256": "81333b367081139c9b34502b6d6ab68bd71a6a8e456a18611c55b482c986f9b3"
+    },
+    {
+      "path": "work/m2-runtime-trace/summary.json",
+      "sha256": "b022ccd2409d952be02d336ff02aaf6506ea2ddedc9f0e2994636a69ec096a4c"
+    },
+    {
+      "path": "work/m2-utf8-correction.json",
+      "sha256": "f6a9fbf6a7593828b3fae9657a2ed2e976d8a765e35e04463aa8b27bd5bccca5"
+    },
+    {
+      "path": "work/m2_trace_hook/sitecustomize.py",
+      "sha256": "65dc232e19750ca14229fc6a63ca470938af587d2f883ad77c1c480aa0a2dfba"
+    },
+    {
+      "path": "work/preserve_m2_v3.py",
+      "sha256": "3dcb4d7b6bfc3b00c238260a0ae5ddbf89190f76efb07e420f161fb9f8687ba4"
+    },
+    {
+      "path": "work/reseal_m2_v4.py",
+      "sha256": "a5a2dc15de657f2fac4668e01cd9c8c1f7995455068b00ea4331523121e32ab2"
+    },
+    {
+      "path": "work/run_m2_leased.py",
+      "sha256": "ebf251724faa45d8892b22ad8a44bee8352fcd7b5b04558d937b3ac6207af813"
+    }
+  ],
+  "unexecuted": [
+    "Independent main M2 integration acceptance",
+    "Held-out scoring and repeats",
+    "M3 and CI",
+    "Live model or production CRM",
+    "Publication or deployment"
+  ],
+  "source_changes_since_accepted_v3": [
+    "EVIDENCE.md",
+    "README.md",
+    "docs/architecture.md",
+    "docs/m2.md",
+    "docs/threat-model.md",
+    "evaluation/freeze.py",
+    "evaluation/frozen-manifest.json",
+    "java/src/crm/Main.java"
+  ]
+}

@@ -1,0 +1,298 @@
+{
+  "schema_version": 1,
+  "milestone": "M1",
+  "state": "worker_verified_awaiting_independent_acceptance",
+  "recorded_at": "2026-10-08T10:16:27.902738+00:00",
+  "provider_mode": "scripted",
+  "model_id": null,
+  "model_quality_evaluated": false,
+  "review_mode": "scripted_synthetic",
+  "environment": {
+    "python": "3.11.9",
+    "java": "Microsoft OpenJDK 17.0.18+8 LTS",
+    "javac": "17.0.18"
+  },
+  "tests": {
+    "total": 19,
+    "lightweight": 11,
+    "real_java_integration": 8,
+    "failures": 0,
+    "errors": 0,
+    "java_assertions": 8,
+    "java_assertions_passed": 8,
+    "unittest_seconds": 19.259,
+    "final_suite_command_seconds": 25.9574515
+  },
+  "demo_journeys_passed": 2,
+  "authored_opportunities": 1,
+  "demo_results": [
+    {
+      "schema_version": 1,
+      "scenario": "approved-update",
+      "provider_mode": "scripted",
+      "review_mode": "scripted_synthetic",
+      "model_id": null,
+      "model_quality_evaluated": false,
+      "state": "APPLIED",
+      "old_version": 7,
+      "new_version": 8,
+      "agent_apply_events": 1,
+      "receipt_count": 1,
+      "duplicate_receipt_equal": true,
+      "protected_fields_unchanged": true,
+      "final_opportunity": {
+        "account_id": "acct-101",
+        "amount_minor": 2500000,
+        "close_date": "2026-11-12",
+        "currency": "USD",
+        "evidence_revision": 1,
+        "history": [
+          {
+            "actor": "rep-101",
+            "after": {
+              "next_step": "Schedule technical review."
+            },
+            "before": {
+              "next_step": "Request technical review."
+            },
+            "event_id": "history-1",
+            "version": 7
+          },
+          {
+            "actor": "executor-north",
+            "after": {
+              "close_date": "2026-11-12",
+              "next_step": "Send revised agreement by 2026-10-09."
+            },
+            "before": {
+              "close_date": "2026-09-30",
+              "next_step": "Schedule technical review."
+            },
+            "event_id": "apply-ee9e627f-e926-4080-b8d9-0f6c0adb6ce7",
+            "version": 8
+          }
+        ],
+        "id": "opp-101",
+        "next_step": "Send revised agreement by 2026-10-09.",
+        "owner_id": "rep-101",
+        "stage": "open",
+        "version": 8
+      },
+      "assertions_passed": true
+    },
+    {
+      "schema_version": 1,
+      "scenario": "stale-approval",
+      "provider_mode": "scripted",
+      "review_mode": "scripted_synthetic",
+      "model_id": null,
+      "model_quality_evaluated": false,
+      "state": "STALE",
+      "old_version": 7,
+      "new_version": 8,
+      "agent_apply_events": 0,
+      "receipt_count": 0,
+      "duplicate_receipt_equal": null,
+      "protected_fields_unchanged": true,
+      "final_opportunity": {
+        "account_id": "acct-101",
+        "amount_minor": 2500000,
+        "close_date": "2026-09-30",
+        "currency": "USD",
+        "evidence_revision": 1,
+        "history": [
+          {
+            "actor": "rep-101",
+            "after": {
+              "next_step": "Schedule technical review."
+            },
+            "before": {
+              "next_step": "Request technical review."
+            },
+            "event_id": "history-1",
+            "version": 7
+          },
+          {
+            "actor": "fixture-operator",
+            "after": {
+              "next_step": "Rep concurrently scheduled legal review."
+            },
+            "before": {
+              "next_step": "Schedule technical review."
+            },
+            "version": 8
+          }
+        ],
+        "id": "opp-101",
+        "next_step": "Rep concurrently scheduled legal review.",
+        "owner_id": "rep-101",
+        "stage": "open",
+        "version": 8
+      },
+      "assertions_passed": true
+    }
+  ],
+  "persisted_approval_binding": {
+    "digest": "5bf36b0d6a7c4f0995a4bb8af8872475614fcf1cebf1f5a57bd03478d0649b0e",
+    "proposal_approval_receipt_equal": true,
+    "approval_state": "CONSUMED",
+    "receipt_action_key": "ee9e627f-e926-4080-b8d9-0f6c0adb6ce7"
+  },
+  "interactive_cli": {
+    "input_source": "controlled_test_harness",
+    "wrong_digest_exit": 2,
+    "exact_digest_approve_exit": 0,
+    "resume_exit": 0,
+    "wrong_digest_store_unchanged": true
+  },
+  "competing_proposals": {
+    "execution": "sequential",
+    "same_expected_version": 7,
+    "applies": 1,
+    "second_result": "VERSION_CONFLICT",
+    "rejected_write_state_unchanged": true
+  },
+  "dependencies": {
+    "coordinates": [
+      "com.google.code.gson:gson:2.14.0",
+      "com.google.errorprone:error_prone_annotations:2.48.0"
+    ],
+    "declared_non_test_closure_verified": true,
+    "audit": "docs/dependency-audit.json"
+  },
+  "resources": {
+    "lease": "crm-pipeline-agent-m1-closure-recovery",
+    "new_response_body_bytes": 842574,
+    "new_response_body_cap_bytes": 2097152,
+    "prior_failed_transfer_bytes": null,
+    "heavy_command_wall_seconds": 75.5967893,
+    "active_command_cap_seconds": 1200,
+    "generated_disk_bytes": 595881,
+    "generated_disk_measured_at": "2026-10-08T10:16:27.902738+00:00",
+    "generated_disk_cap_bytes": 104857600,
+    "peak_rss_bytes": null,
+    "configured_java_heap_max_mib": 128,
+    "max_concurrent_java_processes": 1
+  },
+  "commands": [
+    {
+      "command": "py -3.11 tools/bootstrap.py --fetch-deps --prepare-lock",
+      "started_utc": "2026-10-08T10:02:39.4635411+00:00",
+      "seconds": 3.2570967,
+      "exit_code": 2
+    },
+    {
+      "command": "py -3.11 tools/bootstrap.py --fetch-deps --prepare-lock",
+      "started_utc": "2026-10-08T10:03:59.4101109+00:00",
+      "seconds": 2.6777017,
+      "exit_code": 0,
+      "attempt": "recovery-license-path-corrected"
+    },
+    {
+      "command": "py -3.11 tools/build.py",
+      "started_utc": "2026-10-08T10:04:18.7450427+00:00",
+      "seconds": 1.7207275,
+      "exit_code": 0
+    },
+    {
+      "command": "py -3.11 crm.py doctor",
+      "started_utc": "2026-10-08T10:04:28.3477385+00:00",
+      "seconds": 0.5691903,
+      "exit_code": 0
+    },
+    {
+      "command": "py -3.11 tools/check.py --suite m1",
+      "started_utc": "2026-10-08T10:04:38.9965009+00:00",
+      "seconds": 13.5814431,
+      "exit_code": 1
+    },
+    {
+      "command": "py -3.11 tools/build.py",
+      "started_utc": "2026-10-08T10:05:18.2311967+00:00",
+      "seconds": 1.6951003,
+      "exit_code": 0,
+      "correction": "explicit-null JSON serialization"
+    },
+    {
+      "command": "py -3.11 tools/check.py --suite m1",
+      "started_utc": "2026-10-08T10:05:29.0740787+00:00",
+      "seconds": 19.2484424,
+      "exit_code": 0,
+      "correction": "explicit-null JSON serialization"
+    },
+    {
+      "command": "py -3.11 crm.py demo --scenario approved-update --provider scripted --scripted-review --out work/demo-approved",
+      "started_utc": "2026-10-08T10:06:38.5801062+00:00",
+      "seconds": 3.5572717,
+      "exit_code": 0
+    },
+    {
+      "command": "py -3.11 crm.py demo --scenario stale-approval --provider scripted --scripted-review --out work/demo-stale",
+      "started_utc": "2026-10-08T10:06:50.1592031+00:00",
+      "seconds": 3.3323641,
+      "exit_code": 0
+    },
+    {
+      "command": "py -3.11 tools/check.py --suite m1",
+      "started_utc": "2026-10-08T10:07:51.5924869+00:00",
+      "seconds": 25.9574515,
+      "exit_code": 0,
+      "scope": "M1 controlled interactive review and competing approved writes"
+    }
+  ],
+  "evidence_hashes": [
+    {
+      "path": "work/recovery-m1-check-manual-competing.log",
+      "sha256": "0b5da97ea120e43f5b7b3a1185e120bc7d6e93513dcea43d4d29ae70d227e8fd"
+    },
+    {
+      "path": "work/demo-approved/report.json",
+      "sha256": "9e1922c7befaa4babf12cab7d25d0d71dadc65de744adead8eef9173ffe5edf0"
+    },
+    {
+      "path": "work/demo-stale/report.json",
+      "sha256": "5fce1824f306369246ae16a6e79be8d25f11449ca8bd2e26fab998d70e1a2f41"
+    },
+    {
+      "path": "work/demo-approved/crm/generation-000003.json",
+      "sha256": "11000749ea77a421e459baa1e986c1e06bf63979cf6267d3143ab7046e0cb2a0"
+    },
+    {
+      "path": "work/demo-stale/crm/generation-000003.json",
+      "sha256": "8295b2902bb88f95be2b6db9bbe3c2214b4088e7b132c34d0fb55e7871e40713"
+    },
+    {
+      "path": "fixtures/dev/approved-update.json",
+      "sha256": "477b8e320087accdfd319e34a666c809b033e04719456ff81d9f342f92f32205"
+    },
+    {
+      "path": "dependencies.lock.json",
+      "sha256": "165f0640b9dfd21d52def6ff475283625b9309c0e9908d50cf2a62f75ad61969"
+    },
+    {
+      "path": "docs/dependency-audit.json",
+      "sha256": "0698943324f81f476487d582606acb1673609b0f72059e5a90a960504e9fda45"
+    },
+    {
+      "path": "work/m1-command-receipts.jsonl",
+      "sha256": "bc1526753ed1113d89d3030586c642953972bee33bb09723124fcfeada8b002b"
+    },
+    {
+      "path": "work/bootstrap-fetches.jsonl",
+      "sha256": "afcdcce167af8ed708df2c47e6e56d4206202c74b84cb29af8f6f0e1b3bd0f28"
+    },
+    {
+      "path": "work/m1-manual-cli.jsonl",
+      "sha256": "852314e8c3d0594c6241ccf5a85163178164fa10d47c4920c76f1da73ec111fb"
+    }
+  ],
+  "unexecuted": [
+    "Independent main M1 acceptance",
+    "M2/M3 scope",
+    "Simultaneous JVM concurrency",
+    "Live models",
+    "Hosted CI",
+    "Production CRM integration",
+    "Publication/deployment"
+  ]
+}

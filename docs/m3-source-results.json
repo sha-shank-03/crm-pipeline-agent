@@ -1,0 +1,367 @@
+{
+  "schema_version": 1,
+  "milestone": "M3",
+  "state": "source_ready_awaiting_integration_lease",
+  "recorded_at": "2026-10-08T12:45:41.281852+00:00",
+  "source_version": "authored-v5",
+  "frozen_manifest_sha256": "abedca111451d129fdd743445d1d3368c4c11fabac1b42257d958941421dc4a7",
+  "previous_accepted_version": "authored-v4",
+  "m2_independent_acceptance": {
+    "commands": 11,
+    "distinct_tests": 99,
+    "additional_checks": 296,
+    "development_runs": 16,
+    "fresh_demos": 2
+  },
+  "executed": {
+    "pure_tests": 70,
+    "new_evaluation_methods": 15,
+    "new_release_export_methods": 5,
+    "failures": 0,
+    "errors": 0,
+    "unittest_seconds": 11.498,
+    "toy_report_corruptions": {
+      "rejected": 18,
+      "total": 18
+    },
+    "static_release": "passed",
+    "freeze": "passed",
+    "python_syntax": "passed",
+    "java_processes_started": 0,
+    "http_test_servers_started": 0,
+    "m3_business_cases_scored": 0,
+    "dependency_download_bytes": 0,
+    "model_calls": 0,
+    "hosted_ci_runs": 0
+  },
+  "source_commands": [
+    {
+      "step": "unit",
+      "attempt": 1,
+      "command": "py -3.11 tools/check.py --suite m3-unit",
+      "argv": [
+        "py",
+        "-3.11",
+        "tools/check.py",
+        "--suite",
+        "m3-unit"
+      ],
+      "started_at": "2026-10-08T12:39:15.532177+00:00",
+      "ended_at": "2026-10-08T12:39:27.374139+00:00",
+      "exit_code": 0,
+      "seconds": 11.844,
+      "scope": "source_and_pure_only",
+      "stdout": "work/m3-source-unit-1.stdout.log",
+      "stderr": "work/m3-source-unit-1.stderr.log"
+    },
+    {
+      "step": "reseal",
+      "attempt": 1,
+      "command": "py -3.11 work/reseal_m3_v5.py",
+      "argv": [
+        "py",
+        "-3.11",
+        "work/reseal_m3_v5.py"
+      ],
+      "started_at": "2026-10-08T12:40:43.608641+00:00",
+      "ended_at": "2026-10-08T12:40:43.841893+00:00",
+      "exit_code": 0,
+      "seconds": 0.235,
+      "scope": "source_and_pure_only",
+      "stdout": "work/m3-source-reseal-1.stdout.log",
+      "stderr": "work/m3-source-reseal-1.stderr.log"
+    },
+    {
+      "step": "release",
+      "attempt": 1,
+      "command": "py -3.11 tools/check.py --suite release",
+      "argv": [
+        "py",
+        "-3.11",
+        "tools/check.py",
+        "--suite",
+        "release"
+      ],
+      "started_at": "2026-10-08T12:41:01.367337+00:00",
+      "ended_at": "2026-10-08T12:41:01.981225+00:00",
+      "exit_code": 0,
+      "seconds": 0.625,
+      "scope": "source_and_pure_only",
+      "stdout": "work/m3-source-release-1.stdout.log",
+      "stderr": "work/m3-source-release-1.stderr.log"
+    },
+    {
+      "step": "freeze",
+      "attempt": 1,
+      "command": "py -3.11 -m evaluation.freeze --check",
+      "argv": [
+        "py",
+        "-3.11",
+        "-m",
+        "evaluation.freeze",
+        "--check"
+      ],
+      "started_at": "2026-10-08T12:41:01.915895+00:00",
+      "ended_at": "2026-10-08T12:41:02.122194+00:00",
+      "exit_code": 0,
+      "seconds": 0.219,
+      "scope": "source_and_pure_only",
+      "stdout": "work/m3-source-freeze-1.stdout.log",
+      "stderr": "work/m3-source-freeze-1.stderr.log"
+    },
+    {
+      "step": "syntax",
+      "attempt": 1,
+      "command": "py -3.11 -m compileall -q crm.py crm_agent evaluation tools tests",
+      "argv": [
+        "py",
+        "-3.11",
+        "-m",
+        "compileall",
+        "-q",
+        "crm.py",
+        "crm_agent",
+        "evaluation",
+        "tools",
+        "tests"
+      ],
+      "started_at": "2026-10-08T12:41:02.529547+00:00",
+      "ended_at": "2026-10-08T12:41:02.737300+00:00",
+      "exit_code": 0,
+      "seconds": 0.203,
+      "scope": "source_and_pure_only",
+      "stdout": "work/m3-source-syntax-1.stdout.log",
+      "stderr": "work/m3-source-syntax-1.stderr.log"
+    }
+  ],
+  "initial_unit_observations": {
+    "initial_evaluation_unit_command": "py -3.11 -m unittest tests.test_m3_evaluation -v",
+    "initial_exit_code": 0,
+    "initial_reported_tests": 23,
+    "initial_unittest_seconds": 4.396,
+    "initial_count_note": "Included 11 imported existing oracle methods. Module import changed to a module alias; all 11 remain in the final suite once. Unit temporary files use ignored work.",
+    "later_evaluation_unit_exit_code": 0,
+    "later_evaluation_tests": 15,
+    "later_unittest_seconds": 8.307,
+    "evidence_source": "Native tool results in this worker chat; final 70-test stdout/stderr are separately saved as raw files."
+  },
+  "comparison": {
+    "heldout_cases": 32,
+    "expected_dispositions_per_repeat": {
+      "PROPOSE": 12,
+      "HANDOFF": 14,
+      "NO_CHANGE": 6
+    },
+    "methods": [
+      "offline-rules",
+      "latest-note"
+    ],
+    "repeat": 3,
+    "planned_case_runs": 192,
+    "strict_rules_pre_review_required": 96,
+    "unauthorized_writes_allowed": 0,
+    "baseline_advantage_required": false,
+    "review_mode": "label_aware_scripted_after_pre_review_scoring",
+    "same_author_synthetic": true,
+    "model_quality_evaluated": false,
+    "all_input_label_hashes_unchanged": true,
+    "acting_java_python_and_domain_oracle_unchanged": true
+  },
+  "freeze_revision": {
+    "from": "authored-v4",
+    "to": "authored-v5",
+    "recorded_at": "2026-10-08T12:40:43.796248+00:00",
+    "disposition": "candidate_m3_source_pending_main_rubric_freeze_review",
+    "reason": "Add exact case/repetition accounting, strict pre-review gate, independent actual-generation verification, corruption controls and pinned release/CI checks",
+    "heldout_scored_before_revision": false,
+    "m2_development_evidence_preserved": true,
+    "input_label_hashes_unchanged": true,
+    "acting_rules_and_domain_oracle_unchanged": true,
+    "changed_existing_frozen_paths": [
+      "docs/evaluation.md",
+      "evaluation/run.py",
+      "evaluation/verify.py"
+    ],
+    "added_frozen_paths": [
+      ".github/workflows/ci.yml",
+      "docs/ci-actions.lock.json",
+      "evaluation/corruptions.py",
+      "evaluation/freeze.py",
+      "evaluation/metrics.py",
+      "java/src/crm/Failure.java",
+      "java/src/crm/Json.java",
+      "java/src/crm/Policy.java",
+      "java/src/crm/Store.java",
+      "tools/build.py",
+      "tools/check.py",
+      "tools/clean_copy.py",
+      "tools/release.py"
+    ],
+    "previous_manifest_sha256": "f08e34a8d94179a33038570c01e6164144c81575becfd7e4ceaa622f487de46b",
+    "planned_heldout_case_runs": 192,
+    "strict_gate": "All 32 rules pre-review outcomes in each of three repeats, all expected semantic/provenance support, correct rules final domain and zero unauthorized writes; baseline advantage not required",
+    "new_scoring_authorization": "Main reviews additive M3 rubric/comparison/freeze, grants exact new M3 lease and explicitly resumes same chat"
+  },
+  "changed_existing_source_files": [
+    "EVIDENCE.md",
+    "README.md",
+    "THIRD_PARTY_NOTICES.md",
+    "docs/architecture.md",
+    "docs/evaluation.md",
+    "docs/m2.md",
+    "docs/threat-model.md",
+    "evaluation/freeze.py",
+    "evaluation/frozen-manifest.json",
+    "evaluation/run.py",
+    "evaluation/verify.py",
+    "tools/check.py"
+  ],
+  "ready_commands": [
+    "py -3.11 tools/build.py",
+    "py -3.11 crm.py doctor",
+    "py -3.11 tools/check.py --suite all",
+    "py -3.11 -m evaluation.freeze --check",
+    "py -3.11 -m evaluation.run --split dev --provider offline-rules --baseline latest-note --repeat 1 --out work/m3-development",
+    "py -3.11 -m evaluation.verify --report work/m3-development/report.json",
+    "py -3.11 -m evaluation.run --split heldout --provider offline-rules --baseline latest-note --repeat 3 --allow-heldout --out work/m3-heldout",
+    "py -3.11 -m evaluation.verify --report work/m3-heldout/report.json",
+    "py -3.11 -m evaluation.corruptions --report work/m3-heldout/report.json --out work/m3-corruptions",
+    "py -3.11 tools/clean_copy.py --out work/m3-clean-copy --cached-deps --verify",
+    "py -3.11 tools/check.py --suite release"
+  ],
+  "review_commands": [
+    "py -3.11 tools/check.py --suite m3-unit",
+    "py -3.11 tools/check.py --suite release",
+    "py -3.11 -m evaluation.freeze --check"
+  ],
+  "unexecuted": [
+    "New Java build/doctor and full all suite on M3 source",
+    "16 new development case-runs",
+    "All 192 held-out case-runs and their repeats",
+    "Real-report artifact/repeat/gate verification and 18 controls",
+    "Cached clean-copy quickstart execution",
+    "Independent main M3 source/final acceptance",
+    "Hosted Ubuntu/Windows CI",
+    "Live models, real CRM and publication"
+  ],
+  "resource_estimates": {
+    "name": "crm-pipeline-agent-m3-evaluation",
+    "lease_name": "crm-pipeline-agent-m3-evaluation",
+    "milestone": "M3",
+    "status": "awaiting_main_source_rubric_freeze_review_and_grant",
+    "currently_consuming": false,
+    "requires_main_grant": true,
+    "estimated_minutes": 8,
+    "max_active_minutes": 15,
+    "duration_minutes": 15,
+    "download_bytes": 0,
+    "estimated_download_mib": 0,
+    "estimated_peak_memory_mib": 512,
+    "max_ram_mib": 512,
+    "estimated_disk_mib": 128,
+    "max_generated_disk_mib": 128,
+    "max_concurrent_java_processes": 2,
+    "max_owned_loopback_servers": 1,
+    "planned_heldout_cases": 32,
+    "planned_heldout_case_runs": 192,
+    "planned_dev_case_runs": 16,
+    "commands": [
+      "py -3.11 tools/build.py",
+      "py -3.11 crm.py doctor",
+      "py -3.11 tools/check.py --suite all",
+      "py -3.11 -m evaluation.freeze --check",
+      "py -3.11 -m evaluation.run --split dev --provider offline-rules --baseline latest-note --repeat 1 --out work/m3-development",
+      "py -3.11 -m evaluation.verify --report work/m3-development/report.json",
+      "py -3.11 -m evaluation.run --split heldout --provider offline-rules --baseline latest-note --repeat 3 --allow-heldout --out work/m3-heldout",
+      "py -3.11 -m evaluation.verify --report work/m3-heldout/report.json",
+      "py -3.11 -m evaluation.corruptions --report work/m3-heldout/report.json --out work/m3-corruptions",
+      "py -3.11 tools/clean_copy.py --out work/m3-clean-copy --cached-deps --verify",
+      "py -3.11 tools/check.py --suite release"
+    ],
+    "source_candidate": "authored-v5",
+    "source_candidate_sha256": "abedca111451d129fdd743445d1d3368c4c11fabac1b42257d958941421dc4a7",
+    "purpose": "Sequential cached build/doctor, complete 119-method regression, 16 dev runs, 192 held-out paired runs, independent verification/18 corruption controls, cached standalone clean-copy quickstart and static release",
+    "concurrency_note": "Normally one JVM. Two only in owned concurrency/lock tests. One loopback HTTP double at a time; clean-copy commands are sequential.",
+    "disk_note": "All tests run before evaluation; the temporary 100-MiB capacity extent is cleaned before held-out files are created. Corruption controls use one disposable full-copy at a time; clean-copy runs M1, not another 100-MiB capacity test.",
+    "failure_policy": "Preserve first errors, partial report and every planned/attempted case. Stop dependent commands at failure; no gold-outcome edits, denominator reduction, hidden reruns or acting-rule tuning after held-out results.",
+    "excluded": [
+      "Dependency or model downloads",
+      "Live/paid models",
+      "Hosted CI dispatch",
+      "Real CRM/accounts",
+      "Publishing/deployment/purchases"
+    ]
+  },
+  "evidence_hashes": [
+    {
+      "path": "work/m3-source-unit-1.stdout.log",
+      "sha256": "e32d29c91f91d09c594d9698051ee1949e45f8bd2fa164796ffdca59897a696c"
+    },
+    {
+      "path": "work/m3-source-unit-1.stderr.log",
+      "sha256": "7fe616b3b0167831a8bb8f0a720c3fe55731b51737e8e05c35e85e0855f4f275"
+    },
+    {
+      "path": "work/m3-source-reseal-1.stdout.log",
+      "sha256": "09472bacd57a6003900e7c2f521f0dde6f7535903f00dcf3d9196b690fe788a6"
+    },
+    {
+      "path": "work/m3-source-reseal-1.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "work/m3-source-release-1.stdout.log",
+      "sha256": "9666dfc688d3aad7ffaeef1c33152ce5f65e3b85a4b8859693a0b229160787e6"
+    },
+    {
+      "path": "work/m3-source-release-1.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "work/m3-source-freeze-1.stdout.log",
+      "sha256": "ead388fb3061c41a3ee12d3a531e053e10223a5aaa812a9bd762b08d267c5891"
+    },
+    {
+      "path": "work/m3-source-freeze-1.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "work/m3-source-syntax-1.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "work/m3-source-syntax-1.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "work/m3-source-command-receipts.jsonl",
+      "sha256": "5e5914c298c07d48339d31f22b5996bf934f33f238a2939f0359fbbdd8ee2f5d"
+    },
+    {
+      "path": "evaluation/freeze-history/authored-v4.json",
+      "sha256": "f08e34a8d94179a33038570c01e6164144c81575becfd7e4ceaa622f487de46b"
+    },
+    {
+      "path": "evaluation/freeze-history/revision-authored-v5.json",
+      "sha256": "602315ede523777804c8572a0b52014b7008c303ae0e6ca41de666a4354790d6"
+    },
+    {
+      "path": "docs/ci-actions.lock.json",
+      "sha256": "17e58140e917f76d79e17d0f4eee92ed8182967d1427cb742333b9a982b6a5e6"
+    },
+    {
+      "path": "work/m3-initial-unit-observations.json",
+      "sha256": "ce7a5d89ad7bc399f79fbdd98a291bb936497be814463d1802030db62045c3f4"
+    }
+  ],
+  "final_static_source_audit": {
+    "source_files": 170,
+    "frozen_dev": 8,
+    "frozen_heldout": 32,
+    "binary_dependencies": 2,
+    "ci_actions_pinned": 3,
+    "hosted_ci_executed": false,
+    "static_source_audit": "passed"
+  },
+  "generated_bytes_at_source_handoff": 5254948
+}

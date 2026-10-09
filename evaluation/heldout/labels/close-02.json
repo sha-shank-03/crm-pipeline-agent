@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "case_id": "close-02",
+  "family": "stale_close_date",
+  "expected_disposition": "PROPOSE",
+  "opportunity_id": "opp-101",
+  "expected_changes": {
+    "close_date": "2026-11-12"
+  },
+  "semantic_evidence": {
+    "close_date": [
+      {
+        "note_id": "note-101",
+        "line_id": "close",
+        "quote": "Confirmed target close is 2026-11-12."
+      }
+    ]
+  },
+  "protected_fields": [
+    "id",
+    "account_id",
+    "owner_id",
+    "stage",
+    "amount_minor",
+    "currency",
+    "evidence_revision"
+  ],
+  "expected_final_version": 8,
+  "rationale": "Stale close has one explicit active close commitment."
+}

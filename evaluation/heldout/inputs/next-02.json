@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "case_id": "next-02",
+  "as_of": "2026-10-08",
+  "task": "Review opportunity opp-101",
+  "fixture": {
+    "schema_version": 1,
+    "synthetic": true,
+    "name": "Authored fictional next-02",
+    "accounts": {
+      "acct-101": {
+        "id": "acct-101",
+        "name": "Fictional Northstar Tools",
+        "region": "north",
+        "revision": 1
+      }
+    },
+    "opportunities": {
+      "opp-101": {
+        "id": "opp-101",
+        "account_id": "acct-101",
+        "owner_id": "rep-101",
+        "stage": "open",
+        "amount_minor": 2500000,
+        "currency": "USD",
+        "close_date": "2026-12-15",
+        "next_step": "Schedule technical review.",
+        "version": 7,
+        "evidence_revision": 1,
+        "history": [
+          {
+            "event_id": "history-1",
+            "actor": "rep-101",
+            "version": 7,
+            "before": {
+              "next_step": "Request technical review."
+            },
+            "after": {
+              "next_step": "Schedule technical review."
+            }
+          }
+        ]
+      }
+    },
+    "notes": {
+      "note-101": {
+        "id": "note-101",
+        "revision": 1,
+        "account_id": "acct-101",
+        "opportunity_ids": [
+          "opp-101"
+        ],
+        "occurred_at": "2026-10-06",
+        "status": "active",
+        "visibility": [
+          "north"
+        ],
+        "lines": [
+          {
+            "id": "next",
+            "text": "Send revised package 2 by 2026-10-20."
+          }
+        ]
+      }
+    }
+  }
+}

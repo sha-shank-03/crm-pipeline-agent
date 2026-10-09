@@ -1,0 +1,2 @@
+# Preserve exact verified source and fixture bytes on every checkout.
+* -text

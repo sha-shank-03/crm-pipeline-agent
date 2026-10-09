@@ -1,0 +1,35 @@
+{
+  "from": "authored-v4",
+  "to": "authored-v5",
+  "recorded_at": "2026-10-08T12:40:43.796248+00:00",
+  "disposition": "candidate_m3_source_pending_main_rubric_freeze_review",
+  "reason": "Add exact case/repetition accounting, strict pre-review gate, independent actual-generation verification, corruption controls and pinned release/CI checks",
+  "heldout_scored_before_revision": false,
+  "m2_development_evidence_preserved": true,
+  "input_label_hashes_unchanged": true,
+  "acting_rules_and_domain_oracle_unchanged": true,
+  "changed_existing_frozen_paths": [
+    "docs/evaluation.md",
+    "evaluation/run.py",
+    "evaluation/verify.py"
+  ],
+  "added_frozen_paths": [
+    ".github/workflows/ci.yml",
+    "docs/ci-actions.lock.json",
+    "evaluation/corruptions.py",
+    "evaluation/freeze.py",
+    "evaluation/metrics.py",
+    "java/src/crm/Failure.java",
+    "java/src/crm/Json.java",
+    "java/src/crm/Policy.java",
+    "java/src/crm/Store.java",
+    "tools/build.py",
+    "tools/check.py",
+    "tools/clean_copy.py",
+    "tools/release.py"
+  ],
+  "previous_manifest_sha256": "f08e34a8d94179a33038570c01e6164144c81575becfd7e4ceaa622f487de46b",
+  "planned_heldout_case_runs": 192,
+  "strict_gate": "All 32 rules pre-review outcomes in each of three repeats, all expected semantic/provenance support, correct rules final domain and zero unauthorized writes; baseline advantage not required",
+  "new_scoring_authorization": "Main reviews additive M3 rubric/comparison/freeze, grants exact new M3 lease and explicitly resumes same chat"
+}

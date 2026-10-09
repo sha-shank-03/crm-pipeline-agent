@@ -1,0 +1,1095 @@
+{
+  "schema_version": 1,
+  "milestone": "M3",
+  "state": "worker_verified_awaiting_independent_acceptance",
+  "recorded_at": "2026-10-08T14:23:25.669381+00:00",
+  "source_version": "authored-v5",
+  "frozen_manifest_sha256": "abedca111451d129fdd743445d1d3368c4c11fabac1b42257d958941421dc4a7",
+  "source_files_unchanged_through_execution": 170,
+  "model_calls": 0,
+  "model_quality_evaluated": false,
+  "same_author_synthetic": true,
+  "review_mode": "label_aware_scripted_after_pre_review_scoring",
+  "environment": {
+    "python": "3.11.9",
+    "java": {
+      "java": "openjdk version \"17.0.18\" 2026-01-20 LTS\nOpenJDK Runtime Environment Microsoft-13106358 (build 17.0.18+8-LTS)\nOpenJDK 64-Bit Server VM Microsoft-13106358 (build 17.0.18+8-LTS, mixed mode, sharing)",
+      "javac": "javac 17.0.18"
+    }
+  },
+  "commands": [
+    {
+      "index": 1,
+      "command": "py -3.11 tools/build.py",
+      "started_at": "2026-10-08T14:09:50.271744+00:00",
+      "ended_at": "2026-10-08T14:09:51.965226+00:00",
+      "exit_code": 0,
+      "seconds": 1.578,
+      "cumulative_active_seconds": 1.578,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m3-command-01.stdout.log",
+      "stderr": "work/m3-command-01.stderr.log",
+      "resources": {
+        "samples": 13,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 222474240,
+        "sampled_max_concurrent_java": 1,
+        "generated_before_bytes": 5293297,
+        "sampled_peak_generated_bytes": 5310154,
+        "generated_after_bytes": 5310154,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "100-ms process / approximately 500-ms disk samples are not continuous peaks."
+      }
+    },
+    {
+      "index": 2,
+      "command": "py -3.11 crm.py doctor",
+      "started_at": "2026-10-08T14:09:58.116996+00:00",
+      "ended_at": "2026-10-08T14:09:58.803999+00:00",
+      "exit_code": 0,
+      "seconds": 0.579,
+      "cumulative_active_seconds": 2.157,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m3-command-02.stdout.log",
+      "stderr": "work/m3-command-02.stderr.log",
+      "resources": {
+        "samples": 5,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 94310400,
+        "sampled_max_concurrent_java": 1,
+        "generated_before_bytes": 5315006,
+        "sampled_peak_generated_bytes": 5320961,
+        "generated_after_bytes": 5320961,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "100-ms process / approximately 500-ms disk samples are not continuous peaks."
+      }
+    },
+    {
+      "index": 3,
+      "command": "py -3.11 tools/check.py --suite all",
+      "started_at": "2026-10-08T14:10:06.881853+00:00",
+      "ended_at": "2026-10-08T14:12:02.877565+00:00",
+      "exit_code": 0,
+      "seconds": 115.875,
+      "cumulative_active_seconds": 118.032,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m3-command-03.stdout.log",
+      "stderr": "work/m3-command-03.stderr.log",
+      "resources": {
+        "samples": 945,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 181358592,
+        "sampled_max_concurrent_java": 2,
+        "generated_before_bytes": 5325812,
+        "sampled_peak_generated_bytes": 16956207,
+        "generated_after_bytes": 6983746,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "100-ms process / approximately 500-ms disk samples are not continuous peaks."
+      }
+    },
+    {
+      "index": 4,
+      "command": "py -3.11 -m evaluation.freeze --check",
+      "started_at": "2026-10-08T14:12:10.276521+00:00",
+      "ended_at": "2026-10-08T14:12:10.751216+00:00",
+      "exit_code": 0,
+      "seconds": 0.344,
+      "cumulative_active_seconds": 118.376,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m3-command-04.stdout.log",
+      "stderr": "work/m3-command-04.stderr.log",
+      "resources": {
+        "samples": 3,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 55926784,
+        "sampled_max_concurrent_java": 0,
+        "generated_before_bytes": 6988634,
+        "sampled_peak_generated_bytes": 6993399,
+        "generated_after_bytes": 6993399,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "100-ms process / approximately 500-ms disk samples are not continuous peaks."
+      }
+    },
+    {
+      "index": 5,
+      "command": "py -3.11 -m evaluation.run --split dev --provider offline-rules --baseline latest-note --repeat 1 --out work/m3-development",
+      "started_at": "2026-10-08T14:12:15.699009+00:00",
+      "ended_at": "2026-10-08T14:12:38.518158+00:00",
+      "exit_code": 0,
+      "seconds": 22.687,
+      "cumulative_active_seconds": 141.063,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m3-command-05.stdout.log",
+      "stderr": "work/m3-command-05.stderr.log",
+      "resources": {
+        "samples": 185,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 324472832,
+        "sampled_max_concurrent_java": 1,
+        "generated_before_bytes": 6998285,
+        "sampled_peak_generated_bytes": 7630188,
+        "generated_after_bytes": 7630188,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "100-ms process / approximately 500-ms disk samples are not continuous peaks."
+      }
+    },
+    {
+      "index": 6,
+      "command": "py -3.11 -m evaluation.verify --report work/m3-development/report.json",
+      "started_at": "2026-10-08T14:12:46.509954+00:00",
+      "ended_at": "2026-10-08T14:12:46.987140+00:00",
+      "exit_code": 0,
+      "seconds": 0.343,
+      "cumulative_active_seconds": 141.406,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m3-command-06.stdout.log",
+      "stderr": "work/m3-command-06.stderr.log",
+      "resources": {
+        "samples": 3,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 63545344,
+        "sampled_max_concurrent_java": 0,
+        "generated_before_bytes": 7635277,
+        "sampled_peak_generated_bytes": 7640300,
+        "generated_after_bytes": 7640300,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "100-ms process / approximately 500-ms disk samples are not continuous peaks."
+      }
+    },
+    {
+      "index": 7,
+      "command": "py -3.11 -m evaluation.run --split heldout --provider offline-rules --baseline latest-note --repeat 3 --allow-heldout --out work/m3-heldout",
+      "started_at": "2026-10-08T14:12:53.146708+00:00",
+      "ended_at": "2026-10-08T14:17:57.104049+00:00",
+      "exit_code": 0,
+      "seconds": 303.688,
+      "cumulative_active_seconds": 445.094,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m3-command-07.stdout.log",
+      "stderr": "work/m3-command-07.stderr.log",
+      "resources": {
+        "samples": 2201,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 173752320,
+        "sampled_max_concurrent_java": 1,
+        "generated_before_bytes": 7645255,
+        "sampled_peak_generated_bytes": 16098786,
+        "generated_after_bytes": 16098786,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "100-ms process / approximately 500-ms disk samples are not continuous peaks."
+      }
+    },
+    {
+      "index": 8,
+      "command": "py -3.11 -m evaluation.verify --report work/m3-heldout/report.json",
+      "started_at": "2026-10-08T14:18:15.971870+00:00",
+      "ended_at": "2026-10-08T14:18:17.359921+00:00",
+      "exit_code": 0,
+      "seconds": 1.0,
+      "cumulative_active_seconds": 446.094,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m3-command-08.stdout.log",
+      "stderr": "work/m3-command-08.stderr.log",
+      "resources": {
+        "samples": 7,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 65490944,
+        "sampled_max_concurrent_java": 0,
+        "generated_before_bytes": 16103914,
+        "sampled_peak_generated_bytes": 16108959,
+        "generated_after_bytes": 16108959,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "100-ms process / approximately 500-ms disk samples are not continuous peaks."
+      }
+    },
+    {
+      "index": 9,
+      "command": "py -3.11 -m evaluation.corruptions --report work/m3-heldout/report.json --out work/m3-corruptions",
+      "started_at": "2026-10-08T14:18:23.512142+00:00",
+      "ended_at": "2026-10-08T14:19:06.151549+00:00",
+      "exit_code": 0,
+      "seconds": 42.25,
+      "cumulative_active_seconds": 488.344,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m3-command-09.stdout.log",
+      "stderr": "work/m3-command-09.stderr.log",
+      "resources": {
+        "samples": 251,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 70881280,
+        "sampled_max_concurrent_java": 0,
+        "generated_before_bytes": 16113907,
+        "sampled_peak_generated_bytes": 20869115,
+        "generated_after_bytes": 16485759,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "100-ms process / approximately 500-ms disk samples are not continuous peaks."
+      }
+    },
+    {
+      "index": 10,
+      "command": "py -3.11 tools/clean_copy.py --out work/m3-clean-copy --cached-deps --verify",
+      "started_at": "2026-10-08T14:19:12.100777+00:00",
+      "ended_at": "2026-10-08T14:19:52.021424+00:00",
+      "exit_code": 0,
+      "seconds": 39.516,
+      "cumulative_active_seconds": 527.86,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m3-command-10.stdout.log",
+      "stderr": "work/m3-command-10.stderr.log",
+      "resources": {
+        "samples": 253,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 244011008,
+        "sampled_max_concurrent_java": 1,
+        "generated_before_bytes": 16490779,
+        "sampled_peak_generated_bytes": 18391694,
+        "generated_after_bytes": 18391694,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "100-ms process / approximately 500-ms disk samples are not continuous peaks."
+      }
+    },
+    {
+      "index": 11,
+      "command": "py -3.11 tools/check.py --suite release",
+      "started_at": "2026-10-08T14:20:00.610296+00:00",
+      "ended_at": "2026-10-08T14:20:01.397746+00:00",
+      "exit_code": 0,
+      "seconds": 0.344,
+      "cumulative_active_seconds": 528.204,
+      "dependency_checks": [
+        {
+          "filename": "gson-2.14.0.jar",
+          "bytes": 313604,
+          "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"
+        },
+        {
+          "filename": "error_prone_annotations-2.48.0.jar",
+          "bytes": 20255,
+          "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"
+        }
+      ],
+      "stdout": "work/m3-command-11.stdout.log",
+      "stderr": "work/m3-command-11.stderr.log",
+      "resources": {
+        "samples": 3,
+        "sample_interval_seconds": 0.1,
+        "sampled_peak_owned_tree_rss_bytes": 68038656,
+        "sampled_max_concurrent_java": 0,
+        "generated_before_bytes": 18396671,
+        "sampled_peak_generated_bytes": 18401558,
+        "generated_after_bytes": 18401558,
+        "new_download_bytes": 0,
+        "violation": null,
+        "sampling_limit": "100-ms process / approximately 500-ms disk samples are not continuous peaks."
+      }
+    }
+  ],
+  "tests": {
+    "distinct_methods": 119,
+    "all_suite_tests": 119,
+    "all_suite_unittest_seconds": 109.01,
+    "clean_copy_m1_tests": 19,
+    "clean_copy_m1_unittest_seconds": 19.965,
+    "total_test_method_invocations": 138,
+    "failures": 0,
+    "errors": 0,
+    "java_assertions_all": 8,
+    "java_assertions_clean_copy": 8,
+    "demo_journeys": 6
+  },
+  "reports": {
+    "dev": {
+      "path": "work/m3-development/report.json",
+      "sha256": "9718927ac8e4c487b09311e193b6cfd741c206b31341a80c884be471f3976b9f",
+      "repeat": 1,
+      "planned_case_runs": 16,
+      "gate": {
+        "passed": true,
+        "rules_strict_pre_review_and_domain": true,
+        "both_methods_complete_and_authorized": true,
+        "repeats_reproducible": true,
+        "planned_case_runs": 16,
+        "required_rules_outcomes": 8,
+        "baseline_advantage_required": false
+      },
+      "methods": {
+        "offline-rules": {
+          "provider_mode": "offline-rules",
+          "model_id": null,
+          "metrics": {
+            "attempted": 8,
+            "completed": 8,
+            "errors": 0,
+            "pre_review_exact": {
+              "numerator": 8,
+              "denominator": 8,
+              "rate": 1.0
+            },
+            "proposal_precision": {
+              "numerator": 2,
+              "denominator": 2,
+              "rate": 1.0
+            },
+            "proposal_recall": {
+              "numerator": 2,
+              "denominator": 2,
+              "rate": 1.0
+            },
+            "semantic_evidence": {
+              "numerator": 3,
+              "denominator": 3,
+              "rate": 1.0
+            },
+            "provenance_evidence": {
+              "numerator": 3,
+              "denominator": 3,
+              "rate": 1.0
+            },
+            "no_change": {
+              "numerator": 2,
+              "denominator": 2,
+              "rate": 1.0
+            },
+            "handoff": {
+              "numerator": 4,
+              "denominator": 4,
+              "rate": 1.0
+            },
+            "domain_correct": {
+              "numerator": 8,
+              "denominator": 8,
+              "rate": 1.0
+            },
+            "unauthorized_mutations": 0,
+            "tool_calls": 31,
+            "model_usage": null
+          },
+          "reproducibility": {
+            "case_count": 8,
+            "repeat": 1,
+            "stable_cases": 8,
+            "unstable_case_ids": []
+          },
+          "per_repeat": [
+            {
+              "repeat": 1,
+              "planned": 8,
+              "completed": 8,
+              "pre_review_correct": 8,
+              "expected_dispositions": {
+                "PROPOSE": 2,
+                "NO_CHANGE": 2,
+                "HANDOFF": 4
+              },
+              "observed_dispositions": {
+                "PROPOSE": 2,
+                "NO_CHANGE": 2,
+                "HANDOFF": 4
+              }
+            }
+          ],
+          "incorrect_pre_review": [],
+          "observed_provider_turns": 37,
+          "observed_repair_attempts": 0,
+          "observed_agent_active_milliseconds": 7530
+        },
+        "latest-note": {
+          "provider_mode": "latest-note-baseline",
+          "model_id": null,
+          "metrics": {
+            "attempted": 8,
+            "completed": 8,
+            "errors": 0,
+            "pre_review_exact": {
+              "numerator": 7,
+              "denominator": 8,
+              "rate": 0.875
+            },
+            "proposal_precision": {
+              "numerator": 2,
+              "denominator": 3,
+              "rate": 0.6666666666666666
+            },
+            "proposal_recall": {
+              "numerator": 2,
+              "denominator": 2,
+              "rate": 1.0
+            },
+            "semantic_evidence": {
+              "numerator": 3,
+              "denominator": 4,
+              "rate": 0.75
+            },
+            "provenance_evidence": {
+              "numerator": 4,
+              "denominator": 4,
+              "rate": 1.0
+            },
+            "no_change": {
+              "numerator": 2,
+              "denominator": 2,
+              "rate": 1.0
+            },
+            "handoff": {
+              "numerator": 3,
+              "denominator": 4,
+              "rate": 0.75
+            },
+            "domain_correct": {
+              "numerator": 8,
+              "denominator": 8,
+              "rate": 1.0
+            },
+            "unauthorized_mutations": 0,
+            "tool_calls": 31,
+            "model_usage": null
+          },
+          "reproducibility": {
+            "case_count": 8,
+            "repeat": 1,
+            "stable_cases": 8,
+            "unstable_case_ids": []
+          },
+          "per_repeat": [
+            {
+              "repeat": 1,
+              "planned": 8,
+              "completed": 8,
+              "pre_review_correct": 7,
+              "expected_dispositions": {
+                "PROPOSE": 2,
+                "NO_CHANGE": 2,
+                "HANDOFF": 4
+              },
+              "observed_dispositions": {
+                "PROPOSE": 3,
+                "NO_CHANGE": 2,
+                "HANDOFF": 3
+              }
+            }
+          ],
+          "incorrect_pre_review": [
+            {
+              "case_id": "dev-05",
+              "repeat": 1,
+              "expected": "HANDOFF",
+              "observed": "PROPOSE"
+            }
+          ],
+          "observed_provider_turns": 36,
+          "observed_repair_attempts": 0,
+          "observed_agent_active_milliseconds": 8014
+        }
+      }
+    },
+    "heldout": {
+      "path": "work/m3-heldout/report.json",
+      "sha256": "1da75204c01137d06f95f57dd712440ee7ee21e579e29b8769b76c1851384995",
+      "repeat": 3,
+      "planned_case_runs": 192,
+      "gate": {
+        "passed": true,
+        "rules_strict_pre_review_and_domain": true,
+        "both_methods_complete_and_authorized": true,
+        "repeats_reproducible": true,
+        "planned_case_runs": 192,
+        "required_rules_outcomes": 96,
+        "baseline_advantage_required": false
+      },
+      "methods": {
+        "offline-rules": {
+          "provider_mode": "offline-rules",
+          "model_id": null,
+          "metrics": {
+            "attempted": 96,
+            "completed": 96,
+            "errors": 0,
+            "pre_review_exact": {
+              "numerator": 96,
+              "denominator": 96,
+              "rate": 1.0
+            },
+            "proposal_precision": {
+              "numerator": 36,
+              "denominator": 36,
+              "rate": 1.0
+            },
+            "proposal_recall": {
+              "numerator": 36,
+              "denominator": 36,
+              "rate": 1.0
+            },
+            "semantic_evidence": {
+              "numerator": 36,
+              "denominator": 36,
+              "rate": 1.0
+            },
+            "provenance_evidence": {
+              "numerator": 36,
+              "denominator": 36,
+              "rate": 1.0
+            },
+            "no_change": {
+              "numerator": 18,
+              "denominator": 18,
+              "rate": 1.0
+            },
+            "handoff": {
+              "numerator": 42,
+              "denominator": 42,
+              "rate": 1.0
+            },
+            "domain_correct": {
+              "numerator": 96,
+              "denominator": 96,
+              "rate": 1.0
+            },
+            "unauthorized_mutations": 0,
+            "tool_calls": 393,
+            "model_usage": null
+          },
+          "reproducibility": {
+            "case_count": 32,
+            "repeat": 3,
+            "stable_cases": 32,
+            "unstable_case_ids": []
+          },
+          "per_repeat": [
+            {
+              "repeat": 1,
+              "planned": 32,
+              "completed": 32,
+              "pre_review_correct": 32,
+              "expected_dispositions": {
+                "PROPOSE": 12,
+                "HANDOFF": 14,
+                "NO_CHANGE": 6
+              },
+              "observed_dispositions": {
+                "PROPOSE": 12,
+                "HANDOFF": 14,
+                "NO_CHANGE": 6
+              }
+            },
+            {
+              "repeat": 2,
+              "planned": 32,
+              "completed": 32,
+              "pre_review_correct": 32,
+              "expected_dispositions": {
+                "PROPOSE": 12,
+                "HANDOFF": 14,
+                "NO_CHANGE": 6
+              },
+              "observed_dispositions": {
+                "PROPOSE": 12,
+                "HANDOFF": 14,
+                "NO_CHANGE": 6
+              }
+            },
+            {
+              "repeat": 3,
+              "planned": 32,
+              "completed": 32,
+              "pre_review_correct": 32,
+              "expected_dispositions": {
+                "PROPOSE": 12,
+                "HANDOFF": 14,
+                "NO_CHANGE": 6
+              },
+              "observed_dispositions": {
+                "PROPOSE": 12,
+                "HANDOFF": 14,
+                "NO_CHANGE": 6
+              }
+            }
+          ],
+          "incorrect_pre_review": [],
+          "observed_provider_turns": 453,
+          "observed_repair_attempts": 0,
+          "observed_agent_active_milliseconds": 104085
+        },
+        "latest-note": {
+          "provider_mode": "latest-note-baseline",
+          "model_id": null,
+          "metrics": {
+            "attempted": 96,
+            "completed": 96,
+            "errors": 0,
+            "pre_review_exact": {
+              "numerator": 84,
+              "denominator": 96,
+              "rate": 0.875
+            },
+            "proposal_precision": {
+              "numerator": 36,
+              "denominator": 48,
+              "rate": 0.75
+            },
+            "proposal_recall": {
+              "numerator": 36,
+              "denominator": 36,
+              "rate": 1.0
+            },
+            "semantic_evidence": {
+              "numerator": 36,
+              "denominator": 48,
+              "rate": 0.75
+            },
+            "provenance_evidence": {
+              "numerator": 48,
+              "denominator": 48,
+              "rate": 1.0
+            },
+            "no_change": {
+              "numerator": 18,
+              "denominator": 18,
+              "rate": 1.0
+            },
+            "handoff": {
+              "numerator": 30,
+              "denominator": 42,
+              "rate": 0.7142857142857143
+            },
+            "domain_correct": {
+              "numerator": 96,
+              "denominator": 96,
+              "rate": 1.0
+            },
+            "unauthorized_mutations": 0,
+            "tool_calls": 393,
+            "model_usage": null
+          },
+          "reproducibility": {
+            "case_count": 32,
+            "repeat": 3,
+            "stable_cases": 32,
+            "unstable_case_ids": []
+          },
+          "per_repeat": [
+            {
+              "repeat": 1,
+              "planned": 32,
+              "completed": 32,
+              "pre_review_correct": 28,
+              "expected_dispositions": {
+                "PROPOSE": 12,
+                "HANDOFF": 14,
+                "NO_CHANGE": 6
+              },
+              "observed_dispositions": {
+                "PROPOSE": 16,
+                "HANDOFF": 10,
+                "NO_CHANGE": 6
+              }
+            },
+            {
+              "repeat": 2,
+              "planned": 32,
+              "completed": 32,
+              "pre_review_correct": 28,
+              "expected_dispositions": {
+                "PROPOSE": 12,
+                "HANDOFF": 14,
+                "NO_CHANGE": 6
+              },
+              "observed_dispositions": {
+                "PROPOSE": 16,
+                "HANDOFF": 10,
+                "NO_CHANGE": 6
+              }
+            },
+            {
+              "repeat": 3,
+              "planned": 32,
+              "completed": 32,
+              "pre_review_correct": 28,
+              "expected_dispositions": {
+                "PROPOSE": 12,
+                "HANDOFF": 14,
+                "NO_CHANGE": 6
+              },
+              "observed_dispositions": {
+                "PROPOSE": 16,
+                "HANDOFF": 10,
+                "NO_CHANGE": 6
+              }
+            }
+          ],
+          "incorrect_pre_review": [
+            {
+              "case_id": "close-09",
+              "repeat": 1,
+              "expected": "HANDOFF",
+              "observed": "PROPOSE"
+            },
+            {
+              "case_id": "close-10",
+              "repeat": 1,
+              "expected": "HANDOFF",
+              "observed": "PROPOSE"
+            },
+            {
+              "case_id": "next-09",
+              "repeat": 1,
+              "expected": "HANDOFF",
+              "observed": "PROPOSE"
+            },
+            {
+              "case_id": "next-10",
+              "repeat": 1,
+              "expected": "HANDOFF",
+              "observed": "PROPOSE"
+            },
+            {
+              "case_id": "close-09",
+              "repeat": 2,
+              "expected": "HANDOFF",
+              "observed": "PROPOSE"
+            },
+            {
+              "case_id": "close-10",
+              "repeat": 2,
+              "expected": "HANDOFF",
+              "observed": "PROPOSE"
+            },
+            {
+              "case_id": "next-09",
+              "repeat": 2,
+              "expected": "HANDOFF",
+              "observed": "PROPOSE"
+            },
+            {
+              "case_id": "next-10",
+              "repeat": 2,
+              "expected": "HANDOFF",
+              "observed": "PROPOSE"
+            },
+            {
+              "case_id": "close-09",
+              "repeat": 3,
+              "expected": "HANDOFF",
+              "observed": "PROPOSE"
+            },
+            {
+              "case_id": "close-10",
+              "repeat": 3,
+              "expected": "HANDOFF",
+              "observed": "PROPOSE"
+            },
+            {
+              "case_id": "next-09",
+              "repeat": 3,
+              "expected": "HANDOFF",
+              "observed": "PROPOSE"
+            },
+            {
+              "case_id": "next-10",
+              "repeat": 3,
+              "expected": "HANDOFF",
+              "observed": "PROPOSE"
+            }
+          ],
+          "observed_provider_turns": 441,
+          "observed_repair_attempts": 0,
+          "observed_agent_active_milliseconds": 109866
+        }
+      }
+    }
+  },
+  "corruption_controls": {
+    "rejected": 18,
+    "total": 18,
+    "source_report_unchanged": true,
+    "source_report_sha256": "1da75204c01137d06f95f57dd712440ee7ee21e579e29b8769b76c1851384995",
+    "path": "work/m3-corruptions/summary.json"
+  },
+  "clean_copy": {
+    "path": "work/m3-clean-copy",
+    "commands": [
+      {
+        "argv": [
+          "python3.11",
+          "tools/bootstrap.py",
+          "--fetch-deps"
+        ],
+        "exit_code": 0,
+        "seconds": 0.593
+      },
+      {
+        "argv": [
+          "python3.11",
+          "tools/build.py"
+        ],
+        "exit_code": 0,
+        "seconds": 1.563
+      },
+      {
+        "argv": [
+          "python3.11",
+          "crm.py",
+          "doctor"
+        ],
+        "exit_code": 0,
+        "seconds": 0.672
+      },
+      {
+        "argv": [
+          "python3.11",
+          "crm.py",
+          "demo",
+          "--scenario",
+          "approved-update",
+          "--provider",
+          "scripted",
+          "--scripted-review",
+          "--out",
+          "work/quickstart-approved"
+        ],
+        "exit_code": 0,
+        "seconds": 3.562
+      },
+      {
+        "argv": [
+          "python3.11",
+          "crm.py",
+          "demo",
+          "--scenario",
+          "stale-approval",
+          "--provider",
+          "scripted",
+          "--scripted-review",
+          "--out",
+          "work/quickstart-stale"
+        ],
+        "exit_code": 0,
+        "seconds": 3.313
+      },
+      {
+        "argv": [
+          "python3.11",
+          "tools/check.py",
+          "--suite",
+          "m1"
+        ],
+        "exit_code": 0,
+        "seconds": 26.953
+      },
+      {
+        "argv": [
+          "python3.11",
+          "tools/check.py",
+          "--suite",
+          "release"
+        ],
+        "exit_code": 0,
+        "seconds": 2.437
+      }
+    ],
+    "receipt": "work/m3-clean-copy/work/clean-copy-check.json",
+    "copied_jar_hashes_verified_before_bootstrap": [
+      {
+        "filename": "gson-2.14.0.jar",
+        "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f",
+        "bytes": 313604,
+        "matches": true
+      },
+      {
+        "filename": "error_prone_annotations-2.48.0.jar",
+        "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855",
+        "bytes": 20255,
+        "matches": true
+      }
+    ],
+    "network_fallback_blocked": true,
+    "bootstrap_new_transfer_bytes": 0,
+    "sibling_imports": false,
+    "observer_only_pythonpath": true,
+    "source_copy_precedes_final_documentation_update": true
+  },
+  "raw_evidence": {
+    "command_receipts": "work/m3-integration-command-receipts.jsonl",
+    "trace": "work/m3-runtime-trace/events.jsonl",
+    "java_events": 1855,
+    "java_exit_counts": {
+      "0": 1849,
+      "1": 4,
+      "72": 1,
+      "71": 1
+    },
+    "state_snapshots": 432,
+    "artifact_audit": "work/m3-final-artifact-audit.json",
+    "artifact_references_rehashed": 1248,
+    "nonzero_java_events": "Four owned termination outcomes (exit 1) and two intentional crash injections (71/72), all in the passing regression suite.",
+    "other_diagnostics": "Deadline HTTP double emitted Windows connection-aborted traceback; tests passed. Read-only report inspection had a preserved KeyError; no application failure/retry."
+  },
+  "resources": {
+    "lease": "crm-pipeline-agent-m3-evaluation",
+    "recorded_native_command_seconds": 528.204,
+    "active_cap_seconds": 900,
+    "new_download_bytes": 0,
+    "sampled_peak_owned_tree_rss_bytes": 324472832,
+    "ram_cap_bytes": 536870912,
+    "sampled_max_concurrent_java": 2,
+    "sampled_peak_generated_bytes": 20869115,
+    "largest_known_temporary_extent_bytes": 104857600,
+    "generated_cap_bytes": 134217728,
+    "generated_bytes_at_audit": 18417933,
+    "sampling_limit": "100-ms process and approximately 500-ms disk samples are not continuous peak measurements. Disk samples missed the short-lived 100-MiB extent; operation metadata records its exact size.",
+    "ownership": "Only helper-launched trees were sampled. Test/client termination targeted their own JVMs; commands exited and no worker Java/server remains.",
+    "monitoring_effect": "Ignored standard-library observer captures Java process input/output/state; copied quickstart checks both JAR digests before bootstrap and blocks network fallback. Timings include observation overhead; actor, labels and tests unchanged.",
+    "generated_bytes_at_handoff": 18455400,
+    "owned_process_handoff": "work/m3-owned-process-handoff.json",
+    "no_owned_java_or_server": true
+  },
+  "historical_metadata": "Frozen scored:false and pending_main fields are preserved pre-execution metadata; actual authorized execution and source acceptance are recorded separately.",
+  "failures_preserved": [
+    "M1 bootstrap exit 2 and unknown prior transfer bytes",
+    "M2 initial Unicode policy error and observer failure",
+    "M3 nonfailing HTTP deadline server diagnostic and read-only inspection KeyError"
+  ],
+  "unexecuted": [
+    "Independent main M3 acceptance",
+    "Hosted Ubuntu/Windows CI",
+    "Live model quality",
+    "Real CRM/enterprise identity/human-review quality",
+    "External blind validation",
+    "Portable power-loss/network-filesystem durability",
+    "Business impact",
+    "Publishing/deployment/purchases"
+  ],
+  "post_documentation_static_check": {
+    "kind": "pure_in_process_tools.release.check",
+    "passed": true,
+    "starts_java": false,
+    "uses_network": false,
+    "extra_case_runs": 0
+  },
+  "post_documentation_first_failure": {
+    "native_exit_code": 1,
+    "error": "New evidence text used Windows default encoding",
+    "preserved": "work/m3-postdoc-first-failure.json",
+    "correction": "Accepted prefix restored byte-identically; appended documentation encoded as UTF-8",
+    "application_reruns": 0
+  }
+}

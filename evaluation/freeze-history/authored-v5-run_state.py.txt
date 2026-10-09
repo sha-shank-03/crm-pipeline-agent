@@ -1,0 +1,29 @@
+import os
+from pathlib import Path
+import tempfile
+
+from .protocol import encode, strict_json
+
+
+def save(path: Path, value: dict):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary = tempfile.mkstemp(prefix=".run-", suffix=".tmp", dir=path.parent)
+    try:
+        with os.fdopen(descriptor, "wb") as stream:
+            stream.write(encode(value) + b"\n")
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, path)
+    finally:
+        if os.path.exists(temporary):
+            os.unlink(temporary)
+
+
+def load(path: Path) -> dict:
+    if Path(path).stat().st_size > 1024 * 1024:
+        raise ValueError("Run checkpoint exceeds 1 MiB")
+    value = strict_json(Path(path).read_text(encoding="utf-8"))
+    if not isinstance(value, dict) or type(value.get("schema_version")) is not int or value["schema_version"] != 1:
+        raise ValueError("Unsupported run record")
+    return value

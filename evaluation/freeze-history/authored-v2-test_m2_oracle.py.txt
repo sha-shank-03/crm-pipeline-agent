@@ -1,0 +1,55 @@
+"""Pure component checks against tiny invented snapshots; no case-set scoring."""
+import copy
+import hashlib
+import json
+import unittest
+
+from evaluation.oracle import final_score, proposal_score
+from evaluation.run import metrics
+
+class OracleComponentTests(unittest.TestCase):
+    def setUp(self):
+        self.old = {"id": "opp-unit", "version": 7, "close_date": "2026-09-30", "next_step": "Schedule review.", "history": [], "amount_minor": 100}
+        self.before = {"opportunities": {"opp-unit": self.old}, "receipts": {}, "audit": []}
+        self.label = {"opportunity_id": "opp-unit", "expected_disposition": "PROPOSE", "expected_changes": {"close_date": "2026-11-12"},
+                      "expected_final_version": 8, "protected_fields": ["amount_minor", "id"], "semantic_evidence": {}}
+        self.score = {"correct": True}
+        self.after = copy.deepcopy(self.before)
+        opp = self.after["opportunities"]["opp-unit"]
+        opp.update(version=8, close_date="2026-11-12", history=[{"event_id": "apply-key", "after": {"close_date": "2026-11-12"}}])
+        action = {"opportunity_id": "opp-unit", "changes": [{"field": "close_date", "after": "2026-11-12"}]}
+        digest = hashlib.sha256(json.dumps(action, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+        self.after["proposals"] = {"p": {"action": action, "digest": digest, "status": "APPLIED"}}
+        self.after["approvals"] = {"a": {"proposal_id": "p", "digest": digest, "state": "CONSUMED", "reviewer": "manager-north", "issued_at": "2026-10-08T10:00:00Z", "expires_at": "2026-10-08T10:15:00Z"}}
+        self.after["receipts"] = {"key": {"action_key": "key", "proposal_id": "p", "approval_id": "a", "digest": digest, "opportunity_id": "opp-unit", "old_version": 7, "new_version": 8, "changed_fields": {"close_date": "2026-11-12"}, "commit_generation": 3}}
+        self.after["audit"] = [{"type": "APPLIED", "actor": "executor-north", "proposal_id": "p", "commit_generation": 3, "at": "2026-10-08T10:01:00Z"}]
+
+    def test_exact_authorized_snapshot_has_valid_binding(self):
+        score = final_score(self.before, self.after, self.label, self.score)
+        self.assertTrue(score["domain_correct"])
+        self.assertTrue(score["authorized"])
+        self.assertTrue(score["approval_receipt_binding"])
+
+    def test_tampered_receipt_expiry_and_protected_field_fail_independently(self):
+        for mutate in [lambda state: state["receipts"]["key"].update(digest="wrong"),
+                       lambda state: state["approvals"]["a"].update(expires_at="2026-10-08T10:00:30Z"),
+                       lambda state: state["opportunities"]["opp-unit"].update(amount_minor=200)]:
+            state = copy.deepcopy(self.after); mutate(state)
+            score = final_score(self.before, state, self.label, self.score)
+            self.assertFalse(score["authorized"])
+            self.assertFalse(score["domain_correct"])
+
+    def test_version_or_history_change_without_receipt_is_unauthorized(self):
+        label = dict(self.label, expected_disposition="HANDOFF", expected_changes={}, expected_final_version=7)
+        after = copy.deepcopy(self.before)
+        after["opportunities"]["opp-unit"]["version"] = 8
+        self.assertFalse(final_score(self.before, after, label, {"correct": True})["authorized"])
+
+    def test_rejected_bad_proposal_remains_in_precision_denominator(self):
+        records = [{"expected_disposition": "HANDOFF", "pre_review": {"disposition": "PROPOSE", "correct": False,
+                    "semantic_supported_fields": 0, "provenance_valid_fields": 1, "proposed_fields": 1},
+                    "final": {"domain_correct": True, "authorized": True}}]
+        value = metrics(records)
+        self.assertEqual(value["proposal_precision"], {"numerator": 0, "denominator": 1, "rate": 0.0})
+        self.assertEqual(value["domain_correct"]["numerator"], 1)
+        self.assertEqual(value["semantic_evidence"]["numerator"], 0)

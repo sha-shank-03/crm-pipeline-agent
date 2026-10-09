@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "dependencies": [
+    {
+      "coordinate": "com.google.code.gson:gson:2.14.0",
+      "filename": "gson-2.14.0.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.14.0/gson-2.14.0.jar",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/code/gson/gson/2.14.0/gson-2.14.0.pom",
+      "sha256": "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f",
+      "license": "Apache-2.0",
+      "verification_status": "Verified JAR/checksum, exact published POM/parent closure, and upstream license"
+    },
+    {
+      "coordinate": "com.google.errorprone:error_prone_annotations:2.48.0",
+      "filename": "error_prone_annotations-2.48.0.jar",
+      "url": "https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_annotations/2.48.0/error_prone_annotations-2.48.0.jar",
+      "pom_url": "https://repo.maven.apache.org/maven2/com/google/errorprone/error_prone_annotations/2.48.0/error_prone_annotations-2.48.0.pom",
+      "sha256": "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855",
+      "license": "Apache-2.0",
+      "verification_status": "Verified JAR/checksum, exact published POM/parent closure, and upstream license"
+    }
+  ]
+}

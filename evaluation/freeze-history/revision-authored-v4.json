@@ -1,0 +1,28 @@
+{
+  "recorded_at": "2026-10-08T11:57:33.701132+00:00",
+  "from": "authored-v3",
+  "to": "authored-v4",
+  "reason": "Windows Java 17 platform stdout encoding violates the required UTF-8 response protocol",
+  "first_failure_command": "py -3.11 tools/check.py --suite policy",
+  "first_native_exit": 1,
+  "first_policy_tests": 20,
+  "first_policy_errors": 1,
+  "first_failed_test": "test_unicode_exact_evidence_and_canonical_digest",
+  "scored_before_revision": false,
+  "labels_and_tests_will_not_change": true,
+  "previous_manifest_sha256": "e647bdb1433ebdaf0e94b6d43791e9eca8f7ecd047cfb938b98a6c320ff9626c",
+  "disposition": "bounded_m2_correction_under_active_lease",
+  "input_label_hashes_unchanged": true,
+  "previous_rule_hashes_unchanged": true,
+  "unchanged_tests": true,
+  "changed_source_paths": [
+    "java/src/crm/Main.java",
+    "evaluation/freeze.py"
+  ],
+  "freeze_extension": "Bind Java UTF-8 response entrypoint in addition to all unchanged existing rules",
+  "archived_source_hashes": {
+    "authored-v3.json": "e647bdb1433ebdaf0e94b6d43791e9eca8f7ecd047cfb938b98a6c320ff9626c",
+    "authored-v3-Main.java.txt": "6c4308276894245b7c02cc57c875a2934791b807f7de500fd4a9806d5a8f6c2f",
+    "authored-v3-freeze.py.txt": "0be73c71a9a8ea22492c4efb2f3117f5619be95625873bea34c8855b953755f6"
+  }
+}

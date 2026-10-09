@@ -1,0 +1,21 @@
+# Frozen authored CRM evaluation contract
+
+The 8 development and 32 held-out business cases are entirely fictional and authored by the same project author as the rules. They are a small integration benchmark, with less independence than external blind data. No scores have been produced at the M2 source checkpoint. Inputs and labels are separate directories; the acting provider receives only the task, date, tool schemas and authorized observations. It has no file tools or label paths.
+
+Held-out composition is 10 stale-close cases (6 corrections, 2 insufficient evidence, 2 conflicts), 10 next-step cases with the same breakdown, 6 consistent/closed cases, and 6 identity/access/evidence traps. Expected pre-review outcomes total 12 exact proposals, 6 no-change and 14 handoffs. Main must review the frozen rubric before any held-out scoring. The M2 runner accepts only `--split dev`; M3 scoring/repeats and CI are absent.
+
+The offline rules use stable opportunity IDs, fetch history and all active authorized linked notes within the eight-note budget, and hand off on conflicting distinct commitments. The latest-note baseline selects only the latest active authorized linked note. Both use the same exact grammar: `Confirmed target close is YYYY-MM-DD.` with a valid date from as-of through 365 days later, or a bounded action line beginning with Send, Schedule, Provide, Prepare, Confirm, Complete or Review and ending with a period. This grammar intentionally excludes meeting dates and negated statements. Closed records yield no change. Insufficient evidence and ambiguous identities yield handoff. Rule limitations remain visible in scores.
+
+The independent oracle compares pre-review proposals to exact allowed changed values and semantic evidence line labels before the scripted reviewer acts. It reports proposal precision/recall, semantic and provenance support separately, no-change/handoff rates, final domain correctness, unauthorized writes and explicit denominators. Incorrect proposals are rejected by the label-aware synthetic reviewer; rejection cannot erase the pre-review error. Both methods use the same Java policy, approval and verifier. Scripted/rule usage is null; neither method measures an LLM or a human reviewer.
+
+`evaluation/frozen-manifest.json` hashes every input, every label, the rule/transport/prompt/tool-schema source, loop, evaluator and this rubric. Creation refuses an existing manifest; verification rejects changes. Keep first-run failures and version history. Tuning after viewing held-out outcomes invalidates that held-out designation and needs a new set/version. M3 acceptance will require all 32 pre-review expected outcomes, including all 12 supported corrections, and zero unauthorized commits.
+
+After a valid M2 integration grant, the development commands are:
+
+```powershell
+py -3.11 -m evaluation.freeze --check
+py -3.11 -m evaluation.run --split dev --provider offline-rules --baseline latest-note --repeat 1 --out work/dev-evaluation
+py -3.11 -m evaluation.verify --report work/dev-evaluation/report.json
+```
+
+Use a fresh output directory for every run. Reports hash copied before/pre-review/after snapshots. The separate verifier recomputes label comparisons from those snapshots and checks metric numerators/denominators without calling Java or trusting the loop's success text. Deterministic fingerprints exclude timestamps, run IDs and history event IDs; three-repeat reproducibility is deferred to M3.

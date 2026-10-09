@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "retrieved_at": "2026-10-08T12:28:55.8017822+00:00",
+  "verification": "Official GitHub tag refs dereferenced to release commits; exact-commit upstream MIT licenses read. Metadata reads only; action/runtime/dependency execution unperformed.",
+  "actions": [
+    {
+      "repository": "actions/checkout",
+      "version": "v7.0.1",
+      "sha": "3d3c42e5aac5ba805825da76410c181273ba90b1",
+      "tag_ref_url": "https://api.github.com/repos/actions/checkout/git/ref/tags/v7.0.1",
+      "release_url": "https://github.com/actions/checkout/releases/tag/v7.0.1",
+      "license": "MIT",
+      "license_url": "https://raw.githubusercontent.com/actions/checkout/3d3c42e5aac5ba805825da76410c181273ba90b1/LICENSE",
+      "license_text_sha256": "3e855ffa704114a51628ef8f0bf3aeb41728adf9d9070e263bf58aa5640b0eb5"
+    },
+    {
+      "repository": "actions/setup-java",
+      "version": "v6.0.1",
+      "sha": "de7274f081f381c8f8158605e0321c36c376e2e6",
+      "tag_ref_url": "https://api.github.com/repos/actions/setup-java/git/ref/tags/v6.0.1",
+      "release_url": "https://github.com/actions/setup-java/releases/tag/v6.0.1",
+      "license": "MIT",
+      "license_url": "https://raw.githubusercontent.com/actions/setup-java/de7274f081f381c8f8158605e0321c36c376e2e6/LICENSE",
+      "license_text_sha256": "7d070f6b64d9bcc530fe99cc21eaaa4b3c364e0b2d367d7735671fa202a03b32"
+    },
+    {
+      "repository": "actions/setup-python",
+      "version": "v7.0.0",
+      "sha": "5fda3b95a4ea91299a34e894583c3862153e4b97",
+      "tag_ref_url": "https://api.github.com/repos/actions/setup-python/git/ref/tags/v7.0.0",
+      "release_url": "https://github.com/actions/setup-python/releases/tag/v7.0.0",
+      "license": "MIT",
+      "license_url": "https://raw.githubusercontent.com/actions/setup-python/5fda3b95a4ea91299a34e894583c3862153e4b97/LICENSE",
+      "license_text_sha256": "7d070f6b64d9bcc530fe99cc21eaaa4b3c364e0b2d367d7735671fa202a03b32"
+    }
+  ]
+}
