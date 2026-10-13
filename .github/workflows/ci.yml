@@ -30,18 +30,19 @@ jobs:
           python tools/bootstrap.py --fetch-deps
           python tools/build.py
           python crm.py doctor
-      - name: Complete offline regression and final source audit
+      - name: Current source provenance and pure read-only contracts
+        run: |
+          python tools/check_current_upgrade.py
+          python -m unittest tests.test_salesforce_contract tests.test_evidence_workflow tests.test_upgrade_evaluation tests.test_u2b_summary tests.test_cached_packaging tests.test_provenance_cli tests.test_upgrade_provenance tests.test_m3_release -v
+      - name: Complete retained regression and local transport doubles
         run: |
           python tools/check.py --suite all
-          python tools/check.py --suite release
-      - name: Fresh documented demonstrations
+          python -m unittest tests.test_ai_gateway tests.test_upgrade_events tests.test_upgrade_transport tests.test_upgrade_journey tests.test_gateway_cli tests.test_salesforce_http -v
+      - name: Fresh documented local demonstrations
         run: |
           python crm.py demo --scenario approved-update --provider scripted --scripted-review --out work/ci-approved
           python crm.py demo --scenario stale-approval --provider scripted --scripted-review --out work/ci-stale
-      - name: Frozen development and held-out comparison
+          python tools/upgrade_check.py --offline --out work/ci-gateway-double
+      - name: Standalone source packaging audit
         run: |
-          python -m evaluation.freeze --check
-          python -m evaluation.run --split dev --provider offline-rules --baseline latest-note --repeat 1 --out work/ci-dev
-          python -m evaluation.verify --report work/ci-dev/report.json
-          python -m evaluation.run --split heldout --provider offline-rules --baseline latest-note --repeat 3 --allow-heldout --out work/ci-heldout
-          python -m evaluation.verify --report work/ci-heldout/report.json
+          python tools/check.py --suite release

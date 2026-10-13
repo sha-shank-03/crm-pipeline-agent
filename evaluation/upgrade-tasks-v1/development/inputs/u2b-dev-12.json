@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "case_id": "u2b-dev-12",
+  "as_of": "2026-10-12",
+  "task": "Review opportunity opp-u2b-dev-12 using eligible customer commitments.",
+  "fixture": {
+    "schema_version": 1,
+    "synthetic": true,
+    "name": "Invented U2-B dev-12",
+    "accounts": {
+      "acct-u2b-dev-12": {
+        "id": "acct-u2b-dev-12",
+        "name": "Fictional Larch Beacon",
+        "region": "north",
+        "revision": 1
+      }
+    },
+    "opportunities": {
+      "opp-u2b-dev-12": {
+        "id": "opp-u2b-dev-12",
+        "account_id": "acct-u2b-dev-12",
+        "owner_id": "rep-u2b-dev-12",
+        "stage": "open",
+        "amount_minor": 1505600,
+        "currency": "USD",
+        "close_date": "2026-09-29",
+        "next_step": "Schedule the discovery session.",
+        "version": 7,
+        "evidence_revision": 1,
+        "history": [
+          {
+            "event_id": "prior-dev-12",
+            "actor": "rep-u2b-dev-12",
+            "version": 7,
+            "before": {
+              "next_step": "Request discovery availability."
+            },
+            "after": {
+              "next_step": "Schedule the discovery session."
+            }
+          }
+        ]
+      },
+      "opp-u2b-dev-12-renewal": {
+        "id": "opp-u2b-dev-12-renewal",
+        "account_id": "acct-u2b-dev-12",
+        "owner_id": "rep-u2b-dev-12",
+        "stage": "won",
+        "amount_minor": 900012,
+        "currency": "USD",
+        "close_date": "2026-09-29",
+        "next_step": "Schedule the discovery session.",
+        "version": 7,
+        "evidence_revision": 1,
+        "history": [
+          {
+            "event_id": "prior-dev-12",
+            "actor": "rep-u2b-dev-12",
+            "version": 7,
+            "before": {
+              "next_step": "Request discovery availability."
+            },
+            "after": {
+              "next_step": "Schedule the discovery session."
+            }
+          }
+        ]
+      }
+    },
+    "notes": {
+      "note-u2b-dev-12": {
+        "id": "note-u2b-dev-12",
+        "revision": 1,
+        "account_id": "acct-u2b-dev-12",
+        "opportunity_ids": [
+          "opp-u2b-dev-12"
+        ],
+        "occurred_at": "2026-10-10",
+        "status": "active",
+        "visibility": [
+          "north"
+        ],
+        "lines": [
+          {
+            "id": "replacement",
+            "text": "Replaces prior note note-u2b-dev-12-prior."
+          },
+          {
+            "id": "close",
+            "text": "Customer confirmed closing on 2026-12-22."
+          },
+          {
+            "id": "next",
+            "text": "Send the Larch Beacon revised scope by 2026-10-23."
+          }
+        ]
+      },
+      "note-u2b-dev-12-prior": {
+        "id": "note-u2b-dev-12-prior",
+        "revision": 1,
+        "account_id": "acct-u2b-dev-12",
+        "opportunity_ids": [
+          "opp-u2b-dev-12"
+        ],
+        "occurred_at": "2026-10-08",
+        "status": "active",
+        "visibility": [
+          "north"
+        ],
+        "lines": [
+          {
+            "id": "close",
+            "text": "Confirmed target close is 2027-03-04."
+          },
+          {
+            "id": "next",
+            "text": "Schedule another pricing call."
+          }
+        ]
+      }
+    }
+  }
+}

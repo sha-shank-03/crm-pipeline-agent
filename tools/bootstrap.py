@@ -1,4 +1,4 @@
-"""Audit exactly two approved artifacts and their POMs/licenses; no build ecosystem."""
+"""Explicit fetch/audit or strictly cached-only verification of two approved artifacts."""
 import argparse
 from datetime import datetime, timezone
 import hashlib
@@ -38,6 +38,28 @@ NS = {"m": "http://maven.apache.org/POM/4.0.0"}
 DOWNLOADS = []
 CACHE = {}
 LEDGER = ROOT / "work/bootstrap-fetches.jsonl"
+CACHED_PINS = (
+    ("com.google.code.gson:gson:2.14.0", "gson-2.14.0.jar", "2cbd119bf1961c28788310963dc80ba65f58cdeec1dd139c8bdb1240faa2c36f"),
+    ("com.google.errorprone:error_prone_annotations:2.48.0", "error_prone_annotations-2.48.0.jar", "b49c5c958316ed67a09c699dda9aa749caf434d51d863dea599ef36a49b9c855"),
+)
+
+
+def verify_cached(root=None):
+    """Read only exact original pins; no fetch, remote audit, ledger or source writes."""
+    root = Path(ROOT if root is None else root).resolve()
+    lock = json.loads((root / "dependencies.lock.json").read_text(encoding="utf-8"))
+    entries = lock.get("dependencies")
+    if (not isinstance(entries, list) or len(entries) != len(CACHED_PINS) or not all(isinstance(item, dict) for item in entries) or
+            [(item.get("coordinate"), item.get("filename"), item.get("sha256")) for item in entries] != list(CACHED_PINS)):
+        raise ValueError("Cached verification requires both original dependency pins")
+    jars = []
+    for _, filename, expected in CACHED_PINS:
+        jar = root / ".deps" / filename
+        if (jar.is_symlink() or not jar.resolve().is_relative_to(root) or not jar.is_file()
+                or jar.stat().st_size > 1048576 or hashlib.sha256(jar.read_bytes()).hexdigest() != expected):
+            raise ValueError("Original pinned cached artifact is missing or changed; cached-only mode never fetches")
+        jars.append(jar)
+    return jars
 
 
 def ledger_entry(value):
@@ -164,9 +186,19 @@ def pom_audit(url):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--fetch-deps", action="store_true", required=True)
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--fetch-deps", action="store_true")
+    mode.add_argument("--cached-only", action="store_true")
     parser.add_argument("--prepare-lock", action="store_true")
     args = parser.parse_args(argv)
+    if args.cached_only:
+        if args.prepare_lock:
+            parser.error("--prepare-lock requires --fetch-deps")
+        verify_cached()
+        print(json.dumps({"dependencies": [{"coordinate": coordinate, "sha256": digest} for coordinate, _, digest in CACHED_PINS],
+                          "mode": "cached-only", "status": "verified", "this_command_transfer_bytes": 0,
+                          "cumulative_new_transfer_bytes": None, "external_audit_performed": False}))
+        return 0
     lock_path = ROOT / "dependencies.lock.json"
     lock = json.loads(lock_path.read_text(encoding="utf-8"))
     if [item["coordinate"] for item in lock["dependencies"]] != list(APPROVED):

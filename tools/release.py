@@ -9,7 +9,10 @@ ROOT = Path(__file__).resolve().parents[1]
 EXCLUDED = {".git", ".deps", "build", "work", ".venv", "__pycache__", ".pytest_cache", "node_modules", "target"}
 REQUIRED = ["README.md", "LICENSE", "DATA_LICENSE", "THIRD_PARTY_NOTICES.md", "EVIDENCE.md",
             "docs/architecture.md", "docs/threat-model.md", "docs/evaluation.md", "docs/originality.md",
-            "docs/quickstart.md", "docs/ci-actions.lock.json", ".github/workflows/ci.yml", "dependencies.lock.json"]
+            "docs/quickstart.md", "docs/ci-actions.lock.json", ".github/workflows/ci.yml", "dependencies.lock.json",
+            "docs/u1-upgrade.md", "docs/u2a-salesforce.md", "evaluation/frozen-manifest.json",
+            "evaluation/upgrade-v1/manifest.json", "evaluation/upgrade-v2/manifest.json",
+            "tools/check_current_upgrade.py", "configs/gateway.disabled.json", "configs/salesforce.disabled.json"]
 
 def source_files(root=None):
     root = Path(ROOT if root is None else root).resolve()
@@ -25,12 +28,16 @@ def source_files(root=None):
             files.append(path.relative_to(root))
     return sorted(files)
 
+def verify_provenance():
+    from tools.check_current_upgrade import verify
+    return verify(ROOT)
+
+
 def check():
-    from evaluation.freeze import check as freeze_check
     for name in REQUIRED:
         if not (ROOT / name).is_file():
             raise ValueError("Missing release file: " + name)
-    frozen = freeze_check()
+    frozen = verify_provenance()
     files = source_files()
     sensitive = re.compile(r"[A-Z]:[\\/]" + "|/" + "Users/|/" + "home/" + r"|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----|\b(?:ghp_|github_pat_)[A-Za-z0-9_]{20,}")
     generated = {".jar", ".class", ".exe", ".dll", ".zip", ".pyc"}
@@ -69,6 +76,12 @@ def check():
         raise ValueError("CI must remain offline and read-only")
     if "Apache License" not in (ROOT / "LICENSE").read_text() or "CC0-1.0" not in (ROOT / "DATA_LICENSE").read_text():
         raise ValueError("Project/data license missing")
-    return {"source_files": len(files), "frozen_dev": frozen["splits"]["dev"]["case_count"],
-            "frozen_heldout": frozen["splits"]["heldout"]["case_count"], "binary_dependencies": 2,
+    gateway = json.loads((ROOT / "configs/gateway.disabled.json").read_text())
+    salesforce = json.loads((ROOT / "configs/salesforce.disabled.json").read_text())
+    if gateway.get("live_enabled") is not False or gateway.get("allocation_usd") != "0" or salesforce.get("external_enabled") is not False:
+        raise ValueError("Shipped example profiles must disable external traffic")
+    return {"source_files": len(files), "frozen_dev": frozen["frozen_dev"],
+            "frozen_heldout": frozen["frozen_heldout"], "binary_dependencies": 2,
+            "upgrade_version": frozen["version"], "original_freeze_preserved": frozen["original_freeze_preserved"],
+            "accepted_u1_manifest_preserved": frozen["u1_manifest_preserved"],
             "ci_actions_pinned": 3, "hosted_ci_executed": False, "static_source_audit": "passed"}

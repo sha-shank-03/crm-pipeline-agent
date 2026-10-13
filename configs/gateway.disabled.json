@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "model": "catalog/explicit-model-id",
+  "provider": "endpoint-from-current-catalog",
+  "max_requests": 8,
+  "max_output_tokens": 2048,
+  "input_token_ceiling": 40960,
+  "allocation_usd": "0",
+  "reserve_per_request_usd": "0",
+  "live_enabled": false,
+  "dataset_version": "v1-authored-dev-20261008"
+}

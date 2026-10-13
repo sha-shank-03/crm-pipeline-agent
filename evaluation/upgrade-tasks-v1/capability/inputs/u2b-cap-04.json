@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "case_id": "u2b-cap-04",
+  "as_of": "2026-11-09",
+  "task": "Review opportunity opp-u2b-cap-04 using eligible customer commitments.",
+  "fixture": {
+    "schema_version": 1,
+    "synthetic": true,
+    "name": "Invented U2-B cap-04",
+    "accounts": {
+      "acct-u2b-cap-04": {
+        "id": "acct-u2b-cap-04",
+        "name": "Fictional Pebble Tide",
+        "region": "north",
+        "revision": 1
+      }
+    },
+    "opportunities": {
+      "opp-u2b-cap-04": {
+        "id": "opp-u2b-cap-04",
+        "account_id": "acct-u2b-cap-04",
+        "owner_id": "rep-u2b-cap-04",
+        "stage": "lost",
+        "amount_minor": 1415200,
+        "currency": "USD",
+        "close_date": "2026-10-30",
+        "next_step": "Schedule the discovery session.",
+        "version": 7,
+        "evidence_revision": 1,
+        "history": [
+          {
+            "event_id": "prior-cap-04",
+            "actor": "rep-u2b-cap-04",
+            "version": 7,
+            "before": {
+              "next_step": "Request discovery availability."
+            },
+            "after": {
+              "next_step": "Schedule the discovery session."
+            }
+          }
+        ]
+      },
+      "opp-u2b-cap-04-renewal": {
+        "id": "opp-u2b-cap-04-renewal",
+        "account_id": "acct-u2b-cap-04",
+        "owner_id": "rep-u2b-cap-04",
+        "stage": "won",
+        "amount_minor": 900004,
+        "currency": "USD",
+        "close_date": "2026-10-30",
+        "next_step": "Schedule the discovery session.",
+        "version": 7,
+        "evidence_revision": 1,
+        "history": [
+          {
+            "event_id": "prior-cap-04",
+            "actor": "rep-u2b-cap-04",
+            "version": 7,
+            "before": {
+              "next_step": "Request discovery availability."
+            },
+            "after": {
+              "next_step": "Schedule the discovery session."
+            }
+          }
+        ]
+      }
+    },
+    "notes": {
+      "note-u2b-cap-04": {
+        "id": "note-u2b-cap-04",
+        "revision": 1,
+        "account_id": "acct-u2b-cap-04",
+        "opportunity_ids": [
+          "opp-u2b-cap-04"
+        ],
+        "occurred_at": "2026-11-07",
+        "status": "active",
+        "visibility": [
+          "north"
+        ],
+        "lines": [
+          {
+            "id": "close",
+            "text": "Buyer approved a close date of 2027-01-14."
+          },
+          {
+            "id": "next",
+            "text": "Deliver the Pebble Tide migration checklist by 2026-11-20."
+          }
+        ]
+      }
+    }
+  }
+}

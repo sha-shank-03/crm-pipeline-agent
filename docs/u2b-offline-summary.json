@@ -1,0 +1,514 @@
+{
+  "schema_version": 1,
+  "version": "u2c-offline-summary-v1",
+  "evidence_date": "2026-10-12",
+  "execution_mode": "main_executed_local_java_offline",
+  "scope": {
+    "unique_worker_authored_exposed_tasks": 24,
+    "planned_arm_runs": 48,
+    "cohorts": 2,
+    "runs_per_task_per_arm": 1,
+    "blind": false,
+    "scenario_families_paired_between_cohorts": true
+  },
+  "review_mode": "label_aware_scripted_after_pre_review_scoring",
+  "human_review_executed": false,
+  "model_quality_evaluated": false,
+  "salesforce_integration_evaluated": false,
+  "main_acceptance": "offline_evaluation_contract_only",
+  "full_upgrade_accepted": false,
+  "main_independent_assertions": 879,
+  "main_negative_controls": 5,
+  "cohorts": {
+    "development": {
+      "methods": {
+        "agent-offline-control": {
+          "planned_arm_runs": 12,
+          "status_counts": {
+            "completed": 12,
+            "error": 0,
+            "cancelled": 0,
+            "pending": 0
+          },
+          "correct_completion": {
+            "correct": 8,
+            "denominator": 12,
+            "rate": 0.6666666666666666
+          },
+          "correct_decision": {
+            "correct": 8,
+            "denominator": 12,
+            "rate": 0.6666666666666666
+          },
+          "correct_proposal": {
+            "correct": 1,
+            "denominator": 5,
+            "rate": 0.2
+          },
+          "valid_handoff": {
+            "correct": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "correct_no_change": {
+            "correct": 2,
+            "denominator": 2,
+            "rate": 1.0
+          },
+          "safe_final_state_observed": {
+            "correct": 12,
+            "denominator": 12,
+            "rate": 1.0
+          },
+          "pre_review_disposition_counts": {
+            "PROPOSE": 1,
+            "HANDOFF": 9,
+            "NO_CHANGE": 2,
+            "INVALID": 0
+          },
+          "final_state_counts": {
+            "APPLIED": 1,
+            "REJECTED": 0,
+            "HANDOFF": 9,
+            "NO_CHANGE": 2
+          },
+          "scripted_review": {
+            "required": 1,
+            "recorded": 1,
+            "approved": 1,
+            "rejected": 0,
+            "exact_digest_binding": 1
+          },
+          "requests": {
+            "acting_tool_calls": 48,
+            "acting_tool_counts": {
+              "list_opportunities": 12,
+              "get_opportunity": 12,
+              "list_notes": 11,
+              "read_note": 12,
+              "stage_proposal": 1
+            },
+            "provider_decision_turns": 59,
+            "note_reads": 12,
+            "stage_attempts": 1,
+            "recorded_tool_errors": 0,
+            "resume_dispatch_counter": 2,
+            "total_native_java_requests": null,
+            "model_inference_requests": 0,
+            "salesforce_api_requests": 0
+          },
+          "latency_seconds": {
+            "pre_review_controller_active": {
+              "samples": 12,
+              "min": 0.468,
+              "p50": 0.922,
+              "p95": 1.359,
+              "max": 1.359
+            },
+            "controller_plus_resume_active": {
+              "samples": 12,
+              "min": 0.468,
+              "p50": 0.922,
+              "p95": 1.61,
+              "max": 1.61
+            },
+            "per_case_end_to_end_wall": null
+          },
+          "tokens": {
+            "input": null,
+            "output": null,
+            "total": null,
+            "availability": "not_applicable_no_inference"
+          },
+          "cost": {
+            "amount": null,
+            "currency": null,
+            "availability": "no_provider_billing_record_no_inference"
+          }
+        },
+        "fixed-evidence-workflow": {
+          "planned_arm_runs": 12,
+          "status_counts": {
+            "completed": 12,
+            "error": 0,
+            "cancelled": 0,
+            "pending": 0
+          },
+          "correct_completion": {
+            "correct": 12,
+            "denominator": 12,
+            "rate": 1.0
+          },
+          "correct_decision": {
+            "correct": 12,
+            "denominator": 12,
+            "rate": 1.0
+          },
+          "correct_proposal": {
+            "correct": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "valid_handoff": {
+            "correct": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "correct_no_change": {
+            "correct": 2,
+            "denominator": 2,
+            "rate": 1.0
+          },
+          "safe_final_state_observed": {
+            "correct": 12,
+            "denominator": 12,
+            "rate": 1.0
+          },
+          "pre_review_disposition_counts": {
+            "PROPOSE": 5,
+            "HANDOFF": 5,
+            "NO_CHANGE": 2,
+            "INVALID": 0
+          },
+          "final_state_counts": {
+            "APPLIED": 5,
+            "REJECTED": 0,
+            "HANDOFF": 5,
+            "NO_CHANGE": 2
+          },
+          "scripted_review": {
+            "required": 5,
+            "recorded": 5,
+            "approved": 5,
+            "rejected": 0,
+            "exact_digest_binding": 5
+          },
+          "requests": {
+            "acting_tool_calls": 51,
+            "acting_tool_counts": {
+              "list_opportunities": 12,
+              "get_opportunity": 12,
+              "list_notes": 11,
+              "read_note": 11,
+              "stage_proposal": 5
+            },
+            "provider_decision_turns": 58,
+            "note_reads": 11,
+            "stage_attempts": 5,
+            "recorded_tool_errors": 0,
+            "resume_dispatch_counter": 10,
+            "total_native_java_requests": null,
+            "model_inference_requests": 0,
+            "salesforce_api_requests": 0
+          },
+          "latency_seconds": {
+            "pre_review_controller_active": {
+              "samples": 12,
+              "min": 0.61,
+              "p50": 1.031,
+              "p95": 1.469,
+              "max": 1.469
+            },
+            "controller_plus_resume_active": {
+              "samples": 12,
+              "min": 0.61,
+              "p50": 1.031,
+              "p95": 2.046,
+              "max": 2.046
+            },
+            "per_case_end_to_end_wall": null
+          },
+          "tokens": {
+            "input": null,
+            "output": null,
+            "total": null,
+            "availability": "not_applicable_no_inference"
+          },
+          "cost": {
+            "amount": null,
+            "currency": null,
+            "availability": "no_provider_billing_record_no_inference"
+          }
+        }
+      },
+      "paired_completion": {
+        "controller_wins": 0,
+        "fixed_workflow_wins": 4,
+        "ties": 8,
+        "planned_pairs": 12,
+        "controller_minus_fixed": -0.3333333333333333,
+        "required_uplift": null
+      },
+      "equal_limits": {
+        "max_turns": 8,
+        "max_tools": 8,
+        "max_note_reads": 4,
+        "max_stage_attempts": 2,
+        "max_errors": 2,
+        "deadline_seconds": 60,
+        "max_reconcile_calls": 12
+      },
+      "both_arms_report_elapsed_seconds": 39.687,
+      "both_arms_command_wall_seconds": 40.609
+    },
+    "capability": {
+      "methods": {
+        "agent-offline-control": {
+          "planned_arm_runs": 12,
+          "status_counts": {
+            "completed": 12,
+            "error": 0,
+            "cancelled": 0,
+            "pending": 0
+          },
+          "correct_completion": {
+            "correct": 5,
+            "denominator": 12,
+            "rate": 0.4166666666666667
+          },
+          "correct_decision": {
+            "correct": 5,
+            "denominator": 12,
+            "rate": 0.4166666666666667
+          },
+          "correct_proposal": {
+            "correct": 0,
+            "denominator": 5,
+            "rate": 0.0
+          },
+          "valid_handoff": {
+            "correct": 4,
+            "denominator": 5,
+            "rate": 0.8
+          },
+          "correct_no_change": {
+            "correct": 1,
+            "denominator": 2,
+            "rate": 0.5
+          },
+          "safe_final_state_observed": {
+            "correct": 12,
+            "denominator": 12,
+            "rate": 1.0
+          },
+          "pre_review_disposition_counts": {
+            "PROPOSE": 2,
+            "HANDOFF": 9,
+            "NO_CHANGE": 1,
+            "INVALID": 0
+          },
+          "final_state_counts": {
+            "APPLIED": 0,
+            "REJECTED": 2,
+            "HANDOFF": 9,
+            "NO_CHANGE": 1
+          },
+          "scripted_review": {
+            "required": 2,
+            "recorded": 2,
+            "approved": 0,
+            "rejected": 2,
+            "exact_digest_binding": 2
+          },
+          "requests": {
+            "acting_tool_calls": 49,
+            "acting_tool_counts": {
+              "list_opportunities": 12,
+              "get_opportunity": 12,
+              "list_notes": 11,
+              "read_note": 12,
+              "stage_proposal": 2
+            },
+            "provider_decision_turns": 59,
+            "note_reads": 12,
+            "stage_attempts": 2,
+            "recorded_tool_errors": 0,
+            "resume_dispatch_counter": 2,
+            "total_native_java_requests": null,
+            "model_inference_requests": 0,
+            "salesforce_api_requests": 0
+          },
+          "latency_seconds": {
+            "pre_review_controller_active": {
+              "samples": 12,
+              "min": 0.516,
+              "p50": 0.969,
+              "p95": 1.578,
+              "max": 1.578
+            },
+            "controller_plus_resume_active": {
+              "samples": 12,
+              "min": 0.516,
+              "p50": 0.969,
+              "p95": 1.798,
+              "max": 1.798
+            },
+            "per_case_end_to_end_wall": null
+          },
+          "tokens": {
+            "input": null,
+            "output": null,
+            "total": null,
+            "availability": "not_applicable_no_inference"
+          },
+          "cost": {
+            "amount": null,
+            "currency": null,
+            "availability": "no_provider_billing_record_no_inference"
+          }
+        },
+        "fixed-evidence-workflow": {
+          "planned_arm_runs": 12,
+          "status_counts": {
+            "completed": 12,
+            "error": 0,
+            "cancelled": 0,
+            "pending": 0
+          },
+          "correct_completion": {
+            "correct": 12,
+            "denominator": 12,
+            "rate": 1.0
+          },
+          "correct_decision": {
+            "correct": 12,
+            "denominator": 12,
+            "rate": 1.0
+          },
+          "correct_proposal": {
+            "correct": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "valid_handoff": {
+            "correct": 5,
+            "denominator": 5,
+            "rate": 1.0
+          },
+          "correct_no_change": {
+            "correct": 2,
+            "denominator": 2,
+            "rate": 1.0
+          },
+          "safe_final_state_observed": {
+            "correct": 12,
+            "denominator": 12,
+            "rate": 1.0
+          },
+          "pre_review_disposition_counts": {
+            "PROPOSE": 5,
+            "HANDOFF": 5,
+            "NO_CHANGE": 2,
+            "INVALID": 0
+          },
+          "final_state_counts": {
+            "APPLIED": 5,
+            "REJECTED": 0,
+            "HANDOFF": 5,
+            "NO_CHANGE": 2
+          },
+          "scripted_review": {
+            "required": 5,
+            "recorded": 5,
+            "approved": 5,
+            "rejected": 0,
+            "exact_digest_binding": 5
+          },
+          "requests": {
+            "acting_tool_calls": 51,
+            "acting_tool_counts": {
+              "list_opportunities": 12,
+              "get_opportunity": 12,
+              "list_notes": 11,
+              "read_note": 11,
+              "stage_proposal": 5
+            },
+            "provider_decision_turns": 58,
+            "note_reads": 11,
+            "stage_attempts": 5,
+            "recorded_tool_errors": 0,
+            "resume_dispatch_counter": 10,
+            "total_native_java_requests": null,
+            "model_inference_requests": 0,
+            "salesforce_api_requests": 0
+          },
+          "latency_seconds": {
+            "pre_review_controller_active": {
+              "samples": 12,
+              "min": 0.469,
+              "p50": 1.016,
+              "p95": 1.407,
+              "max": 1.407
+            },
+            "controller_plus_resume_active": {
+              "samples": 12,
+              "min": 0.469,
+              "p50": 1.016,
+              "p95": 1.937,
+              "max": 1.937
+            },
+            "per_case_end_to_end_wall": null
+          },
+          "tokens": {
+            "input": null,
+            "output": null,
+            "total": null,
+            "availability": "not_applicable_no_inference"
+          },
+          "cost": {
+            "amount": null,
+            "currency": null,
+            "availability": "no_provider_billing_record_no_inference"
+          }
+        }
+      },
+      "paired_completion": {
+        "controller_wins": 0,
+        "fixed_workflow_wins": 7,
+        "ties": 5,
+        "planned_pairs": 12,
+        "controller_minus_fixed": -0.5833333333333334,
+        "required_uplift": null
+      },
+      "equal_limits": {
+        "max_turns": 8,
+        "max_tools": 8,
+        "max_note_reads": 4,
+        "max_stage_attempts": 2,
+        "max_errors": 2,
+        "deadline_seconds": 60,
+        "max_reconcile_calls": 12
+      },
+      "both_arms_report_elapsed_seconds": 39.625,
+      "both_arms_command_wall_seconds": 40.437
+    }
+  },
+  "source_evidence_sha256": {
+    "main_independent_review": "ea90cc57b34401d143aa6e346fc9cae53711bed900602182f6adde71de763851",
+    "main_execution_receipt": "cb19f1e8413a00c8c6439147ddf22c079826b2c9616c383d72a3c65084bfb151",
+    "sealed_u2b_manifest": "aecb9564b4022973aa78e80d7a3dfd46b15c78cbbe16f4e915fe85172da1ee59",
+    "development_report": "1b7fa604f1f4e83559e7397c9385eea7949922d0d34ac318789899d209628e66",
+    "capability_report": "d8a47d5888149aff96c96a033b22eadf3b60176c160649f4884da15d37b689c9"
+  },
+  "definitions": {
+    "correct_completion": "Correct pre-review decision plus expected final domain state and authorization/receipt/history binding; all planned arm runs in denominator.",
+    "correct_proposal": "Exact supported proposal with current versions and field-specific semantic/provenance evidence; denominator expected PROPOSE tasks.",
+    "valid_handoff": "Expected HANDOFF, nonempty reason, no concealed stage and authorized unchanged domain; denominator expected HANDOFF tasks.",
+    "scripted_review": "Label-aware approve/reject after pre-review scoring; required/recorded/bound actions counted separately, never human review.",
+    "safe_state_observed": "Authorized final state even if the task decision was wrong; distinct from correct completion.",
+    "latency": "Saved active_milliseconds/1000. Pre-review is acting controller; final adds resume time. Neither includes fixture init, manager approval action or complete evaluator/file I/O.",
+    "percentiles": "Nearest-rank p50/p95 over all 12 arm runs in a cohort; one host/run, descriptive only.",
+    "request_counts": "Acting tool dispatches/decision turns from saved transcript/counters; resume counter is separate. Complete native subprocess attempt trace was not persisted, so total Java requests is null.",
+    "tokens_cost": "No LLM inference; tokens not applicable and no provider billing/currency record. Null is not a measured zero charge.",
+    "cohort_wall": "Report/command elapsed seconds cover both arms and evaluator overhead; unavailable per-arm end-to-end time is not inferred.",
+    "differences": "Controller minus fixed-workflow correct completions over 12 paired tasks; negative differences retained; no uplift threshold."
+  },
+  "redaction": "Aggregate whitelist only; no raw paths, case IDs, notes, prompts, traces, credentials or operator identifiers copied.",
+  "remaining_gates": [
+    "Actual secured live provider and main-held unseen cohort",
+    "Genuine isolated Salesforce sandbox",
+    "Actual human review where claimed",
+    "Current cross-platform/hosted CI and packaging",
+    "Final publication"
+  ]
+}

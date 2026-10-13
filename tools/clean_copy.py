@@ -18,8 +18,8 @@ def export(destination, cached=False):
         raise ValueError("Choose a fresh output directory; existing outputs are preserved")
     paths = source_files(ROOT)  # inventory before output creation prevents recursion
     if cached:
-        from tools.build import verify_dependency
-        jars = verify_dependency()  # all pins before copying; never a fetch fallback
+        from tools.bootstrap import verify_cached
+        jars = verify_cached(ROOT)  # both original pins before any output; never a fetch fallback
     destination.mkdir(parents=True)
     for relative in paths:
         target = destination / relative; target.parent.mkdir(parents=True, exist_ok=True)
@@ -31,11 +31,14 @@ def export(destination, cached=False):
     return destination
 
 def verify_quickstart(destination):
-    commands = [[sys.executable, "tools/bootstrap.py", "--fetch-deps"], [sys.executable, "tools/build.py"],
+    commands = [[sys.executable, "tools/bootstrap.py", "--cached-only"], [sys.executable, "tools/build.py"],
                 [sys.executable, "crm.py", "doctor"],
                 [sys.executable, "crm.py", "demo", "--scenario", "approved-update", "--provider", "scripted", "--scripted-review", "--out", "work/quickstart-approved"],
                 [sys.executable, "crm.py", "demo", "--scenario", "stale-approval", "--provider", "scripted", "--scripted-review", "--out", "work/quickstart-stale"],
-                [sys.executable, "tools/check.py", "--suite", "m1"], [sys.executable, "tools/check.py", "--suite", "release"]]
+                [sys.executable, "tools/check.py", "--suite", "m1"],
+                [sys.executable, "-m", "unittest", "tests.test_salesforce_contract", "tests.test_salesforce_http", "-v"],
+                [sys.executable, "tools/upgrade_check.py", "--offline", "--out", "work/quickstart-gateway-double"],
+                [sys.executable, "tools/check_current_upgrade.py"], [sys.executable, "tools/check.py", "--suite", "release"]]
     receipts = []
     for argv in commands:
         started = time.monotonic()

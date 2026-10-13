@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "case_id": "u2b-cap-03",
+  "as_of": "2026-11-09",
+  "task": "Review opportunity opp-u2b-cap-03 using eligible customer commitments.",
+  "fixture": {
+    "schema_version": 1,
+    "synthetic": true,
+    "name": "Invented U2-B cap-03",
+    "accounts": {
+      "acct-u2b-cap-03": {
+        "id": "acct-u2b-cap-03",
+        "name": "Fictional Opal Forge",
+        "region": "north",
+        "revision": 1
+      }
+    },
+    "opportunities": {
+      "opp-u2b-cap-03": {
+        "id": "opp-u2b-cap-03",
+        "account_id": "acct-u2b-cap-03",
+        "owner_id": "rep-u2b-cap-03",
+        "stage": "open",
+        "amount_minor": 1403900,
+        "currency": "USD",
+        "close_date": "2027-01-13",
+        "next_step": "Deliver the Opal Forge migration checklist by 2026-11-20.",
+        "version": 7,
+        "evidence_revision": 1,
+        "history": [
+          {
+            "event_id": "prior-cap-03",
+            "actor": "rep-u2b-cap-03",
+            "version": 7,
+            "before": {
+              "next_step": "Request discovery availability."
+            },
+            "after": {
+              "next_step": "Schedule the discovery session."
+            }
+          }
+        ]
+      },
+      "opp-u2b-cap-03-renewal": {
+        "id": "opp-u2b-cap-03-renewal",
+        "account_id": "acct-u2b-cap-03",
+        "owner_id": "rep-u2b-cap-03",
+        "stage": "won",
+        "amount_minor": 900003,
+        "currency": "USD",
+        "close_date": "2026-10-30",
+        "next_step": "Schedule the discovery session.",
+        "version": 7,
+        "evidence_revision": 1,
+        "history": [
+          {
+            "event_id": "prior-cap-03",
+            "actor": "rep-u2b-cap-03",
+            "version": 7,
+            "before": {
+              "next_step": "Request discovery availability."
+            },
+            "after": {
+              "next_step": "Schedule the discovery session."
+            }
+          }
+        ]
+      }
+    },
+    "notes": {
+      "note-u2b-cap-03": {
+        "id": "note-u2b-cap-03",
+        "revision": 1,
+        "account_id": "acct-u2b-cap-03",
+        "opportunity_ids": [
+          "opp-u2b-cap-03"
+        ],
+        "occurred_at": "2026-11-07",
+        "status": "active",
+        "visibility": [
+          "north"
+        ],
+        "lines": [
+          {
+            "id": "close",
+            "text": "Buyer approved a close date of 2027-01-13."
+          },
+          {
+            "id": "next",
+            "text": "Deliver the Opal Forge migration checklist by 2026-11-20."
+          }
+        ]
+      }
+    }
+  }
+}

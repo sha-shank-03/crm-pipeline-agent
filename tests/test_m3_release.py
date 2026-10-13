@@ -30,7 +30,7 @@ class SourceExportTests(unittest.TestCase):
 
     def test_bad_cached_digest_has_no_output_or_download_fallback(self):
         target = Path(self.temp.name) / "bad-export"
-        with patch("tools.build.verify_dependency", side_effect=ValueError("Pinned artifact corrupt")):
+        with patch("tools.bootstrap.verify_cached", side_effect=ValueError("Pinned artifact corrupt")):
             with self.assertRaises(ValueError): clean_copy.export(target, cached=True)
         self.assertFalse(target.exists())
 
@@ -42,12 +42,12 @@ class SourceExportTests(unittest.TestCase):
 
     def test_static_release_works_without_git_java_or_dependency_cache(self):
         self.make_release_tree()
-        with patch("tools.release.ROOT", self.root), patch("evaluation.freeze.check", return_value={"splits": {"dev": {"case_count": 8}, "heldout": {"case_count": 32}}}):
+        with patch("tools.release.ROOT", self.root), patch("tools.release.verify_provenance", return_value={"frozen_dev": 8, "frozen_heldout": 32, "version": "upgrade-v2-u2a", "original_freeze_preserved": True, "u1_manifest_preserved": True}):
             self.assertEqual(release.check()["ci_actions_pinned"], 3)
 
     def test_accidental_binary_secret_and_mutable_action_are_rejected(self):
         self.make_release_tree()
-        with patch("tools.release.ROOT", self.root), patch("evaluation.freeze.check", return_value={"splits": {"dev": {"case_count": 8}, "heldout": {"case_count": 32}}}):
+        with patch("tools.release.ROOT", self.root), patch("tools.release.verify_provenance", return_value={"frozen_dev": 8, "frozen_heldout": 32, "version": "upgrade-v2-u2a", "original_freeze_preserved": True, "u1_manifest_preserved": True}):
             binary = self.root / "accidental.jar"; binary.write_bytes(b"invented")
             with self.assertRaises(ValueError): release.check()
             binary.unlink()

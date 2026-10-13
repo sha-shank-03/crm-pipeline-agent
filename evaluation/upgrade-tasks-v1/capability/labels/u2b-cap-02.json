@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "case_id": "u2b-cap-02",
+  "family": "supported-next",
+  "expected_disposition": "PROPOSE",
+  "opportunity_id": "opp-u2b-cap-02",
+  "expected_changes": {
+    "next_step": "Deliver the Nectar Ridge migration checklist by 2026-11-20."
+  },
+  "semantic_evidence": {
+    "next_step": [
+      {
+        "note_id": "note-u2b-cap-02",
+        "line_id": "next",
+        "quote": "Deliver the Nectar Ridge migration checklist by 2026-11-20."
+      }
+    ]
+  },
+  "protected_fields": [
+    "id",
+    "account_id",
+    "owner_id",
+    "stage",
+    "amount_minor",
+    "currency",
+    "evidence_revision"
+  ],
+  "expected_final_version": 8,
+  "rationale": "Future close date stays; the supported next action changes."
+}

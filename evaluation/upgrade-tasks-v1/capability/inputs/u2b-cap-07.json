@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "case_id": "u2b-cap-07",
+  "as_of": "2026-11-09",
+  "task": "Review opportunity opp-u2b-cap-07 using eligible customer commitments.",
+  "fixture": {
+    "schema_version": 1,
+    "synthetic": true,
+    "name": "Invented U2-B cap-07",
+    "accounts": {
+      "acct-u2b-cap-07": {
+        "id": "acct-u2b-cap-07",
+        "name": "Fictional Sable Arc",
+        "region": "north",
+        "revision": 1
+      }
+    },
+    "opportunities": {
+      "opp-u2b-cap-07": {
+        "id": "opp-u2b-cap-07",
+        "account_id": "acct-u2b-cap-07",
+        "owner_id": "rep-u2b-cap-07",
+        "stage": "open",
+        "amount_minor": 1449100,
+        "currency": "USD",
+        "close_date": "2026-10-30",
+        "next_step": "Schedule the discovery session.",
+        "version": 7,
+        "evidence_revision": 1,
+        "history": [
+          {
+            "event_id": "prior-cap-07",
+            "actor": "rep-u2b-cap-07",
+            "version": 7,
+            "before": {
+              "next_step": "Request discovery availability."
+            },
+            "after": {
+              "next_step": "Schedule the discovery session."
+            }
+          }
+        ]
+      },
+      "opp-u2b-cap-07-renewal": {
+        "id": "opp-u2b-cap-07-renewal",
+        "account_id": "acct-u2b-cap-07",
+        "owner_id": "rep-u2b-cap-07",
+        "stage": "won",
+        "amount_minor": 900007,
+        "currency": "USD",
+        "close_date": "2026-10-30",
+        "next_step": "Schedule the discovery session.",
+        "version": 7,
+        "evidence_revision": 1,
+        "history": [
+          {
+            "event_id": "prior-cap-07",
+            "actor": "rep-u2b-cap-07",
+            "version": 7,
+            "before": {
+              "next_step": "Request discovery availability."
+            },
+            "after": {
+              "next_step": "Schedule the discovery session."
+            }
+          }
+        ]
+      }
+    },
+    "notes": {
+      "note-u2b-cap-07": {
+        "id": "note-u2b-cap-07",
+        "revision": 1,
+        "account_id": "acct-u2b-cap-07",
+        "opportunity_ids": [
+          "opp-u2b-cap-07",
+          "opp-u2b-cap-07-renewal"
+        ],
+        "occurred_at": "2026-11-07",
+        "status": "active",
+        "visibility": [
+          "north"
+        ],
+        "lines": [
+          {
+            "id": "close",
+            "text": "Buyer approved a close date of 2027-01-17."
+          },
+          {
+            "id": "next",
+            "text": "Deliver the Sable Arc migration checklist by 2026-11-20."
+          }
+        ]
+      }
+    }
+  }
+}

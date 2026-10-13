@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "version": "u2b-equal-budget-v1",
+  "tools": [
+    "list_opportunities",
+    "get_opportunity",
+    "list_notes",
+    "read_note",
+    "stage_proposal"
+  ],
+  "limits": {
+    "max_turns": 8,
+    "max_tools": 8,
+    "max_note_reads": 4,
+    "max_stage_attempts": 2,
+    "max_errors": 2,
+    "deadline_seconds": 60,
+    "max_reconcile_calls": 12
+  },
+  "principals": {
+    "proposer": "proposer-north",
+    "reviewer": "manager-north",
+    "executor": "executor-north",
+    "fixture": "fixture-operator"
+  },
+  "review_mode": "label_aware_scripted_after_pre_review_scoring",
+  "human_review_executed": false,
+  "external_calls_allowed": false,
+  "model_quality_evaluated": false,
+  "code_license": "Apache-2.0"
+}

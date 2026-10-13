@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "case_id": "u2b-dev-02",
+  "as_of": "2026-10-12",
+  "task": "Review opportunity opp-u2b-dev-02 using eligible customer commitments.",
+  "fixture": {
+    "schema_version": 1,
+    "synthetic": true,
+    "name": "Invented U2-B dev-02",
+    "accounts": {
+      "acct-u2b-dev-02": {
+        "id": "acct-u2b-dev-02",
+        "name": "Fictional Bracken Loom",
+        "region": "north",
+        "revision": 1
+      }
+    },
+    "opportunities": {
+      "opp-u2b-dev-02": {
+        "id": "opp-u2b-dev-02",
+        "account_id": "acct-u2b-dev-02",
+        "owner_id": "rep-u2b-dev-02",
+        "stage": "open",
+        "amount_minor": 1392600,
+        "currency": "USD",
+        "close_date": "2026-12-12",
+        "next_step": "Schedule the discovery session.",
+        "version": 7,
+        "evidence_revision": 1,
+        "history": [
+          {
+            "event_id": "prior-dev-02",
+            "actor": "rep-u2b-dev-02",
+            "version": 7,
+            "before": {
+              "next_step": "Request discovery availability."
+            },
+            "after": {
+              "next_step": "Schedule the discovery session."
+            }
+          }
+        ]
+      },
+      "opp-u2b-dev-02-renewal": {
+        "id": "opp-u2b-dev-02-renewal",
+        "account_id": "acct-u2b-dev-02",
+        "owner_id": "rep-u2b-dev-02",
+        "stage": "won",
+        "amount_minor": 900002,
+        "currency": "USD",
+        "close_date": "2026-09-29",
+        "next_step": "Schedule the discovery session.",
+        "version": 7,
+        "evidence_revision": 1,
+        "history": [
+          {
+            "event_id": "prior-dev-02",
+            "actor": "rep-u2b-dev-02",
+            "version": 7,
+            "before": {
+              "next_step": "Request discovery availability."
+            },
+            "after": {
+              "next_step": "Schedule the discovery session."
+            }
+          }
+        ]
+      }
+    },
+    "notes": {
+      "note-u2b-dev-02": {
+        "id": "note-u2b-dev-02",
+        "revision": 1,
+        "account_id": "acct-u2b-dev-02",
+        "opportunity_ids": [
+          "opp-u2b-dev-02"
+        ],
+        "occurred_at": "2026-10-10",
+        "status": "active",
+        "visibility": [
+          "north"
+        ],
+        "lines": [
+          {
+            "id": "next",
+            "text": "Send the Bracken Loom revised scope by 2026-10-23."
+          }
+        ]
+      }
+    }
+  }
+}

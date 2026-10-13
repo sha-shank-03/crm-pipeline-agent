@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "case_id": "u2b-dev-02",
+  "family": "supported-next",
+  "expected_disposition": "PROPOSE",
+  "opportunity_id": "opp-u2b-dev-02",
+  "expected_changes": {
+    "next_step": "Send the Bracken Loom revised scope by 2026-10-23."
+  },
+  "semantic_evidence": {
+    "next_step": [
+      {
+        "note_id": "note-u2b-dev-02",
+        "line_id": "next",
+        "quote": "Send the Bracken Loom revised scope by 2026-10-23."
+      }
+    ]
+  },
+  "protected_fields": [
+    "id",
+    "account_id",
+    "owner_id",
+    "stage",
+    "amount_minor",
+    "currency",
+    "evidence_revision"
+  ],
+  "expected_final_version": 8,
+  "rationale": "Future close date stays; the supported next action changes."
+}

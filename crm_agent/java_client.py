@@ -33,6 +33,8 @@ class JavaClient:
         self.principal = principal
         self.as_of = as_of
         self.cancel_file = Path(cancel_file) if cancel_file else None
+        self.active_deadline = None
+        self.process_stats = []
 
     def call(self, operation: str, arguments: dict, request_id: str | None = None) -> dict:
         try:
@@ -61,29 +63,56 @@ class JavaClient:
                    "--store", str(self.store), "--principal", self.principal, "--as-of", self.as_of]
         if self.cancel_file and self.cancel_file.exists():
             raise DomainError("CANCELLED", "Cancelled before owned process launch")
+        if self.active_deadline is not None and time.monotonic() >= self.active_deadline:
+            raise DomainError("BUDGET_EXHAUSTED", "Active deadline exhausted before process launch")
+        started = time.monotonic()
+        deadline = min(started + 5, self.active_deadline) if self.active_deadline is not None else started + 5
+        io_deadline = deadline - min(0.25, max(0, deadline - started) / 4)
         try:
             process = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=False)
         except OSError as error:
             raise DomainError("BUILD_REQUIRED", "Cannot start the configured Java runtime") from error
-        deadline = time.monotonic() + 5
         first = True
         try:
             while True:
-                if (self.cancel_file and self.cancel_file.exists()) or time.monotonic() >= deadline:
+                if (self.cancel_file and self.cancel_file.exists()) or time.monotonic() >= io_deadline:
                     process.kill()
-                    process.communicate(timeout=2)
+                    try:
+                        process.communicate(timeout=max(0.001, deadline - time.monotonic()))
+                    except subprocess.TimeoutExpired:
+                        if operation in MUTATIONS:
+                            raise OutcomeUnknown(request_id) from None
+                        raise DomainError("JAVA_TIMEOUT", "Owned read cleanup remains uncertain") from None
                     if operation in MUTATIONS:
                         raise OutcomeUnknown(request_id)
                     raise DomainError("CANCELLED" if self.cancel_file and self.cancel_file.exists() else "JAVA_TIMEOUT", "Owned read process stopped")
                 try:
-                    stdout, stderr = process.communicate(input=payload if first else None, timeout=min(0.1, max(0.001, deadline - time.monotonic())))
+                    stdout, stderr = process.communicate(input=payload if first else None, timeout=min(0.1, max(0.001, io_deadline - time.monotonic())))
                     break
                 except subprocess.TimeoutExpired:
                     first = False
         finally:
-            if process.poll() is None:
-                process.kill()
-                process.communicate(timeout=2)
+            try:
+                if process.poll() is None:
+                    process.kill()
+                    process.communicate(timeout=max(0.001, deadline - time.monotonic()))
+            except subprocess.TimeoutExpired:
+                if operation in MUTATIONS:
+                    raise OutcomeUnknown(request_id) from None
+                raise DomainError("JAVA_TIMEOUT", "Owned read cleanup remains uncertain") from None
+            finally:
+                from .providers.owned_http import peak_working_set
+                self.process_stats.append({"pid": process.pid, "exit_code": process.poll(),
+                    "owned_child_exited": process.poll() is not None,
+                    "wall_seconds": round(time.monotonic() - started, 6),
+                    "peak_working_set_bytes": peak_working_set(process)})
+                for stream in (process.stdin, process.stdout, process.stderr):
+                    if stream is not None:
+                        stream.close()
+        if time.monotonic() >= deadline:
+            if operation in MUTATIONS:
+                raise OutcomeUnknown(request_id)
+            raise DomainError("JAVA_TIMEOUT", "Read completed after active deadline")
         if process.returncode != 0:
             raise DomainError("JAVA_FAILURE", f"Java exited {process.returncode}; reconcile any pending write")
         if len(stdout) > 262144 or len(stderr) > 65536:

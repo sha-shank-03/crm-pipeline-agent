@@ -78,6 +78,10 @@ def run_agent(client, provider, output: Path, task: str = "Review the fictional 
     limits = budget(run)
     dispatcher = Dispatcher(client, run["run_id"])
     start = time.monotonic()
+    if hasattr(client, "active_deadline"):
+        client.active_deadline = start + limits["deadline_seconds"]
+    if hasattr(provider, "bind"):
+        provider.bind(run, record_path)
     save(record_path, run)
     while run["provider_turns"] < limits["max_turns"] and run["tool_calls"] < limits["max_tools"]:
         if cancelled(record_path, run):
@@ -112,14 +116,22 @@ def run_agent(client, provider, output: Path, task: str = "Review the fictional 
                         raise DomainError("BUDGET_EXHAUSTED", "Read/proposal attempt budget exhausted")
             request_id = str(uuid.uuid4())
             run["state"] = "STAGING" if decision.name == "stage_proposal" else "INVESTIGATING"
-            run["messages"].append({"role": "assistant", "tool": decision.name, "arguments": decision.arguments})
+            message = {"role": "assistant", "tool": decision.name, "arguments": decision.arguments}
+            if getattr(provider, "call_id", None):
+                message["call_id"] = provider.call_id
+            run["messages"].append(message)
             if decision.name == "stage_proposal":
                 run["pending_stage"] = {"request_id": request_id, "arguments": dispatcher.arguments(decision)}
             run["tool_calls"] += 1
             run["active_milliseconds"] = int((time.monotonic() - start) * 1000)
             save(record_path, run)
             result = dispatcher.execute(decision, request_id)
-            run["messages"].append({"role": "tool", "tool": decision.name, "result": result})
+            observation = {"role": "tool", "tool": decision.name, "result": result}
+            if "call_id" in message:
+                observation["call_id"] = message["call_id"]
+            run["messages"].append(observation)
+            if hasattr(provider, "event"):
+                provider.event("tool_observed", tool_count=run["tool_calls"], state=run["state"])
             if decision.name == "stage_proposal":
                 run.update(state="WAITING_APPROVAL", proposal_id=result["proposal"]["id"],
                            proposal_digest=result["proposal"]["digest"], pending_stage=None)
@@ -130,7 +142,12 @@ def run_agent(client, provider, output: Path, task: str = "Review the fictional 
         except (DomainError, ProtocolError, KeyError, TypeError, ValueError, OSError) as error:
             run["counters"]["errors"] += 1
             code = error.code if isinstance(error, DomainError) else "PROVIDER_PROTOCOL"
-            run["messages"].append({"role": "tool", "tool": getattr(decision, "name", "invalid"), "error": {"code": code}})
+            observation = {"role": "tool", "tool": getattr(decision, "name", "invalid"), "error": {"code": code}}
+            if decision is not None and getattr(provider, "call_id", None):
+                observation["call_id"] = provider.call_id
+            run["messages"].append(observation)
+            if hasattr(provider, "event"):
+                provider.event("guard_rejected", error_code=code, state=run["state"], tool_count=run["tool_calls"])
             # Malformed/lost post-write responses cannot prove a mutation failed.
             uncertain = run["pending_stage"] and (not isinstance(error, DomainError) or code in {"JAVA_FAILURE", "IO_FAILURE", "BUILD_REQUIRED"})
             if uncertain:
@@ -140,7 +157,7 @@ def run_agent(client, provider, output: Path, task: str = "Review the fictional 
             if code == "CANCELLED":
                 run.update(state="CANCELLED", reason=code)
                 break
-            if run["counters"]["errors"] >= limits["max_errors"] or code in {"PERMISSION_DENIED", "VERSION_CONFLICT", "EVIDENCE_CHANGED", "JAVA_FAILURE", "IO_FAILURE", "BUILD_REQUIRED", "BUDGET_EXHAUSTED"}:
+            if getattr(error, "terminal", False) or run["counters"]["errors"] >= limits["max_errors"] or code in {"PERMISSION_DENIED", "VERSION_CONFLICT", "EVIDENCE_CHANGED", "JAVA_FAILURE", "IO_FAILURE", "BUILD_REQUIRED", "BUDGET_EXHAUSTED"}:
                 run.update(state="HANDOFF", reason=code)
                 break
         run["active_milliseconds"] = int((time.monotonic() - start) * 1000)
@@ -150,6 +167,11 @@ def run_agent(client, provider, output: Path, task: str = "Review the fictional 
     run["elapsed_seconds"] = round(time.monotonic() - start, 6)
     run["active_milliseconds"] = int(run["elapsed_seconds"] * 1000)
     save(record_path, run)
+    if hasattr(client, "active_deadline"):
+        client.active_deadline = None
+    if hasattr(provider, "event"):
+        provider.event("run_stopped", state=run["state"], request_count=run.get("provider_accounting", {}).get("requests", 0),
+                       tool_count=run["tool_calls"], error_code=run.get("reason") if run["state"] == "HANDOFF" else None)
     return run
 
 
@@ -163,6 +185,8 @@ def resume(run: dict, record_path: Path, proposer, executor) -> dict:
             raise DomainError("BUDGET_EXHAUSTED", "Reconciliation call budget exhausted; operator review required")
         run["counters"]["reconcile_calls"] += 1
         save(record_path, run)
+        if hasattr(client, "active_deadline"):
+            client.active_deadline = start + limits["deadline_seconds"] - previous_active / 1000
         return client.call(operation, arguments, request_id)
 
     def reconcile(client, operation, pending):
@@ -226,4 +250,7 @@ def resume(run: dict, record_path: Path, proposer, executor) -> dict:
     finally:
         run["active_milliseconds"] = previous_active + int((time.monotonic() - start) * 1000)
         save(record_path, run)
+        for client in (proposer, executor):
+            if hasattr(client, "active_deadline"):
+                client.active_deadline = None
     return run

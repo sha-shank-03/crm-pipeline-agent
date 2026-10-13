@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "case_id": "u2b-cap-12",
+  "family": "explicit-replacement",
+  "expected_disposition": "PROPOSE",
+  "opportunity_id": "opp-u2b-cap-12",
+  "expected_changes": {
+    "close_date": "2027-01-22",
+    "next_step": "Deliver the Zinnia Anchor migration checklist by 2026-11-20."
+  },
+  "semantic_evidence": {
+    "close_date": [
+      {
+        "note_id": "note-u2b-cap-12",
+        "line_id": "close",
+        "quote": "Buyer approved a close date of 2027-01-22."
+      }
+    ],
+    "next_step": [
+      {
+        "note_id": "note-u2b-cap-12",
+        "line_id": "next",
+        "quote": "Deliver the Zinnia Anchor migration checklist by 2026-11-20."
+      }
+    ]
+  },
+  "protected_fields": [
+    "id",
+    "account_id",
+    "owner_id",
+    "stage",
+    "amount_minor",
+    "currency",
+    "evidence_revision"
+  ],
+  "expected_final_version": 8,
+  "rationale": "A later scoped note expressly replaces the named earlier note."
+}

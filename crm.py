@@ -112,7 +112,8 @@ def main(argv=None):
     initialize.add_argument("--store", type=Path, required=True)
     run_parser = commands.add_parser("run")
     run_parser.add_argument("--store", type=Path, required=True)
-    run_parser.add_argument("--provider", choices=["scripted", "offline-rules", "ollama-http"], default="offline-rules")
+    run_parser.add_argument("--provider", choices=["scripted", "offline-rules", "ollama-http", "ai-gateway"], default="offline-rules")
+    run_parser.add_argument("--gateway-config", type=Path)
     run_parser.add_argument("--task", default="Review the fictional North pipeline")
     run_parser.add_argument("--allow-live-model", action="store_true")
     run_parser.add_argument("--model")
@@ -145,7 +146,23 @@ def main(argv=None):
         if args.command == "doctor": dump(doctor())
         elif args.command == "init": dump(client(args.store, "fixture-operator").call("init", {"fixture": strict_json(args.fixture.read_text(encoding="utf-8"))}))
         elif args.command == "run":
-            if args.provider == "ollama-http":
+            if args.provider == "ai-gateway":
+                from crm_agent.providers.ai_gateway import AiGatewayProvider
+                from crm_agent.providers.owned_http import OwnedHttpTransport, GatewayError
+                if not args.allow_live_model or args.gateway_config is None:
+                    raise GatewayError("LIVE_DISABLED")
+                if args.base_url is not None or args.gateway_config.stat().st_size > 8192:
+                    raise GatewayError("INVALID_CONFIG")
+                config = strict_json(args.gateway_config.read_text(encoding="utf-8"))
+                if args.model is not None and args.model != config.get("model"):
+                    raise GatewayError("INVALID_CONFIG")
+                def credential_supplier():
+                    import os
+                    return os.getenv("AI_GATEWAY_API_KEY")  # Called only at authorized runtime dispatch.
+                transport = OwnedHttpTransport(credential_supplier=credential_supplier,
+                                              cancel_file=args.out / "cancel.requested")
+                provider = AiGatewayProvider(config, transport)
+            elif args.provider == "ollama-http":
                 from crm_agent.providers.ollama_http import OllamaHttpProvider
                 provider = OllamaHttpProvider(args.base_url or "", args.model, allow_live_model=args.allow_live_model)
             else:

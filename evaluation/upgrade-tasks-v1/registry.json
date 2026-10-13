@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "version": "u2b-invented-exposed-v1",
+  "provenance": "Invented by the same worker; no external business records",
+  "authored_on": "2026-10-12",
+  "license": "CC0-1.0",
+  "exposure": "worker-authored/exposed",
+  "blind": false,
+  "model_quality_evaluated": false,
+  "baseline_tuned_on_capability_results": false,
+  "baseline_source_sha256": "31bd9752cf369d1043dac56c4f9743b5d75cfe23586f5cf47dcb4cf95e06c83a",
+  "profile_sha256": "0e8c47c9b618de4d2cd2c96f5580b2dc972d71d152d13784fc3aa595dff31c94",
+  "splits": {
+    "development": {
+      "case_count": 12,
+      "exposure": "worker-authored/exposed",
+      "cases": [
+        {
+          "case_id": "u2b-dev-01",
+          "family": "supported-both",
+          "input": "evaluation/upgrade-tasks-v1/development/inputs/u2b-dev-01.json",
+          "label": "evaluation/upgrade-tasks-v1/development/labels/u2b-dev-01.json",
+          "input_sha256": "948fb4e8ae791860919bae9dd6d1fe8de955e5b04d182abea5bbc9a9945df789",
+          "label_sha256": "5c27595d0a2fa4f1073c3f16bce98f88a190782063501115722115a4242d39b2"
+        },
+        {
+          "case_id": "u2b-dev-02",
+          "family": "supported-next",
+          "input": "evaluation/upgrade-tasks-v1/development/inputs/u2b-dev-02.json",
+          "label": "evaluation/upgrade-tasks-v1/development/labels/u2b-dev-02.json",
+          "input_sha256": "f58847c4d3b385dacda6cb815b168c7c74b4811d57c4b647c17dafa7dc84d0ef",
+          "label_sha256": "bc3a6d0c42d21d819b9ea105df3a6499e6a3691683257c10735bbc49c604123a"
+        },
+        {
+          "case_id": "u2b-dev-03",
+          "family": "matching-no-change",
+          "input": "evaluation/upgrade-tasks-v1/development/inputs/u2b-dev-03.json",
+          "label": "evaluation/upgrade-tasks-v1/development/labels/u2b-dev-03.json",
+          "input_sha256": "180f34383adfe7b1969b42611ca664e63a891be25be51c95c85abc399efd6c2d",
+          "label_sha256": "51c7b6abb7b72e0df03fdd2d5527b7a2b2285da34c5254022d504936ad35b331"
+        },
+        {
+          "case_id": "u2b-dev-04",
+          "family": "closed-no-change",
+          "input": "evaluation/upgrade-tasks-v1/development/inputs/u2b-dev-04.json",
+          "label": "evaluation/upgrade-tasks-v1/development/labels/u2b-dev-04.json",
+          "input_sha256": "5ca696b5531c0a3c2ba1aed8bd63528ef7c225fcbc2748e0994747492b7fc130",
+          "label_sha256": "83f64a00e9c60d1b68ad9b23049f6fbb3dba957a14c8b87ca6fc434001bc0a82"
+        },
+        {
+          "case_id": "u2b-dev-05",
+          "family": "active-contradiction",
+          "input": "evaluation/upgrade-tasks-v1/development/inputs/u2b-dev-05.json",
+          "label": "evaluation/upgrade-tasks-v1/development/labels/u2b-dev-05.json",
+          "input_sha256": "a702f26ab6dee2efb362fcadc5478c1fb9ef895bdc359d3e02fca485bd01a15a",
+          "label_sha256": "d37bc008e73c529a52027d27fe0a8af3d4f7bb03f36137376b11f043eb269239"
+        },
+        {
+          "case_id": "u2b-dev-06",
+          "family": "superseded-only",
+          "input": "evaluation/upgrade-tasks-v1/development/inputs/u2b-dev-06.json",
+          "label": "evaluation/upgrade-tasks-v1/development/labels/u2b-dev-06.json",
+          "input_sha256": "7929fe808d90e8b88073bc33a43677b4a1f746bf7fef807692a15a45ce8f2da0",
+          "label_sha256": "eddba094c71c1af161f88c307b3c095806d0e40afc95ea08c82b54d0bfce7c12"
+        },
+        {
+          "case_id": "u2b-dev-07",
+          "family": "ambiguous-link",
+          "input": "evaluation/upgrade-tasks-v1/development/inputs/u2b-dev-07.json",
+          "label": "evaluation/upgrade-tasks-v1/development/labels/u2b-dev-07.json",
+          "input_sha256": "111da3706b2b99ee9f65d43923aa0e49f5a44b6784bd05e880b8b9ca6e35addc",
+          "label_sha256": "7405f016c913f8170f26e869dc9de03a73f201d119ffabbe71eb79fbf7e91310"
+        },
+        {
+          "case_id": "u2b-dev-08",
+          "family": "relative-explicit-date",
+          "input": "evaluation/upgrade-tasks-v1/development/inputs/u2b-dev-08.json",
+          "label": "evaluation/upgrade-tasks-v1/development/labels/u2b-dev-08.json",
+          "input_sha256": "e0a15e018c020f477e41aa65eea90e798c8a4ec27f59defb5a601dde85b4d4b3",
+          "label_sha256": "b2f29529ea71bcc5aa13e2490ea70dac211f2fa060ba17eaa87528d42dd0be02"
+        },
+        {
+          "case_id": "u2b-dev-09",
+          "family": "relative-unanchored",
+          "input": "evaluation/upgrade-tasks-v1/development/inputs/u2b-dev-09.json",
+          "label": "evaluation/upgrade-tasks-v1/development/labels/u2b-dev-09.json",
+          "input_sha256": "876930e5c445f1d9693720384ae3ea4b1a2fe1cfbc21f5758c856af1c8f598de",
+          "label_sha256": "ed0d90f6cd68f080949efb29b09a47c4e42696ea830de3f24446489528674dae"
+        },
+        {
+          "case_id": "u2b-dev-10",
+          "family": "injection-with-business-evidence",
+          "input": "evaluation/upgrade-tasks-v1/development/inputs/u2b-dev-10.json",
+          "label": "evaluation/upgrade-tasks-v1/development/labels/u2b-dev-10.json",
+          "input_sha256": "da1fd705688d99146a59c126db04dbf270cd600dd38884312d79c0a3c9e8483d",
+          "label_sha256": "b108b96ed7088854aebeebf34af8391d0d3a1a28b5bce8723d588f1960b0ab39"
+        },
+        {
+          "case_id": "u2b-dev-11",
+          "family": "injection-only",
+          "input": "evaluation/upgrade-tasks-v1/development/inputs/u2b-dev-11.json",
+          "label": "evaluation/upgrade-tasks-v1/development/labels/u2b-dev-11.json",
+          "input_sha256": "d65a6468fb107f1d7d9097a499f282e6132627ab039985f4042cac2c0671aa06",
+          "label_sha256": "788a530159601abdb2b8e62f46d83104af1e8d2d16990a2ea05398885fe28193"
+        },
+        {
+          "case_id": "u2b-dev-12",
+          "family": "explicit-replacement",
+          "input": "evaluation/upgrade-tasks-v1/development/inputs/u2b-dev-12.json",
+          "label": "evaluation/upgrade-tasks-v1/development/labels/u2b-dev-12.json",
+          "input_sha256": "fab94e0b57be7809fa93a9187e0e7b64ebb6fe989bc3a75aba72f1c1e47b946b",
+          "label_sha256": "09bfa933a1ead75dd5f0a1ff4f8e791560fcab922c93cf43e57b10f1b0a53799"
+        }
+      ]
+    },
+    "capability": {
+      "case_count": 12,
+      "exposure": "worker-authored/exposed",
+      "cases": [
+        {
+          "case_id": "u2b-cap-01",
+          "family": "supported-both",
+          "input": "evaluation/upgrade-tasks-v1/capability/inputs/u2b-cap-01.json",
+          "label": "evaluation/upgrade-tasks-v1/capability/labels/u2b-cap-01.json",
+          "input_sha256": "b7dfffca2da9521dd0e16bf78651c07a77046d69ff3971eb87901cbd97516aa0",
+          "label_sha256": "97643676672898c056df0051289434b8565778689be332131fbf9c0ba038a8cd"
+        },
+        {
+          "case_id": "u2b-cap-02",
+          "family": "supported-next",
+          "input": "evaluation/upgrade-tasks-v1/capability/inputs/u2b-cap-02.json",
+          "label": "evaluation/upgrade-tasks-v1/capability/labels/u2b-cap-02.json",
+          "input_sha256": "b684f0d98bc199582bb249e52979bff230ee1550bd1164eb69ab3011616d12cd",
+          "label_sha256": "afc6572c3df1f3193e73124faf64af671c0dca80afd3a6f15856305489e7f823"
+        },
+        {
+          "case_id": "u2b-cap-03",
+          "family": "matching-no-change",
+          "input": "evaluation/upgrade-tasks-v1/capability/inputs/u2b-cap-03.json",
+          "label": "evaluation/upgrade-tasks-v1/capability/labels/u2b-cap-03.json",
+          "input_sha256": "ea636561857025ef39b50d88cc4bef084b508ebc2bc85e6ddf9241eb5ae698bf",
+          "label_sha256": "3490b401ccdb322ee4f3d426a3f045dcda0cea4417d8aece377491c39d4e9483"
+        },
+        {
+          "case_id": "u2b-cap-04",
+          "family": "closed-no-change",
+          "input": "evaluation/upgrade-tasks-v1/capability/inputs/u2b-cap-04.json",
+          "label": "evaluation/upgrade-tasks-v1/capability/labels/u2b-cap-04.json",
+          "input_sha256": "9007ec8d1fcc10d6a9e6b7baa54b471791918e1ad11392ca8eace563e74310f7",
+          "label_sha256": "498902635448fbdef4bbdd0cd3f866eec6da0ea4a20a87fd2fbcfb8629100492"
+        },
+        {
+          "case_id": "u2b-cap-05",
+          "family": "active-contradiction",
+          "input": "evaluation/upgrade-tasks-v1/capability/inputs/u2b-cap-05.json",
+          "label": "evaluation/upgrade-tasks-v1/capability/labels/u2b-cap-05.json",
+          "input_sha256": "b98ca8d3bd8923de4625b23957e9fe5aec8a2ffb04b16973e61ecb6686484175",
+          "label_sha256": "03c0bad89b2b3746d0bab12440c3f15a5e7821bbefe06b04dc7b35271352c5b9"
+        },
+        {
+          "case_id": "u2b-cap-06",
+          "family": "superseded-only",
+          "input": "evaluation/upgrade-tasks-v1/capability/inputs/u2b-cap-06.json",
+          "label": "evaluation/upgrade-tasks-v1/capability/labels/u2b-cap-06.json",
+          "input_sha256": "f0c704f10fa51c2e45e48d454c5f017b9fa66c3d3b534ef696dca665f102e64f",
+          "label_sha256": "27e2a4ba30eb5a9f4a3b5acf34ef1db0c910f95c3cd2760f9029c954e70d1462"
+        },
+        {
+          "case_id": "u2b-cap-07",
+          "family": "ambiguous-link",
+          "input": "evaluation/upgrade-tasks-v1/capability/inputs/u2b-cap-07.json",
+          "label": "evaluation/upgrade-tasks-v1/capability/labels/u2b-cap-07.json",
+          "input_sha256": "09dc6125b5ae8c3bec8ab551deb3ada9186d7013f8f7c7b6c8b0f7fc51fe5353",
+          "label_sha256": "f80bd39bc076ced5ce47edf6dadb725d721255ea958171ae3994b2de366c2ad9"
+        },
+        {
+          "case_id": "u2b-cap-08",
+          "family": "relative-explicit-date",
+          "input": "evaluation/upgrade-tasks-v1/capability/inputs/u2b-cap-08.json",
+          "label": "evaluation/upgrade-tasks-v1/capability/labels/u2b-cap-08.json",
+          "input_sha256": "7f8d2ec7d9842311f7ee3c4c62429e7cf88bf67dc5fead62cb3709f83188f659",
+          "label_sha256": "3619fcc0eff2db4cc0b7df9334208300bddcb835737b8ec0e17b3a62ff529ce9"
+        },
+        {
+          "case_id": "u2b-cap-09",
+          "family": "relative-unanchored",
+          "input": "evaluation/upgrade-tasks-v1/capability/inputs/u2b-cap-09.json",
+          "label": "evaluation/upgrade-tasks-v1/capability/labels/u2b-cap-09.json",
+          "input_sha256": "4afddc6dddb181e6c75f23d6cde161442e0f0f0d18aa2b9e07b4a4fb12aed3bf",
+          "label_sha256": "74c79d1e9a3ce6b545f4f6ede9404cc8262dd3af8e95642cd646bf8da01c490f"
+        },
+        {
+          "case_id": "u2b-cap-10",
+          "family": "injection-with-business-evidence",
+          "input": "evaluation/upgrade-tasks-v1/capability/inputs/u2b-cap-10.json",
+          "label": "evaluation/upgrade-tasks-v1/capability/labels/u2b-cap-10.json",
+          "input_sha256": "8cadf811cb9c2431f9fef62176016554766680e7e0773d704fcedaa76bdfe276",
+          "label_sha256": "36f648eabfe9bfcdc65c3e908fa86d73a75c7aaff3124958a9be240fa6ead971"
+        },
+        {
+          "case_id": "u2b-cap-11",
+          "family": "injection-only",
+          "input": "evaluation/upgrade-tasks-v1/capability/inputs/u2b-cap-11.json",
+          "label": "evaluation/upgrade-tasks-v1/capability/labels/u2b-cap-11.json",
+          "input_sha256": "394cb1c7d2a4478f13e2154d86d38d827226ca0c9d54ef63c7aac6f153d88c34",
+          "label_sha256": "404d0d09f498dd830f54044fdbfe98ad70a2ac5fd31d63e5bca5fa201551f484"
+        },
+        {
+          "case_id": "u2b-cap-12",
+          "family": "explicit-replacement",
+          "input": "evaluation/upgrade-tasks-v1/capability/inputs/u2b-cap-12.json",
+          "label": "evaluation/upgrade-tasks-v1/capability/labels/u2b-cap-12.json",
+          "input_sha256": "9cdcf8383e3e9702dc7b0c11de7cfa87b13e1f742351c3101f5e014edc5fdc9b",
+          "label_sha256": "0a3245545d5eaa99996b5afde7879c919e76935a19f29f743a813ea06073a7b9"
+        }
+      ]
+    }
+  },
+  "retained_regression": {
+    "manifest": "evaluation/frozen-manifest.json",
+    "manifest_sha256": "66263a4f795b72687bd27d703ec8b45fa6203e439a5742f074ad0ba6d0ad3024",
+    "split": "heldout",
+    "case_count": 32,
+    "exposure": "previously exposed v1 regression",
+    "case_ids": [
+      "close-01",
+      "close-02",
+      "close-03",
+      "close-04",
+      "close-05",
+      "close-06",
+      "close-07",
+      "close-08",
+      "close-09",
+      "close-10",
+      "consistent-01",
+      "consistent-02",
+      "consistent-03",
+      "consistent-04",
+      "consistent-05",
+      "consistent-06",
+      "next-01",
+      "next-02",
+      "next-03",
+      "next-04",
+      "next-05",
+      "next-06",
+      "next-07",
+      "next-08",
+      "next-09",
+      "next-10",
+      "trap-01",
+      "trap-02",
+      "trap-03",
+      "trap-04",
+      "trap-05",
+      "trap-06"
+    ]
+  }
+}

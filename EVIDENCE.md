@@ -1,5 +1,31 @@
 # Execution evidence
 
+## File-path source gate correction — 12 October 2026
+
+Main's fresh v6 cached-copy sequence passed native steps 1–8, then stopped at step 9 with ModuleNotFoundError: evaluation when running tools/check_current_upgrade.py. Release step 10 was unexecuted. The bounded correction makes that file-path entry resolve packages from its own source root and adds a genuine isolated-source subprocess regression, without Java/network or checkout/PYTHONPATH dependence. Bootstrap, build, application/domain/providers/deadline tests, fixtures and first-eight-step orchestration remain byte-identical; their prior passing raw evidence is reusable without a native rerun. Current source/release acceptance remains with main. Historical v6 failure, all earlier manifests and data are preserved.
+
+Main also independently regenerated the saved U2-B summary byte-identically with 481 assertions and seven negative controls. This is existing 24 worker-exposed tasks/48 arm runs, zero new evaluation. Offline controller 8/12 development and 5/12 capability versus fixed workflow 12/12 each, scripted review and unavailable token/cost fields remain unchanged. No live/Salesforce/unseen/human-review or publication claim is added.
+
+## Cached packaging source correction — 12 October 2026
+
+Main withheld U2-C packaging acceptance after a no-network/no-child probe reproduced parser exit 2: the proposed verifier called bootstrap without its required mode. No native packaging batch ran. The bounded source correction adds explicit --cached-only verification of both original JAR pins, before copying and again before build, with no fetch/audit/ledger fallback. Mocked parser/orchestration checks do not establish native packaging success. Current [quickstart scope](docs/quickstart.md) is ten sequential commands; dated seven-command MVP results below remain unchanged. All prior raw main results, v1 through v5 manifests, domain/providers/deadline assertions, frozen tasks and cohort outcomes are preserved. Current native/hosted packaging and genuine live/Salesforce/unseen/human-review gates remain pending.
+
+## Main accepted offline upgrade evidence — 12 October 2026
+
+Main accepted U1, the corrected U2-A local Salesforce identity/native contracts and the U2-B offline evaluation contract. Genuine Salesforce and live model quality remain pending. U2-B's 24 worker-authored/exposed invented tasks ran once by each of two deterministic methods, giving 48 arm runs. Main passed 31 pure methods, source integrity/export checks, Java 17 build and both cohorts, then independently checked 879 assertions and five negative controls. All commands exited zero; this is local offline evidence with scripted label-aware review, zero model/Salesforce calls and no actual human review.
+
+Correct completion was 8/12 development and 5/12 capability for the retained offline controller, versus 12/12 in both cohorts for the frozen fixed evidence workflow. Negative paired differences are retained without tuning methods, tasks or scorer. The two rejected wrong capability proposals earn no completion credit. All final states being authorized does not make every task correct. Errors/cancellations/pending cases remain in planned denominators (none occurred in these runs).
+
+[The compact case study](docs/u2b-case-study.md) defines completion, applicable proposal/handoff denominators, scripted approvals, active-time percentiles and request counters. [The redacted aggregate JSON](docs/u2b-offline-summary.json) binds them to private main-owned evidence with hashes. It copies no raw paths, traces or CRM records. Tokens, provider cost/currency, per-case end-to-end latency and total native subprocess attempt counts are unavailable; native process-tree RAM peaks remain unmeasured. Historical MVP outcomes and earlier failures below are unchanged. U2-C only prepares documentation/CI/source contracts; latest native packaging, hosted CI, genuine Salesforce, live/unseen/human-review evidence and final publication are pending.
+
+## U1 local Gateway protocol — 11 October 2026
+
+The worker corrected the published Windows deadline regression without changing its 0.05-second deadline or `<0.5s` assertion. A focused native command passed, followed by 18 transport methods, 11 pure protocol/telemetry methods three Java-backed negative methods and two pure CLI gate methods: 34 unique methods and 35 executions including the focused deadline repeat. The original hosted failure remains unchanged; a timeout/retry consuming the test double's instant fallback is a supported hypothesis, not a complete timing diagnosis.
+
+The retained authored Gateway-double CLI journey used five actual HTTP decisions and five Java observations. It paused for exact approval, denied a bad digest, applied only the two approved fields, then recovered an authored response-loss injection after a real Java commit without another apply. Direct snapshot checks found version 8, one apply event and one receipt. No keys, live models, external CRM calls or downloads were used. The original approved scripted CLI also passed. CLI gate checks confirmed zero credential reads and zero HTTP dispatch for disabled/zero-allocation configuration and rejected endpoint overrides. Synthetic token counts are labeled local-double; actual cost remains unknown/null.
+
+All five HTTP workers and fourteen Java subprocesses in that retained journey exited; owned-handle peak working sets were captured. Root samples do not establish a continuous combined peak or full batch RAM compliance, and the Java compiler peak was not measured. Historical v1 monitoring gaps and failed cohorts are preserved. Exact worker receipts are private; [the standalone U1 guide](docs/u1-upgrade.md) describes reproducible commands and limits. Main independent acceptance, Linux/hosted reruns and U2/U3 evidence remain pending. The separate upgrade manifest preserves the original published commit and v1 freeze/data attribution.
+
 ## M1 source checkpoint — 8 October 2026
 
 Implementation scope: Java JSON boundary, governed two-field CRM store, exact proposal/approval/apply, durable retry receipts, Python scripted provider/tool loop, and approved/stale journeys. Full Java acceptance is pending an integration lease. This checkpoint is not milestone acceptance.

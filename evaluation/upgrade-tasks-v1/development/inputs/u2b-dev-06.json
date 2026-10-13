@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "case_id": "u2b-dev-06",
+  "as_of": "2026-10-12",
+  "task": "Review opportunity opp-u2b-dev-06 using eligible customer commitments.",
+  "fixture": {
+    "schema_version": 1,
+    "synthetic": true,
+    "name": "Invented U2-B dev-06",
+    "accounts": {
+      "acct-u2b-dev-06": {
+        "id": "acct-u2b-dev-06",
+        "name": "Fictional Flint Meadow",
+        "region": "north",
+        "revision": 1
+      }
+    },
+    "opportunities": {
+      "opp-u2b-dev-06": {
+        "id": "opp-u2b-dev-06",
+        "account_id": "acct-u2b-dev-06",
+        "owner_id": "rep-u2b-dev-06",
+        "stage": "open",
+        "amount_minor": 1437800,
+        "currency": "USD",
+        "close_date": "2026-09-29",
+        "next_step": "Schedule the discovery session.",
+        "version": 7,
+        "evidence_revision": 1,
+        "history": [
+          {
+            "event_id": "prior-dev-06",
+            "actor": "rep-u2b-dev-06",
+            "version": 7,
+            "before": {
+              "next_step": "Request discovery availability."
+            },
+            "after": {
+              "next_step": "Schedule the discovery session."
+            }
+          }
+        ]
+      },
+      "opp-u2b-dev-06-renewal": {
+        "id": "opp-u2b-dev-06-renewal",
+        "account_id": "acct-u2b-dev-06",
+        "owner_id": "rep-u2b-dev-06",
+        "stage": "won",
+        "amount_minor": 900006,
+        "currency": "USD",
+        "close_date": "2026-09-29",
+        "next_step": "Schedule the discovery session.",
+        "version": 7,
+        "evidence_revision": 1,
+        "history": [
+          {
+            "event_id": "prior-dev-06",
+            "actor": "rep-u2b-dev-06",
+            "version": 7,
+            "before": {
+              "next_step": "Request discovery availability."
+            },
+            "after": {
+              "next_step": "Schedule the discovery session."
+            }
+          }
+        ]
+      }
+    },
+    "notes": {
+      "note-u2b-dev-06": {
+        "id": "note-u2b-dev-06",
+        "revision": 1,
+        "account_id": "acct-u2b-dev-06",
+        "opportunity_ids": [
+          "opp-u2b-dev-06"
+        ],
+        "occurred_at": "2026-10-10",
+        "status": "superseded",
+        "visibility": [
+          "north"
+        ],
+        "lines": [
+          {
+            "id": "close",
+            "text": "Customer confirmed closing on 2026-12-16."
+          },
+          {
+            "id": "next",
+            "text": "Send the Flint Meadow revised scope by 2026-10-23."
+          }
+        ]
+      }
+    }
+  }
+}

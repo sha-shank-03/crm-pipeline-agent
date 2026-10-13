@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "case_id": "u2b-cap-05",
+  "as_of": "2026-11-09",
+  "task": "Review opportunity opp-u2b-cap-05 using eligible customer commitments.",
+  "fixture": {
+    "schema_version": 1,
+    "synthetic": true,
+    "name": "Invented U2-B cap-05",
+    "accounts": {
+      "acct-u2b-cap-05": {
+        "id": "acct-u2b-cap-05",
+        "name": "Fictional Quartz Field",
+        "region": "north",
+        "revision": 1
+      }
+    },
+    "opportunities": {
+      "opp-u2b-cap-05": {
+        "id": "opp-u2b-cap-05",
+        "account_id": "acct-u2b-cap-05",
+        "owner_id": "rep-u2b-cap-05",
+        "stage": "open",
+        "amount_minor": 1426500,
+        "currency": "USD",
+        "close_date": "2026-10-30",
+        "next_step": "Schedule the discovery session.",
+        "version": 7,
+        "evidence_revision": 1,
+        "history": [
+          {
+            "event_id": "prior-cap-05",
+            "actor": "rep-u2b-cap-05",
+            "version": 7,
+            "before": {
+              "next_step": "Request discovery availability."
+            },
+            "after": {
+              "next_step": "Schedule the discovery session."
+            }
+          }
+        ]
+      },
+      "opp-u2b-cap-05-renewal": {
+        "id": "opp-u2b-cap-05-renewal",
+        "account_id": "acct-u2b-cap-05",
+        "owner_id": "rep-u2b-cap-05",
+        "stage": "won",
+        "amount_minor": 900005,
+        "currency": "USD",
+        "close_date": "2026-10-30",
+        "next_step": "Schedule the discovery session.",
+        "version": 7,
+        "evidence_revision": 1,
+        "history": [
+          {
+            "event_id": "prior-cap-05",
+            "actor": "rep-u2b-cap-05",
+            "version": 7,
+            "before": {
+              "next_step": "Request discovery availability."
+            },
+            "after": {
+              "next_step": "Schedule the discovery session."
+            }
+          }
+        ]
+      }
+    },
+    "notes": {
+      "note-u2b-cap-05": {
+        "id": "note-u2b-cap-05",
+        "revision": 1,
+        "account_id": "acct-u2b-cap-05",
+        "opportunity_ids": [
+          "opp-u2b-cap-05"
+        ],
+        "occurred_at": "2026-11-07",
+        "status": "active",
+        "visibility": [
+          "north"
+        ],
+        "lines": [
+          {
+            "id": "close",
+            "text": "Buyer approved a close date of 2027-01-15."
+          },
+          {
+            "id": "next",
+            "text": "Deliver the Quartz Field migration checklist by 2026-11-20."
+          }
+        ]
+      },
+      "note-u2b-cap-05-prior": {
+        "id": "note-u2b-cap-05-prior",
+        "revision": 1,
+        "account_id": "acct-u2b-cap-05",
+        "opportunity_ids": [
+          "opp-u2b-cap-05"
+        ],
+        "occurred_at": "2026-11-05",
+        "status": "active",
+        "visibility": [
+          "north"
+        ],
+        "lines": [
+          {
+            "id": "close",
+            "text": "Confirmed target close is 2027-02-18."
+          },
+          {
+            "id": "next",
+            "text": "Schedule a second commercial discussion."
+          }
+        ]
+      }
+    }
+  }
+}

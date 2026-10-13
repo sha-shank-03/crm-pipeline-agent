@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "instance_url": "https://fictional-dev-ed.develop.my.salesforce.com",
+  "identity_host": "login.salesforce.com",
+  "org_id": "00D000000000001AAA",
+  "user_id": "005000000000001AAA",
+  "api_version": "v66.0",
+  "opportunity_ids": [
+    "006000000000001AAA"
+  ],
+  "task_ids": [
+    "00T000000000001AAA"
+  ],
+  "external_enabled": false,
+  "max_requests": 32,
+  "max_pages": 4,
+  "max_response_bytes": 262144,
+  "max_total_bytes": 2097152,
+  "deadline_seconds": 60,
+  "request_seconds": 20,
+  "min_quota_headroom": 100
+}

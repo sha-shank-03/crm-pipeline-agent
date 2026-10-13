@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "case_id": "u2b-cap-08",
+  "family": "relative-explicit-date",
+  "expected_disposition": "PROPOSE",
+  "opportunity_id": "opp-u2b-cap-08",
+  "expected_changes": {
+    "close_date": "2026-11-23",
+    "next_step": "Deliver the Thistle Cove migration checklist by 2026-11-20."
+  },
+  "semantic_evidence": {
+    "close_date": [
+      {
+        "note_id": "note-u2b-cap-08",
+        "line_id": "close",
+        "quote": "Customer confirmed close in two weeks, explicitly dated 2026-11-23."
+      }
+    ],
+    "next_step": [
+      {
+        "note_id": "note-u2b-cap-08",
+        "line_id": "next",
+        "quote": "Deliver the Thistle Cove migration checklist by 2026-11-20."
+      }
+    ]
+  },
+  "protected_fields": [
+    "id",
+    "account_id",
+    "owner_id",
+    "stage",
+    "amount_minor",
+    "currency",
+    "evidence_revision"
+  ],
+  "expected_final_version": 8,
+  "rationale": "The quote gives an explicit ISO date; relative wording need not be inferred."
+}

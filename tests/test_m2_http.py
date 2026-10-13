@@ -4,6 +4,8 @@ import json
 import threading
 import time
 import unittest
+from unittest.mock import Mock, patch
+from urllib.error import URLError
 
 from crm_agent.providers.ollama_http import OllamaHttpProvider, ProviderError
 from crm_agent.protocol import ProtocolError
@@ -15,20 +17,31 @@ class HttpTransportTests(unittest.TestCase):
     def setUp(self):
         self.requests = []
         self.responses = []
+        self.release = threading.Event()
+        self.block_headers = False
+        self.slow_body = False
+        self.handlers = []
         outer = self
         class Handler(BaseHTTPRequestHandler):
             def log_message(self, *args): pass
             def do_POST(self):
+                outer.handlers.append(threading.current_thread())
                 outer.requests.append({"path": self.path, "body": json.loads(self.rfile.read(int(self.headers["Content-Length"])))})
                 status, body, headers, delay = outer.responses.pop(0) if outer.responses else (200, response("finish", {"disposition": "HANDOFF", "reason": "Test double complete", "citations": []}), {}, 0)
+                if outer.block_headers: outer.release.wait(2)
                 if delay: time.sleep(delay)
                 self.send_response(status)
                 self.send_header("Content-Type", "application/json")
                 self.send_header("Content-Length", str(len(body)))
                 for key, value in headers.items(): self.send_header(key, value)
                 self.end_headers()
-                try: self.wfile.write(body)
-                except (BrokenPipeError, ConnectionResetError): pass
+                try:
+                    if outer.slow_body:
+                        for byte in body:
+                            self.wfile.write(bytes([byte])); self.wfile.flush()
+                            if outer.release.wait(0.01): break
+                    else: self.wfile.write(body)
+                except (BrokenPipeError, ConnectionResetError, ConnectionAbortedError): pass
         self.server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
         self.server.daemon_threads = True
         self.thread = threading.Thread(target=self.server.serve_forever, kwargs={"poll_interval": 0.02}, daemon=True)
@@ -38,7 +51,12 @@ class HttpTransportTests(unittest.TestCase):
         self.provider = OllamaHttpProvider(self.base, "test-local", allow_live_model=True)
 
     def stop(self):
+        self.release.set()
         self.server.shutdown(); self.server.server_close(); self.thread.join(timeout=2)
+        self.assertFalse(self.thread.is_alive())
+        for thread in self.handlers:
+            thread.join(timeout=2)
+            self.assertFalse(thread.is_alive())
 
     def call(self, messages=None, seconds=1):
         return self.provider.next(messages or [{"role": "user", "content": "Review fictional pipeline"}], tool_schemas(), {"remaining_seconds": seconds})
@@ -72,22 +90,56 @@ class HttpTransportTests(unittest.TestCase):
         with self.assertRaises(ProviderError): self.call()
         self.assertEqual(len(self.requests), 1)
 
-    def test_one_transient_retry_and_no_unbounded_retry(self):
+    def test_inference_http_error_has_zero_automatic_retries(self):
         self.responses += [(503, b"unavailable", {}, 0), (200, response(), {}, 0)]
-        self.assertEqual(self.call().name, "list_opportunities")
-        self.responses += [(503, b"unavailable", {}, 0), (503, b"unavailable", {}, 0)]
         with self.assertRaises(ProviderError): self.call()
-        self.assertEqual(len(self.requests), 4)
+        self.assertEqual(len(self.requests), 1)
+        self.assertEqual(len(self.responses), 1)
 
     def test_body_cap_rejects_oversized_response(self):
         self.responses.append((200, b"x" * 65537, {}, 0))
         with self.assertRaises(ProviderError): self.call()
 
     def test_total_deadline_handles_slow_provider(self):
-        self.responses.append((200, response(), {}, 0.2))
+        self.block_headers = True  # Every attempt blocks; empty queue cannot supply instant success.
+        self.responses.append((200, response(), {}, 0))
         start = time.monotonic()
         with self.assertRaises(ProviderError): self.call(seconds=0.05)
         self.assertLess(time.monotonic() - start, 0.5)
+        self.assertLessEqual(len(self.requests), 1)
+
+    def test_early_timeout_is_terminal_even_with_budget_remaining(self):
+        self.provider.opener = Mock()
+        self.provider.opener.open.side_effect = URLError(TimeoutError("early"))
+        with patch("crm_agent.providers.ollama_http.time.monotonic", side_effect=[0.0, 0.01]):
+            with self.assertRaises(ProviderError): self.call(seconds=0.05)
+        self.assertEqual(self.provider.opener.open.call_count, 1)
+        self.assertEqual(self.provider.usage, [])
+
+    def test_late_eof_cannot_return_success(self):
+        fake = Mock()
+        fake.status = 200
+        fake.fp = None
+        fake.headers.get_content_type.return_value = "application/json"
+        fake.read1.side_effect = [response(), b""]
+        self.provider.opener = Mock()
+        self.provider.opener.open.return_value.__enter__ = Mock(return_value=fake)
+        self.provider.opener.open.return_value.__exit__ = Mock(return_value=False)
+        with patch("crm_agent.providers.ollama_http.time.monotonic", side_effect=[0, 0, 0, 0, 0.01, 0.01, 0.051]):
+            with self.assertRaises(ProviderError): self.call(seconds=0.05)
+        self.assertEqual(self.provider.usage, [])
+
+    def test_total_deadline_handles_trickled_body(self):
+        self.slow_body = True
+        self.responses.append((200, response(), {}, 0))
+        start = time.monotonic()
+        with self.assertRaises(ProviderError): self.call(seconds=0.05)
+        self.assertLess(time.monotonic() - start, 0.5)
+
+    def test_nonfinite_deadline_is_rejected_before_request(self):
+        for seconds in [float("nan"), float("inf"), -1, 0]:
+            with self.assertRaises(ProviderError): self.call(seconds=seconds)
+        self.assertEqual(self.requests, [])
 
     def test_terminal_disposition_round_trip(self):
         self.assertEqual(self.call(), Terminal("HANDOFF", "Test double complete"))

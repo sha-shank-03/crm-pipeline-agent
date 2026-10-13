@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "case_id": "u2b-cap-04",
+  "family": "closed-no-change",
+  "expected_disposition": "NO_CHANGE",
+  "opportunity_id": "opp-u2b-cap-04",
+  "expected_changes": {},
+  "semantic_evidence": {},
+  "protected_fields": [
+    "id",
+    "account_id",
+    "owner_id",
+    "stage",
+    "amount_minor",
+    "currency",
+    "evidence_revision"
+  ],
+  "expected_final_version": 7,
+  "rationale": "Closed deals are ineligible."
+}

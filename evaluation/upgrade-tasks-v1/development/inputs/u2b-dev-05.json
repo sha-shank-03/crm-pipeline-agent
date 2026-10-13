@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "case_id": "u2b-dev-05",
+  "as_of": "2026-10-12",
+  "task": "Review opportunity opp-u2b-dev-05 using eligible customer commitments.",
+  "fixture": {
+    "schema_version": 1,
+    "synthetic": true,
+    "name": "Invented U2-B dev-05",
+    "accounts": {
+      "acct-u2b-dev-05": {
+        "id": "acct-u2b-dev-05",
+        "name": "Fictional Elm Harbor",
+        "region": "north",
+        "revision": 1
+      }
+    },
+    "opportunities": {
+      "opp-u2b-dev-05": {
+        "id": "opp-u2b-dev-05",
+        "account_id": "acct-u2b-dev-05",
+        "owner_id": "rep-u2b-dev-05",
+        "stage": "open",
+        "amount_minor": 1426500,
+        "currency": "USD",
+        "close_date": "2026-09-29",
+        "next_step": "Schedule the discovery session.",
+        "version": 7,
+        "evidence_revision": 1,
+        "history": [
+          {
+            "event_id": "prior-dev-05",
+            "actor": "rep-u2b-dev-05",
+            "version": 7,
+            "before": {
+              "next_step": "Request discovery availability."
+            },
+            "after": {
+              "next_step": "Schedule the discovery session."
+            }
+          }
+        ]
+      },
+      "opp-u2b-dev-05-renewal": {
+        "id": "opp-u2b-dev-05-renewal",
+        "account_id": "acct-u2b-dev-05",
+        "owner_id": "rep-u2b-dev-05",
+        "stage": "won",
+        "amount_minor": 900005,
+        "currency": "USD",
+        "close_date": "2026-09-29",
+        "next_step": "Schedule the discovery session.",
+        "version": 7,
+        "evidence_revision": 1,
+        "history": [
+          {
+            "event_id": "prior-dev-05",
+            "actor": "rep-u2b-dev-05",
+            "version": 7,
+            "before": {
+              "next_step": "Request discovery availability."
+            },
+            "after": {
+              "next_step": "Schedule the discovery session."
+            }
+          }
+        ]
+      }
+    },
+    "notes": {
+      "note-u2b-dev-05": {
+        "id": "note-u2b-dev-05",
+        "revision": 1,
+        "account_id": "acct-u2b-dev-05",
+        "opportunity_ids": [
+          "opp-u2b-dev-05"
+        ],
+        "occurred_at": "2026-10-10",
+        "status": "active",
+        "visibility": [
+          "north"
+        ],
+        "lines": [
+          {
+            "id": "close",
+            "text": "Customer confirmed closing on 2026-12-15."
+          },
+          {
+            "id": "next",
+            "text": "Send the Elm Harbor revised scope by 2026-10-23."
+          }
+        ]
+      },
+      "note-u2b-dev-05-prior": {
+        "id": "note-u2b-dev-05-prior",
+        "revision": 1,
+        "account_id": "acct-u2b-dev-05",
+        "opportunity_ids": [
+          "opp-u2b-dev-05"
+        ],
+        "occurred_at": "2026-10-08",
+        "status": "active",
+        "visibility": [
+          "north"
+        ],
+        "lines": [
+          {
+            "id": "close",
+            "text": "Confirmed target close is 2027-01-08."
+          },
+          {
+            "id": "next",
+            "text": "Schedule a second commercial discussion."
+          }
+        ]
+      }
+    }
+  }
+}

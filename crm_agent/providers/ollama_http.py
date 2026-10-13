@@ -2,6 +2,7 @@
 import http.client
 import ipaddress
 import json
+import math
 import re
 import socket
 import time
@@ -105,44 +106,50 @@ class OllamaHttpProvider:
         self.opener = build_opener(ProxyHandler({}), NoRedirect())
 
     def next(self, messages, tools, limits):
+        try:
+            seconds = float(limits.get("remaining_seconds", 20))
+        except (TypeError, ValueError, OverflowError) as error:
+            raise ProviderError("Invalid provider deadline") from error
+        if not math.isfinite(seconds) or seconds <= 0:
+            raise ProviderError("Invalid provider deadline")
+        deadline = time.monotonic() + min(20.0, seconds)
+
+        def remaining():
+            value = deadline - time.monotonic()
+            if value <= 0:
+                raise ProviderError("Provider request deadline exhausted")
+            return value
+
         body = encode({"model": self.model_id, "messages": wire_messages(messages), "stream": False,
                        "tools": [{"type": "function", "function": item} for item in tools + [FINISH]],
                        "options": {"num_predict": 2048, "temperature": 0}})
         if len(body) > 262144:
             raise ProviderError("Provider transcript exceeds 256 KiB")
-        deadline = time.monotonic() + min(20.0, float(limits.get("remaining_seconds", 20)))
-        for attempt in range(2):
-            remaining = deadline - time.monotonic()
-            if remaining <= 0:
-                raise ProviderError("Provider request deadline exhausted")
-            request = Request(self.url, body, {"Content-Type": "application/json"}, method="POST")
-            try:
-                with self.opener.open(request, timeout=remaining) as response:
-                    if response.status != 200:
-                        raise ProviderError("Unexpected HTTP status")
-                    if response.headers.get_content_type() != "application/json":
-                        raise ProviderError("Expected JSON content type")
-                    payload = bytearray()
-                    while len(payload) <= 65536:
-                        if time.monotonic() >= deadline:
-                            raise ProviderError("Provider body deadline exhausted")
-                        # Socket read timeout is additionally bounded; a slow trickle cannot reset total time.
-                        remaining = max(0.001, deadline - time.monotonic())
-                        if response.fp is not None and getattr(response.fp, "raw", None) is not None:
-                            response.fp.raw._sock.settimeout(remaining)
-                        chunk = response.read1(min(8192, 65537 - len(payload)))
-                        if not chunk:
-                            break
-                        payload.extend(chunk)
-                    decision, usage = parse_response(bytes(payload), self.model_id)
-                    self.usage.append(usage)
-                    return decision
-            except HTTPError as error:
-                error.close()
-                if attempt == 0 and error.code in {429, 502, 503, 504}:
-                    continue
-                raise ProviderError(f"Provider HTTP error {error.code}") from error
-            except (URLError, TimeoutError, socket.timeout, http.client.HTTPException, OSError) as error:
-                if attempt == 0:
-                    continue
-                raise ProviderError("Provider transport unavailable or timed out") from error
+        request = Request(self.url, body, {"Content-Type": "application/json"}, method="POST")
+        try:
+            # Zero inference retries: an early timeout must not become a new decision.
+            with self.opener.open(request, timeout=remaining()) as response:
+                remaining()
+                if response.status != 200:
+                    raise ProviderError("Unexpected HTTP status")
+                if response.headers.get_content_type() != "application/json":
+                    raise ProviderError("Expected JSON content type")
+                payload = bytearray()
+                while len(payload) <= 65536:
+                    seconds = remaining()
+                    if response.fp is not None and getattr(response.fp, "raw", None) is not None:
+                        response.fp.raw._sock.settimeout(seconds)
+                    chunk = response.read1(min(8192, 65537 - len(payload)))
+                    remaining()  # Includes a delayed EOF, not just nonempty body chunks.
+                    if not chunk:
+                        break
+                    payload.extend(chunk)
+                decision, usage = parse_response(bytes(payload), self.model_id)
+                remaining()  # Parsing is part of the same cumulative request budget.
+                self.usage.append(usage)
+                return decision
+        except HTTPError as error:
+            error.close()
+            raise ProviderError(f"Provider HTTP error {error.code}") from error
+        except (URLError, TimeoutError, socket.timeout, http.client.HTTPException, OSError) as error:
+            raise ProviderError("Provider transport unavailable or timed out") from error

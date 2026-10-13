@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "case_id": "u2b-dev-07",
+  "as_of": "2026-10-12",
+  "task": "Review opportunity opp-u2b-dev-07 using eligible customer commitments.",
+  "fixture": {
+    "schema_version": 1,
+    "synthetic": true,
+    "name": "Invented U2-B dev-07",
+    "accounts": {
+      "acct-u2b-dev-07": {
+        "id": "acct-u2b-dev-07",
+        "name": "Fictional Grove Delta",
+        "region": "north",
+        "revision": 1
+      }
+    },
+    "opportunities": {
+      "opp-u2b-dev-07": {
+        "id": "opp-u2b-dev-07",
+        "account_id": "acct-u2b-dev-07",
+        "owner_id": "rep-u2b-dev-07",
+        "stage": "open",
+        "amount_minor": 1449100,
+        "currency": "USD",
+        "close_date": "2026-09-29",
+        "next_step": "Schedule the discovery session.",
+        "version": 7,
+        "evidence_revision": 1,
+        "history": [
+          {
+            "event_id": "prior-dev-07",
+            "actor": "rep-u2b-dev-07",
+            "version": 7,
+            "before": {
+              "next_step": "Request discovery availability."
+            },
+            "after": {
+              "next_step": "Schedule the discovery session."
+            }
+          }
+        ]
+      },
+      "opp-u2b-dev-07-renewal": {
+        "id": "opp-u2b-dev-07-renewal",
+        "account_id": "acct-u2b-dev-07",
+        "owner_id": "rep-u2b-dev-07",
+        "stage": "won",
+        "amount_minor": 900007,
+        "currency": "USD",
+        "close_date": "2026-09-29",
+        "next_step": "Schedule the discovery session.",
+        "version": 7,
+        "evidence_revision": 1,
+        "history": [
+          {
+            "event_id": "prior-dev-07",
+            "actor": "rep-u2b-dev-07",
+            "version": 7,
+            "before": {
+              "next_step": "Request discovery availability."
+            },
+            "after": {
+              "next_step": "Schedule the discovery session."
+            }
+          }
+        ]
+      }
+    },
+    "notes": {
+      "note-u2b-dev-07": {
+        "id": "note-u2b-dev-07",
+        "revision": 1,
+        "account_id": "acct-u2b-dev-07",
+        "opportunity_ids": [
+          "opp-u2b-dev-07",
+          "opp-u2b-dev-07-renewal"
+        ],
+        "occurred_at": "2026-10-10",
+        "status": "active",
+        "visibility": [
+          "north"
+        ],
+        "lines": [
+          {
+            "id": "close",
+            "text": "Customer confirmed closing on 2026-12-17."
+          },
+          {
+            "id": "next",
+            "text": "Send the Grove Delta revised scope by 2026-10-23."
+          }
+        ]
+      }
+    }
+  }
+}
